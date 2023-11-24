@@ -1,2 +1,2 @@
 # attendance-monitoring-system
- basta
+ web based attendance monitoring system
