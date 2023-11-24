@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body{
             margin: 0;
@@ -14,78 +15,110 @@
             font-family: 'Inter', sans-serif;
         }
         nav{
-            height: 50px;
-            background: #D9D9D9;
-            flex-shrink: 0;
+            overflow: hidden;
+            background-color: #cacaca;
         }
-        img{
+
+        nav a{
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        
+        }
+
+        .account-img{
             height: 40px;
+            border-radius: 50%;
         }
-        .class-button{
-            width: 485px;
-            height: 188px;
-            position: relative;
-            background: rgb(98, 187, 56);
-            border-radius: 16px
+        .dropdown {
+            float: left;
+            overflow: hidden;
         }
-        .class-code{
-            left: 32px;
-            top: 25px;
+
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;  
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        nav a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+            background-color: red;
+        }
+
+        .dropdown-content {
+            display: none;
             position: absolute;
-            color: black;
-            font-size: 50px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            word-wrap: break-word;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
         }
-        .class-name{
-            width: 409px;
-            height: 52px;
-            left: 34px;
-            top: 86px;
-            position: absolute;
+
+        .dropdown-content a {
+            float: none;
             color: black;
-            font-size: 20px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            word-wrap: break-word;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
         }
-        .class-desription{
-            left: 254px;
-            top: 152px;
-            position: absolute;
-            color: black;
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            word-wrap: break-word;
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#">HTML</a> |
-        <a href="#">CSS</a> |
-        <a href="#">JavaScript</a> |
-        <a href="#">Python</a>
-        <div class="profile">
-            <img src="img/profile.jpg" alt="profile picture" class="account-img">
-        </div>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">Bell</a>
+        
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()"><img src="img/profile.jpg" alt="profile picture" class="account-img">Dropdown
+              <i class="fa fa-caret-down"></i>
+            </button>
+            
+            <div class="dropdown-content" id="myDropdown">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+
+            </div> 
     </nav>
-    <br>
-    <br>
-    <br>
-    <div class="class-button">
-        <div class="class-code">CCC 220</div>
-        <div class="class-name">Information Management 1</div>
-        <div class="class-description">G312</div>
-        <div class="class-description">20 Students</div>
-        <div class="class-description">1:30 - 3:30PM MW</div>
-        <img style="width: 15px; height: 15px; left: 39px; top: 153px; position: absolute" src="https://via.placeholder.com/15x15" />
-        <img style="width: 17px; height: 21px; left: 338px; top: 148px; position: absolute" src="https://via.placeholder.com/17x21" />
-        <img style="width: 28px; height: 33px; left: 228px; top: 142px; position: absolute" src="https://via.placeholder.com/28x33" />
-        <img style="width: 31px; height: 31px; left: 465px; top: 13px; position: absolute; transform: rotate(90deg); transform-origin: 0 0" src="https://via.placeholder.com/31x31" />
-      </div>
-      
+
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(e) {
+          if (!e.target.matches('.dropbtn')) {
+          var myDropdown = document.getElementById("myDropdown");
+            if (myDropdown.classList.contains('show')) {
+              myDropdown.classList.remove('show');
+            }
+          }
+        }
+        </script>
 </body>
 </html>
