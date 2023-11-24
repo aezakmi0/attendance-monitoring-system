@@ -7,7 +7,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <style>
         body{
             margin: 0;
@@ -32,13 +39,14 @@
             width: 40px;
             border-radius: 50%;
         }
-        .dropdown {
-            /* float: left; */
+        .profile {
+            float: right;
             /* overflow: hidden; */
             display: inline;
+            background-color: #929292;
         }
 
-        .dropdown .dropbtn {
+        .profile .dropbtn {
             cursor: pointer;
             font-size: 16px;  
             border: none;
@@ -50,20 +58,20 @@
             margin: 0;
         }
 
-        nav a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+        nav a:hover, .profile:hover .dropbtn, .dropbtn:focus {
             background-color: red;
         }
 
-        .dropdown-content {
+        .profile-content {
             display: none;
             position: absolute;
             background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
+            /* z-index: 1; */
         }
 
-        .dropdown-content a {
+        .profile-content a {
             /* float: none; */
             color: black;
             padding: 12px 16px;
@@ -72,7 +80,7 @@
             text-align: left;
         }
 
-        .dropdown-content a:hover {
+        .profile-content a:hover {
             background-color: #ddd;
         }
 
@@ -83,39 +91,42 @@
 </head>
 <body>
     <nav>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">Bell</a>
-        
-        <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()"><img src="img/profile.jpg" alt="profile picture" class="account-img">Dropdown
-              <i class="fa fa-caret-down"></i>
-            </button>
-            
-            <div class="dropdown-content" id="myDropdown">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
+        <div class="nav-left">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>  
+        </div>
+        <div class="nav-right">
+            <a href="#">Bell</a>
+            <div class="profile">
+                <button class="dropbtn" onclick="myFunction()"><img src="img/profile.jpg" alt="profile picture" class="account-img">Profile Name
+                <i class="fa fa-caret-down"></i>
+                </button>
+                
+                <div class="profile-content" id="myprofile">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+                </div>
 
-            </div> 
+            </div>
+        </div>
     </nav>
 
     <script>
         /* When the user clicks on the button, 
-        toggle between hiding and showing the dropdown content */
+        toggle between hiding and showing the profile content */
         function myFunction() {
-          document.getElementById("myDropdown").classList.toggle("show");
+          document.getElementById("myprofile").classList.toggle("show");
         }
         
-        // Close the dropdown if the user clicks outside of it
+        // Close the profile if the user clicks outside of it
         window.onclick = function(e) {
           if (!e.target.matches('.dropbtn')) {
-          var myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-              myDropdown.classList.remove('show');
+          var myprofile = document.getElementById("myprofile");
+            if (myprofile.classList.contains('show')) {
+              myprofile.classList.remove('show');
             }
           }
         }
