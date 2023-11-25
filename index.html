@@ -19,6 +19,15 @@
         .navbar-right{ 
             margin-left: auto; 
         }
+        .make-this-color:before {
+            position: absolute;
+            height: 100%;
+            display: inline-block;
+            background: #a10d0d;
+            top: 0;
+            left: -9999px;
+            right: 100%;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +65,7 @@
                 <a href="#" class="nav-link">Bell Icon</a>
             </div>
             
-            <div class="navbar-nav" style="background-color: rgb(204, 204, 204);">
+            <div class="navbar-nav make-this-color">
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle"
                     id="navbarDropdown"
