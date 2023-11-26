@@ -1,0 +1,98 @@
+body{
+    font-family: Inter;
+    padding-top: 67px;
+}
+.profile-picture{
+    height: 35px;
+    border-radius: 50%;
+    padding-right: 4px;
+}
+.navbar-fixed-top{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0px 0px 5px rgb(177, 177, 177);
+}
+.navbar-right{ 
+    margin-left: auto; 
+}
+ /* For the padding of the Icons */
+ .navbar-nav .nav-item .nav-link{
+    padding: 16px 24px !important;
+}
+/* For the Bell Icon padding */
+.nav-link{
+    padding: 16px 24px !important;
+}
+/* Removed the padding-left of the Home icon */
+#navbarNav > ul > li:first-child .nav-link {
+    padding-left: 0px !important;
+}
+.nav-profile{
+    background-color: #dddddd;
+}
+.nav-link svg path {
+    fill: #6e6e6e;
+    transition: fill 0.3s ease; 
+}
+.nav-link:hover svg path {
+    fill: #c2c2c2;
+}
+.dropdown-menu {
+    width: 100%;
+}
+
+/* FOR "ONLINE ATTENDANCE" and DATE TODAY */
+.title-date{
+    margin-top: 40px;
+}
+
+h1{
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.date-today > h2{
+    font-size: 15px;
+    padding: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.date-today > h3{
+    font-size: 25px;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.search-and-filter {
+    margin-top: 30px;
+}
+
+.create-class-button svg,
+.create-class-button span {
+    vertical-align: middle;
+}
+.col-md {
+    display: flex;
+    align-items: stretch;
+}
+
+.form-floating,
+.btn {
+    width: 100%;
+}
+.create-class-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-class-button svg {
+    margin-right: 5px;
+}
+.label-text {
+    font-size: 13px;
+    margin: 0;
+    color: #777;
+}
