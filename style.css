@@ -35,6 +35,9 @@ body{
     fill: #6e6e6e;
     transition: fill 0.3s ease; 
 }
+.active-nav svg path {
+    fill: #202020;
+}
 .nav-link:hover svg path {
     fill: #c2c2c2;
 }
