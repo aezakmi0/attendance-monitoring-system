@@ -11,10 +11,16 @@
     <style>
         body{
             height:1400px;
+            background-color: #dddddd;
         }
         .profile-picture{
             height: 35px;
             border-radius: 50%;
+        }
+        .navbar-fixed-top{
+            position: fixed;
+            top: 0;
+            width: 100%;
         }
         .navbar-right{ 
             margin-left: auto; 
@@ -24,8 +30,6 @@
         }
         .nav-profile{
             background-color: #dddddd;
-            /* border-left: 1px solid black;
-            border-right: 1px solid black; */
         }
         .nav-link:hover {
             color: #b9b9b9; /* Change the color to the desired hover color */
@@ -33,7 +37,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar-expand-md navbar-light bg-light">
+    <nav class="navbar-fixed-top navbar-expand-sm navbar-light bg-light">
     <div class="container">
         <!-- <a href="#" class="navbar-brand mb-0">Logo</a> -->
         <button
