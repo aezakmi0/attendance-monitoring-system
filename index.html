@@ -17,6 +17,7 @@
         .profile-picture{
             height: 35px;
             border-radius: 50%;
+            padding-right: 4px;
         }
         .navbar-fixed-top{
             position: fixed;
@@ -39,6 +40,9 @@
         }
         .nav-link:hover svg path {
             fill: #c2c2c2;
+        }
+        .dropdown-menu {
+            width: 100%; /* Set the width to 100% */
         }
     </style>
 </head>
@@ -90,10 +94,8 @@
                     data-bs-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    >
-                    <img src="img/profile.jpg" alt="profile-picture" class="profile-picture">
-                    <span class="align-middle">Lady Furina</span>
-                    </a>
+                    ><img src="img/profile.jpg" alt="profile-picture" class="profile-picture">
+                    <span class="align-middle">Lady Furina</span></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">Settings</a>
