@@ -72,18 +72,19 @@
     </nav>
 
     <div class="container">
-      <h1 class="text-center page-title mb-3">Create Class</h1>
-      <form class="form-control" style="background-color: rgb(255, 255, 255);">
+      <h1 class="page-title mb-3">Create Class</h1>
+      <form class="form-control">
+        <h1 class="text-center mt-3">Class Information</h1>
         <div class="row">
           <!-- Class Code -->
           <div class="col-md-4">
               <p class="label-text mb-1 mt-3">CLASS CODE</p>
-              <input type="text" class="form-control" placeholder="Enter Class Code">
+              <input type="text" class="form-control" placeholder="Enter Class Code" required>
           </div>
           <!-- Class Name -->
           <div class="col-md-8">
             <p class="label-text mb-1 mt-3">CLASS NAME</p>
-            <input type="text" class="form-control" placeholder="Enter Class Name">
+            <input type="text" class="form-control" placeholder="Enter Class Name" requried>
           </div>
         </div>
         
@@ -91,7 +92,7 @@
           <!-- Room -->
           <div class="col-md d-block">
             <p class="label-text mb-1 mt-3">ROOM</p>
-            <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+            <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" required>
               <option selected>Select Room</option>
               <option value="G102">G102</option>
               <option value="G103">G103</option>
@@ -140,7 +141,7 @@
           <!-- Time Start -->
           <div class="col-md d-block">
             <p class="label-text mb-1 mt-3">START</p>
-            <input type="time" class="form-control" id="floatingInputGrid" placeholder="Search class">
+            <input type="time" class="form-control" id="floatingInputGrid" placeholder="Search class" required>
           </div>
           <!-- Time End -->
           <div class="col-md d-block">
@@ -164,16 +165,33 @@
         </div>
       </form>
 
+      <!-- Students -->
+      <form class="form-control mt-5">
+        <h1 class="text-center mt-3">Add Students</h1>
+        <div class="row">
+            <div class="col-md-2 d-block mt-3">
+                <p class="label-text mb-1">STUDENT ID</p>
+                <input type="text" class="form-control" placeholder="Enter ID" required>
+            </div>
+            <div class="col-md-4 d-block mt-3">
+                <p class="label-text mb-1">LAST NAME</p>
+                <input type="text" class="form-control" placeholder="Enter Last Name" required>
+            </div>
+            <div class="col-md-4 d-block mt-3">
+                <p class="label-text mb-1">FIRST NAME</p>
+                <input type="text" class="form-control" placeholder="Enter Class Code" required>
+            </div>
+            <div class="col-md-2 mt-3">
+                <button class="btn btn-primary w-100">Add</button>
+            </div>
+        </div>
+    </form>
+
       <div class="d-flex justify-content-center m-3">
         <button type="button" class="btn btn-outline-secondary m-1">Cancel</button>
         <button type="button" class="btn btn-primary m-1">Save</button>
       </div>
     </div>
-        <!-- <form>
-            
-          <button type="submit" class="btn btn-secondary">Cancel</button>
-          <button type="submit" class="btn btn-primary">Done</button>
-        </form> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
