@@ -103,5 +103,8 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 3px;
+    margin-right: 12px;
+}
+.day-button:last-child{
+    margin-right: 0;
 }
