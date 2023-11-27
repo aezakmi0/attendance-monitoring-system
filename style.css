@@ -81,10 +81,6 @@ h1{
     align-items: stretch;
 }
 
-.form-floating,
-.btn {
-    width: 100%;
-}
 .create-class-button {
     display: flex;
     align-items: center;
