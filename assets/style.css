@@ -117,7 +117,7 @@ h1{
 .class-container{
     background-color: rgb(228, 228, 228);
     border-radius: 13px;
-    width: 380px;
+    width: 432px;
     padding: 0 10px;
 }
 
@@ -141,3 +141,49 @@ h1{
 .btn:focus{
     box-shadow:none !important;
 }
+
+@media (min-width: 1400px) {
+    .class-container{
+        /* border-radius: 13px; */
+        width: 432px;
+        padding: 0 10px;
+        background-color: rgb(124, 124, 209);
+    }
+  }
+@media (max-width: 1399px) {
+    .class-container{
+        /* border-radius: 13px; */
+        width: 558px;
+        padding: 0 10px;
+        background-color: blue;
+    }
+  }
+/* <1400 1296/3*/ 
+@media (max-width: 1199px) {
+    .class-container{
+        /* border-radius: 13px; */
+        width: 468px;
+        background-color: rgb(8, 212, 117);
+        padding: 0 10px;
+    }
+  }
+
+@media (max-width: 991px) {
+    .class-container{
+        /* border-radius: 13px; */
+        width: 696px;
+        background-color: rgb(131, 5, 131);
+        padding: 0 10px;
+    }
+  }
+
+@media (max-width: 767px) {
+.class-container{
+    /* border-radius: 13px; */
+    width: 100%;
+    background-color: rgb(131, 5, 131);
+    padding: 0 10px;
+}
+}
+/* <1200 1116/2*/
+/* <992 696*/
