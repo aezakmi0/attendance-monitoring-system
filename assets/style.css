@@ -1,6 +1,7 @@
 body{
     font-family: Inter;
     padding-top: 67px;
+    padding-bottom: 67px;
 }
 
 body::-webkit-scrollbar {
@@ -144,45 +145,30 @@ h1{
 
 @media (min-width: 1400px) {
     .class-container{
-        /* border-radius: 13px; */
         width: 416px;
-        padding: 0 10px;
-        background-color: rgb(124, 124, 209);
     }
   }
 @media (max-width: 1399px) {
     .class-container{
-        /* border-radius: 13px; */
         width: 542px;
-        padding: 0 10px;
-        background-color: blue;
     }
   }
 /* <1400 1296/3*/ 
 @media (max-width: 1199px) {
     .class-container{
-        /* border-radius: 13px; */
         width: 452px;
-        background-color: rgb(8, 212, 117);
-        padding: 0 10px;
     }
   }
 
 @media (max-width: 991px) {
     .class-container{
-        /* border-radius: 13px; */
         width: 694px;
-        background-color: rgb(131, 5, 131);
-        padding: 0 10px;
     }
   }
 
 @media (max-width: 767px) {
 .class-container{
-    /* border-radius: 13px; */
     width: 100%;
-    background-color: rgb(179, 89, 179);
-    padding: 0 10px;
 }
 }
 /* <1200 1116/2*/
