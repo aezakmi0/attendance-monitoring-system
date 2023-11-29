@@ -113,3 +113,26 @@ h1{
 .day-button:last-child{
     margin-right: 0;
 }
+
+.class-container{
+    background-color: rgb(228, 228, 228);
+    width: 380px;
+    padding: 0;
+}
+
+/* remove underline */
+.class-code,
+.class-name{
+    text-decoration: none;
+    line-height: normal;
+}
+
+.class-code{
+    font-size: 2.5em;
+    font-weight: bold;
+    color: black;
+}
+
+.class-name{
+    color: black;
+}
