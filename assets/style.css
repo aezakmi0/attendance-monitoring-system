@@ -218,14 +218,21 @@ h1{
 .seatplan-status-btn {
     width: 30px;
     height: 30px;
-    border-radius: 100%;
+    border-radius: 50%;
     text-decoration: none;
     background-color: white;
     color: black;
-    display: none;
-    transition: display .2s;
-  }
+    opacity: 0; /* Start with 0 opacity */
+    transform: translateY(-50%); /* Move the button up by half its height */
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease, color 0.3s; /* Transition for opacity and transform */
+}
 
-.seatplan-seat:hover .seatplan-status-btn{
-        display: inline-block;
+.seatplan-seat:hover .seatplan-status-btn {
+    opacity: 1; /* Make the button fully visible on hover */
+    transform: translateY(0); /* Move the button back to its original position */
+}
+
+.seatplan-status-btn:hover{
+    background-color: rgb(204, 204, 204);
+    color: white
 }
