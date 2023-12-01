@@ -191,11 +191,12 @@ h1{
     font-weight: bold;
     color: rgb(0, 0, 0);
     line-height: 20px;
+    margin: 0;
 }
 
 .seatplan-firstname{
     font-weight: bold;
     font-size: 11px;
     text-transform: uppercase;
-    /* margin: 0; */
+    margin-bottom: 50px;
 }
