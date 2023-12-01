@@ -85,7 +85,7 @@
           <!-- Class Name -->
           <div class="col-md-8">
             <p class="label-text mb-1 mt-3">CLASS NAME</p>
-            <input type="text" class="form-control" placeholder="Enter Class Name" requried>
+            <input type="text" class="form-control" placeholder="Enter Class Name" required>
           </div>
         </div>
         
@@ -94,7 +94,7 @@
           <div class="col-md d-block">
             <p class="label-text mb-1 mt-3">ROOM</p>
             <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" required>
-              <option selected>Select Room</option>
+              <!-- <option selected>Select Room</option> -->
               <option value="G102">G102</option>
               <option value="G103">G103</option>
               <option value="G104">G104</option>
@@ -163,69 +163,73 @@
               </div>
             </div>
           </div>
+          <!-- MY BUTTON -->
+          <!-- <div class="col-md-2">
+            <p class="label-text mb-1 mt-3 invisible">ADD</p>
+            <button class="btn btn-primary w-100">Add</button>
+        </div> -->
         </div>
       </form>
 
       <!-- Students -->
       <form class="form-control mt-5">
         <div class="container p-5">
-        <h1 class="text-center">Add Students</h1>
-        <div class="row">
-            <div class="col-md-2 mt-3">
-                <p class="label-text mb-1">STUDENT ID</p>
-                <input type="text" class="form-control" placeholder="Enter ID" required>
-            </div>
-            <div class="col-md-4 mt-3">
-                <p class="label-text mb-1">LAST NAME</p>
-                <input type="text" class="form-control" placeholder="Enter Last Name" required>
-            </div>
-            <div class="col-md-4 mt-3">
-                <p class="label-text mb-1">FIRST NAME</p>
-                <input type="text" class="form-control" placeholder="Enter Class Code" required>
-            </div>
-            <div class="col-md-2">
-                <p class="label-text mb-1 mt-3 invisible">ADD</p>
-                <button class="btn btn-primary w-100">Add</button>
-            </div>
-        </div>
+          <h1 class="text-center">Add Students</h1>
+          <div class="row">
+              <div class="col-md-2 mt-3">
+                  <p class="label-text mb-1">STUDENT ID</p>
+                  <input type="text" class="form-control" placeholder="Enter ID" required>
+              </div>
+              <div class="col-md-4 mt-3">
+                  <p class="label-text mb-1">LAST NAME</p>
+                  <input type="text" class="form-control" placeholder="Enter Last Name" required>
+              </div>
+              <div class="col-md-4 mt-3">
+                  <p class="label-text mb-1">FIRST NAME</p>
+                  <input type="text" class="form-control" placeholder="Enter Class Code" required>
+              </div>
+              <div class="col-md-2">
+                  <p class="label-text mb-1 mt-3 invisible">ADD</p>
+                  <button class="btn btn-primary w-100">Add</button>
+              </div>
+          </div>
         <!-- Enrolled Students -->
-        <div class="container mt-5">
-            <h1 class="text-center">Enrolled Students</h1>
-            <table class="table table-hover table-sm mt-3">
-            <tr>
-              <th>Student ID</th>
-              <th colspan="2">Name</th>
-            </tr>
-            <tr class="align-middle">
-              <td>202198765</td>
-              <td>Estores, Ivan James</td>
-              <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-             </tr>
-             <tr class="align-middle">
-              <td>202012345</td>
-              <td>Geraldez, Jan Anthony</td>
-              <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-             </tr>
-             <tr class="align-middle">
-              <td>202109876</td>
-              <td>Taboada, Vene Lucille</td>
-              <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-             </tr>
-             <tr class="align-middle">
-              <td>202011223</td>
-              <td>Taladtad, Jelan Roy</td>
-              <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-             </tr>
-          </table>
+          <div class="container mt-5">
+              <h1 class="text-center">Enrolled Students</h1>
+              <table class="table table-hover table-sm mt-3">
+                <tr>
+                  <th>Student ID</th>
+                  <th colspan="2">Name</th>
+                </tr>
+                <tr class="align-middle">
+                  <td>202198765</td>
+                  <td>Estores, Ivan James</td>
+                  <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
+                </tr>
+                <tr class="align-middle">
+                  <td>202012345</td>
+                  <td>Geraldez, Jan Anthony</td>
+                  <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
+                </tr>
+                <tr class="align-middle">
+                  <td>202109876</td>
+                  <td>Taboada, Vene Lucille</td>
+                  <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
+                </tr>
+                <tr class="align-middle">
+                  <td>202011223</td>
+                  <td>Taladtad, Jelan Roy</td>
+                  <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
+                </tr>
+              </table>
+          </div>
         </div>
-      </div>
-    </form>
-    
-
+      </form>
+      <!-- cancel save button -->
       <div class="d-flex justify-content-center m-3">
         <a type="button" class="btn btn-outline-secondary m-1" href="index.html">Cancel</a>
         <button type="button" class="btn btn-primary m-1">Save</button>
