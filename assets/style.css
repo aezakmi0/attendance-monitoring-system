@@ -181,11 +181,21 @@ h1{
 .seatplan-seat{
     /* background-color:#dddddd; */
     margin: 4px;
-    border: 1px solid gray;
+    border: 1px solid rgb(0, 0, 0);
 }
 
-.seatplan-name {
-    /* font-size: 15px; */
+.seatplan-lastname {
+    text-transform: uppercase;
+    padding-top: 10px;
+    font-size: 15px;
     font-weight: bold;
-    color: gray;
+    color: rgb(0, 0, 0);
+    line-height: 20px;
+}
+
+.seatplan-firstname{
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    /* margin: 0; */
 }
