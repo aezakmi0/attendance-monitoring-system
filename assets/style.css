@@ -178,3 +178,14 @@ h1{
     }
 }
 
+.seatplan-seat{
+    /* background-color:#dddddd; */
+    margin: 4px;
+    border: 1px solid gray;
+}
+
+.seatplan-name {
+    /* font-size: 15px; */
+    font-weight: bold;
+    color: gray;
+}
