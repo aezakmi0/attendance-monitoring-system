@@ -134,6 +134,12 @@ h1{
     font-weight: bold;
     color: black;
 }
+.class-code-lg{
+    font-size: 4em;
+    font-weight: bold;
+    color: black;
+    line-height: 65px;
+}
 
 .class-name{
     color: black;
