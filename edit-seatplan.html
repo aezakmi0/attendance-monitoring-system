@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Code</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    <div class="container" style="background-color: rgb(255, 255, 255);">
+        <div class="text-center pt-4">
+            <h1 class="class-code-lg">CS-ITE 313</h1>
+            <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p>
+        </div>
+        <!-- <hr class="hr" /> -->
+        <div class="d-flex justify-content-center">    
+            <!-- <a href="edit-seatplan.html" type="button" class="btn m-1 btn-secondary">Edit Seatplan</a>
+            <a href="#" type="button" class="btn m-1 btn-secondary">Enroll Student</a>
+            <a href="#" type="button" class="btn m-1 btn-secondary">Edit Class</a>
+            <a href="#" type="button" class="btn m-1 btn-secondary">Generate Report</a>
+            <a href="#" type="button" class="btn m-1 btn-danger">Delete Class</a> -->
+        </div>
+        <hr class="hr" />
+        <h1 class="text-center display-6">Edit Seatplan</h1>
+        <hr class="hr" />
+        <!-- <div class="d-flex justify-content-between">
+            <p>December 1, 2023</p>
+            <p>5:36 PM</p>
+        </div> -->
+    </div>
+    
+    <!-- seatplan layout -->
+    <div class="container" style="height: 60vh;">
+        <div class="row">
+            <!-- left 25 -->
+            <div class="col" style="margin-right: 5%;">
+                <!-- 1st row -->
+                <div class="row">
+                    <textarea type="text" class="col rounded seatplan-seat form-control text-wrap" id="exampleFormControlTextarea1" ></textarea>
+                        <!-- <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p> -->
+                    <!-- </div> -->
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+                <!-- 2nd row -->
+                <div class="row">
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+                <!-- 3rd row -->
+                <div class="row">
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+                <!-- 4th row -->
+                <div class="row">
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+                <!-- 5th row -->
+                <div class="row">
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+            </div>
+            <!-- RIGHT -->
+            <div class="col">
+                <!-- 1st row -->
+                <div class="row">
+                    <div class="row">
+                        <div class="col rounded seatplan-seat">
+                            <p class="seatplan-lastname invisible">a</p>
+                            <p class="seatplan-firstname invisible">a</p>
+                        </div>
+                        <div class="col rounded seatplan-seat">
+                            <p class="seatplan-lastname"></p>
+                            <p class="seatplan-firstname"></p>
+                        </div>
+                        <div class="col rounded seatplan-seat">
+                            <p class="seatplan-lastname"></p>
+                            <p class="seatplan-firstname"></p>
+                        </div>
+                        <div class="col rounded seatplan-seat">
+                            <p class="seatplan-lastname"></p>
+                            <p class="seatplan-firstname"></p>
+                        </div>
+                        <div class="col rounded seatplan-seat">
+                            <p class="seatplan-lastname"></p>
+                            <p class="seatplan-firstname"></p>
+                        </div>
+                    </div>
+                <!-- 2nd row -->
+                <div class="row">
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+                <!-- 3rd row -->
+                <div class="row">
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+                <!-- 4th row -->
+                <div class="row">
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+                <!-- 5th row -->
+                <div class="row">
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname invisible">a</p>
+                        <p class="seatplan-firstname invisible">a</p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                    <div class="col rounded seatplan-seat">
+                        <p class="seatplan-lastname"></p>
+                        <p class="seatplan-firstname"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="include-navbar.js"></script>
+</body>
+</html>
