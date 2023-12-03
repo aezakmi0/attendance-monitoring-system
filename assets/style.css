@@ -184,17 +184,45 @@ h1{
 }
 
 .seatplan-seat{
-    /* background-color:#dddddd; */
     margin: 4px;
-    /* border: 2px solid rgb(107, 179, 74); */
-    width: 100%; /* Set width to 100% to fill the container */
-    height: 11vh; /* Set a fixed height for the columns */
+    width: 100%;
+    height: 11vh;
     background-color: #97f76b;
-
+    position: relative;
     overflow: hidden;
     white-space: wrap;
     overflow-wrap: break-word;
     hyphens: auto;
+    transition: background-color 0.3s ease;
+}
+
+.seatplan-seat:hover .seatplan-status-btn-container {
+    opacity: 1;
+}
+
+.seatplan-status-btn-container {
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 30%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.seatplan-status-btn {
+    display: block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    text-decoration: none;
+    color: black;
+    margin: 2px;
+    transition: background-color 0.3s ease;
 }
 
 .seatplan-lastname {
@@ -205,6 +233,7 @@ h1{
     color: rgb(0, 0, 0);
     line-height: 15px;
     margin: 0;
+    transform: color 0.3 ease;
 }
 
 .seatplan-firstname{
@@ -213,26 +242,31 @@ h1{
     font-size: 11px;
     text-transform: uppercase;
     margin-bottom: 50px;
+    transform: color 0.3 ease;
 }
 
-.seatplan-status-btn {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    text-decoration: none;
-    background-color: white;
-    color: black;
-    opacity: 0; /* Start with 0 opacity */
-    transform: translateY(-50%); /* Move the button up by half its height */
-    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease, color 0.3s; /* Transition for opacity and transform */
+.seatplan-seat:hover{
+    background-color: rgb(177, 177, 177);
 }
-
 .seatplan-seat:hover .seatplan-status-btn {
     opacity: 1; /* Make the button fully visible on hover */
-    transform: translateY(0); /* Move the button back to its original position */
+    transform: translateY(0); 
+    /* Move the button back to its original position */
 }
 
-.seatplan-status-btn:hover{
+/* Change background color on hover for each button */
+.seatplan-status-btn:hover {
+    background-color: #97f76b; /* Change to green on hover for 'P' */
+    box-shadow: 0px 2px 5px rgb(105, 105, 105);
+    /* color: white; */
+}
+
+/* Red background on hover for 'A' */
+.seatplan-status-btn:hover:nth-child(2) {
+    background-color: rgb(255, 78, 78);
+}
+
+/* Gray background on hover for 'L' */
+.seatplan-status-btn:hover:nth-child(3) {
     background-color: rgb(204, 204, 204);
-    color: white
 }
