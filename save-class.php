@@ -20,10 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $room = $_POST["room"];
     $startTime = $_POST["time_start"];
     $endTime = $_POST["time_end"];
-    $days = implode(",", $_POST["days"]); // Assuming you store days as comma-separated values
+    $selectedDays = $_POST["days"];
+    $daysString = implode(',', $selectedDays); // Assuming you store days as comma-separated values
 
     // SQL query to insert data into the database
-    $sql = "INSERT INTO tb_class (class_code, class_name, room, time_start, time_end, day) VALUES ('$classCode', '$className', '$room', '$startTime', '$endTime', '$days')";
+    $sql = "INSERT INTO tb_class (class_code, class_name, room, time_start, time_end, selected_days) VALUES ('$classCode', '$className', '$room', '$startTime', '$endTime', '$daysString')";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
