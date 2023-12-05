@@ -21,12 +21,12 @@
         <!-- Class Code -->
         <div class="col-md-4">
             <p class="label-text mb-1 mt-3">CLASS CODE</p>
-            <input type="text" class="form-control" placeholder="Enter Class Code" required>
+            <input type="text" class="form-control" name="class_code" placeholder="Enter Class Code" required>
         </div>
         <!-- Class Name -->
         <div class="col-md-8">
           <p class="label-text mb-1 mt-3">CLASS NAME</p>
-          <input type="text" class="form-control" placeholder="Enter Class Name" required>
+          <input type="text" class="form-control" name="class_name" placeholder="Enter Class Name" required>
         </div>
       </div>
       
@@ -34,7 +34,7 @@
         <!-- Room -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">ROOM</p>
-          <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" required>
+          <select class="form-select" id="floatingSelectGrid" name="room" aria-label="Floating label select example" required>
             <!-- <option selected>Select Room</option> -->
             <option value="G102">G102</option>
             <option value="G103">G103</option>
@@ -83,12 +83,12 @@
         <!-- Time Start -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">START</p>
-          <input type="time" class="form-control" id="floatingInputGrid" required>
+          <input type="time" class="form-control" name="time_start" id="floatingInputGrid" required>
         </div>
         <!-- Time End -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">END</p>
-          <input type="time" class="form-control" id="floatingInputGrid" required>
+          <input type="time" class="form-control" name="time_end" id="floatingInputGrid" required>
         </div>
         <!-- Day -->
         <div class="col-md">
@@ -113,6 +113,6 @@
     </form>
 
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="include-navbar.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
