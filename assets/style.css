@@ -203,6 +203,20 @@ h1{
     cursor: move;
     transition: background-color 0.3s ease;
 }
+.seatplan-seat-behind{
+    margin: 4px;
+    /* width: 100%; */
+    width: 11vh;
+    height: 11vh;
+    background-color: #999999;
+    position: relative;
+    overflow: hidden;
+    white-space: wrap;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    cursor: move;
+    transition: background-color 0.3s ease;
+}
 
 .seatplan-seat:hover .seatplan-status-btn-container {
     opacity: 1;
