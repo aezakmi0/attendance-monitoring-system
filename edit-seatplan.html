@@ -19,13 +19,6 @@
             <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p>
         </div>
         <!-- <hr class="hr" /> -->
-        <div class="d-flex justify-content-center">    
-            <!-- <a href="edit-seatplan.html" type="button" class="btn m-1 btn-secondary">Edit Seatplan</a>
-            <a href="#" type="button" class="btn m-1 btn-secondary">Enroll Student</a>
-            <a href="#" type="button" class="btn m-1 btn-secondary">Edit Class</a>
-            <a href="#" type="button" class="btn m-1 btn-secondary">Generate Report</a>
-            <a href="#" type="button" class="btn m-1 btn-danger">Delete Class</a> -->
-        </div>
         <hr class="hr" />
         <h1 class="text-center display-6">Edit Seatplan</h1>
         <hr class="hr" />
@@ -36,372 +29,40 @@
     </div>
     
     <!-- seatplan layout -->
-    <div class="container" style="height: 60vh;">
-        <div class="row">
-            <!-- left 25 -->
-            <div class="col" style="margin-right: 5%;" id="sortable-container">
-                <!-- 1st row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat" id="sortable-container">
-                        
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat" id="sortable-container">
-                        <p class="seatplan-lastname">Agreda,</p>
-                        <p class="seatplan-firstname">Dale Anthony</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Estores,</p>
-                        <p class="seatplan-firstname">Ivan James</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Garingo,</p>
-                        <p class="seatplan-firstname">Joshua Razzi</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                </div>
-                <!-- 2nd row -->
-                <div class="row" id="sortable-container">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Piramo,</p>
-                        <p class="seatplan-firstname">Carl Gabriel</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Lozada,</p>
-                        <p class="seatplan-firstname">Jesse John</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Hayag,</p>
-                        <p class="seatplan-firstname">Alexiss</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Geraldez,</p>
-                        <p class="seatplan-firstname">Jan Anthony</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                </div>
-                <!-- 3rd row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname invisible">a</p>
-                        <p class="seatplan-firstname invisible">a</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                </div>
-                <!-- 4th row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname invisible">a</p>
-                        <p class="seatplan-firstname invisible">a</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                </div>
-                <!-- 5th row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname invisible">a</p>
-                        <p class="seatplan-firstname invisible">a</p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                        <span class="seatplan-status-btn-container d-flex">
-                            <a href="#" class="seatplan-status-btn">P</a>
-                            <a href="#" class="seatplan-status-btn">A</a>
-                            <a href="#" class="seatplan-status-btn">L</a>
-                        </span>
-                    </div>
-                </div>
+    <div class="container d-flex" style="height: 60vh;">
+        <div class="seatplan-container">
+            <div class="rounded seatplan-seat" draggable="true">
+                <p class="seatplan-lastname">Student 1</p>
+                <p class="seatplan-firstname">One</p>
             </div>
-            <!-- RIGHT -->
-            <div class="col">
-                <!-- 1st row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Wata,</p>
-                        <p class="seatplan-firstname">Dustin</p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                </div>
-                <!-- 2nd row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Taboada,</p>
-                        <p class="seatplan-firstname">Vene Lucille</p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Taladtad,</p>
-                        <p class="seatplan-firstname">Jelan Roy</p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname">Provido,</p>
-                        <p class="seatplan-firstname">Olsen John</p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div><div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                </div>
-                <!-- 3rd row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname invisible">a</p>
-                        <p class="seatplan-firstname invisible">a</p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                </div>
-                <!-- 4th row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname invisible">a</p>
-                        <p class="seatplan-firstname invisible">a</p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                </div>
-                <!-- 5th row -->
-                <div class="row">
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname invisible">a</p>
-                        <p class="seatplan-firstname invisible">a</p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                    <div class="col rounded seatplan-seat">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
-                </div>
+            <div class="rounded seatplan-seat" draggable="true">
+                <p class="seatplan-lastname">Student 2</p>
+                <p class="seatplan-firstname">Two</p>
+            </div>
+            <div class="rounded seatplan-seat" draggable="true">
+                <p class="seatplan-lastname">Student 3</p>
+                <p class="seatplan-firstname">Three</p>
             </div>
         </div>
+        <div class="seatplan-container">
+            <div class="rounded seatplan-seat" draggable="true">
+                <p class="seatplan-lastname">Bisakol 1</p>
+                <p class="seatplan-firstname">One</p>
+            </div>
+            <div class="rounded seatplan-seat" draggable="true">
+                <p class="seatplan-lastname">Bisakol 2</p>
+                <p class="seatplan-firstname">Two</p>
+            </div>
+            <div class="rounded seatplan-seat" draggable="true">
+                <p class="seatplan-lastname">Bisakol 3</p>
+                <p class="seatplan-firstname">Three</p>
+            </div>
+        </div>
+
+        
+        <!-- Repeat the above seatplan-seat div for other seats in the right column -->
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> -->
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>

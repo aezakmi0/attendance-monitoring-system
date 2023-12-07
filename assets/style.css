@@ -185,7 +185,8 @@ h1{
 
 .seatplan-seat{
     margin: 4px;
-    width: 100%;
+    /* width: 100%; */
+    width: 11vh;
     height: 11vh;
     background-color: #97f76b;
     position: relative;
@@ -193,6 +194,7 @@ h1{
     white-space: wrap;
     overflow-wrap: break-word;
     hyphens: auto;
+    cursor: move;
     transition: background-color 0.3s ease;
 }
 
@@ -252,6 +254,9 @@ h1{
     opacity: 1; /* Make the button fully visible on hover */
     transform: translateY(0); 
     /* Move the button back to its original position */
+}
+.seatplan-seat.dragging {
+    opacity: .5;
 }
 
 /* Change background color on hover for each button */
