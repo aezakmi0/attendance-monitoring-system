@@ -183,6 +183,12 @@ h1{
     }
 }
 
+.seatplan-container{
+    background-color: #6e6e6e;
+    padding: 1rem;
+    margin: 1rem;
+}
+
 .seatplan-seat{
     margin: 4px;
     /* width: 100%; */
