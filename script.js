@@ -47,3 +47,4 @@ function saveSelectedDays() {
     });
   }
   
+  const sortable = Sortable.create(document.getElementById('sortable-container'));
