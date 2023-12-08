@@ -200,7 +200,6 @@ h1{
     white-space: wrap;
     overflow-wrap: break-word;
     hyphens: auto;
-    cursor: move;
     transition: background-color 0.3s ease;
 }
 .seatplan-seat-edit{
@@ -252,6 +251,7 @@ h1{
     text-transform: uppercase;
     padding-top: 10px;
     font-size: 15px;
+    /* font-size: .8vw; */
     font-weight: bold;
     color: rgb(0, 0, 0);
     line-height: 15px;
@@ -264,6 +264,7 @@ h1{
     font-weight: bold;
     color: rgb(39, 39, 39);
     font-size: 11px;
+    /* font-size:.55vw; */
     text-transform: uppercase;
     /* margin-bottom: 50px; */
     transform: color 0.3 ease;
@@ -299,18 +300,47 @@ h1{
 .my-grid {
     position: relative;
     width: 48%;
-    /* background: #e0e0e0; */
-    /* border: 5px solid black; */
-  }
-  .seatplan-seat-edit {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    z-index: 1;
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
-  .gri
+  .seatplan-seat-edit {
+    position: absolute;
+    /* width: 100px;
+    height: 100px; */
+    /* margin: 5px; */
+    z-index: 1;
+        /* display: grid; */
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+  }
+
+  @media (max-width: 1399px) {
+    /* Adjust the width to 25% for 4 columns */
+    .seatplan-seat-edit {
+        width: 99px;
+        /* height: 60px; */
+        background-color: violet;
+    }
+    .seatplan-lastname{
+        font-size: 13px;
+        /* background-color: blue; */
+        line-height: 10px;
+    }
+    .seatplan-firstname{
+        font-size: 10px;
+    }
+}
+
+  @media (min-width: 1400px) {
+    /* Adjust the width to 25% for 4 columns */
+    .seatplan-seat-edit {
+        width: 116px;
+        /* height: 60px; */
+        background-color: rgb(75, 224, 192);
+    }
+}
 
   .seatplan-seat-edit.muuri-item-hidden {
     z-index: 0;
@@ -325,8 +355,6 @@ h1{
     position: relative;
     cursor: move;
     margin: 4px;
-    /* width: 150px;
-    height: 100px; */
     overflow: hidden;
     white-space: wrap;
     overflow-wrap: break-word;
@@ -347,5 +375,5 @@ h1{
   .seatplan-main-container {
     display: flex;
     justify-content: space-evenly;
-    /* margin: 20px 0; */
+    /* background-color: blue; */
   }
