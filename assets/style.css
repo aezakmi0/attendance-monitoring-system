@@ -203,12 +203,12 @@ h1{
     cursor: move;
     transition: background-color 0.3s ease;
 }
-.seatplan-seat-behind{
+.seatplan-seat-edit{
     margin: 4px;
     /* width: 100%; */
     width: 11vh;
     height: 11vh;
-    background-color: #999999;
+    background-color: #919191;
     position: relative;
     overflow: hidden;
     white-space: wrap;
@@ -254,7 +254,7 @@ h1{
     font-weight: bold;
     color: rgb(0, 0, 0);
     line-height: 15px;
-    margin: 0;
+    margin: 4px 0 0 4px;
     transform: color 0.3 ease;
 }
 
@@ -263,20 +263,19 @@ h1{
     color: rgb(39, 39, 39);
     font-size: 11px;
     text-transform: uppercase;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     transform: color 0.3 ease;
+    margin-left: 4px;
 }
 
-.seatplan-seat:hover{
+.seatplan-seat:hover,
+.seatplan-seat-edit:hover{
     background-color: rgb(177, 177, 177);
 }
 .seatplan-seat:hover .seatplan-status-btn {
     opacity: 1; /* Make the button fully visible on hover */
     transform: translateY(0); 
     /* Move the button back to its original position */
-}
-.seatplan-seat.dragging {
-    opacity: .5;
 }
 
 /* Change background color on hover for each button */
@@ -295,3 +294,52 @@ h1{
 .seatplan-status-btn:hover:nth-child(3) {
     background-color: rgb(204, 204, 204);
 }
+
+
+.my-grid {
+    position: relative;
+    width: 48%;
+    background: #666666;
+    border: 5px solid transparent;
+  }
+  .seatplan-seat-edit {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    z-index: 1;
+  }
+  .seatplan-seat-edit.muuri-item-hidden {
+    z-index: 0;
+  }
+  .seatplan-seat-edit.muuri-item-releasing {
+    z-index: 2;
+  }
+  .seatplan-seat-edit.muuri-item-dragging {
+    z-index: 3;
+  }
+  .seatplan-seat-content {
+    position: relative;
+    cursor: pointer;
+    /* margin: 4px; */
+    width: 11vh;
+    height: 11vh;
+    background-color: #ffffff;
+    overflow: hidden;
+    white-space: wrap;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    transition: background-color 0.3s ease;
+    /* border-radius: 10px; */
+  }
+
+  .seatplan-seat-edit.muuri-item-dragging .seatplan-seat-content,
+  .seatplan-seat-edit.muuri-item-releasing .seatplan-seat-content {
+    background: blue;
+  }
+
+  .seatplan-main-container {
+    display: flex;
+    justify-content: space-evenly;
+    /* margin: 20px 0; */
+  }

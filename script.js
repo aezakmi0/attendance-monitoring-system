@@ -49,21 +49,18 @@ function saveSelectedDays() {
   
   // const sortable = Sortable.create(document.getElementById('sortable-container'));
 
-  $(document).ready(function() {
-    // Make seatplan-seat elements draggable
-    $('.seatplan-seat').draggable({
-      snap: '.seatplan-seat-behind', // Snap to other seatplan-seat elements
-      snapMode: 'inner', // Snap to the outer edges of other elements
-      snapTolerance: 85, // Tolerance for snapping (adjust as needed)
-      stack: '.seatplan-seat', // Stack elements on top of each other when dragged
-      containment: '.seatplan-main-container' // Restrict dragging within the .container
-    });
-
-    // Make the container droppable
-    $('.container').droppable();
-
-    // Handle the drop event
-    $('.seatplan-seat').on('dragstop', function(event, ui) {
-      // You can handle additional logic here if needed
-    });
+  var grid1 = new Muuri('.grid-1', {
+    dragEnabled: true,
+    dragContainer: document.body,
+    dragSort: function () {
+      return [grid1, grid2]
+    }
+  });
+  
+  var grid2 = new Muuri('.grid-2', {
+    dragEnabled: true,
+    dragContainer: document.body,
+    dragSort: function () {
+      return [grid1, grid2]
+    }
   });
