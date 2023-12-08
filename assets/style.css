@@ -143,7 +143,7 @@ h1{
     font-size: 4em;
     font-weight: bold;
     color: black;
-    line-height: 65px;
+    line-height: 75px;
 }
 
 .class-name{
@@ -374,7 +374,7 @@ h1{
   } */
   .seatplan-seat-edit.muuri-item-dragging,
   .seatplan-seat-edit.muuri-item-releasing {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(67, 128, 241);
   }
 
   .seatplan-main-container {
