@@ -299,8 +299,8 @@ h1{
 
 .my-grid {
     position: relative;
-    width: 48%;
-    background-color: rgb(238, 238, 238);
+    width: 620px;
+    /* background-color: gray; */
     border-radius: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -308,37 +308,42 @@ h1{
 
   .seatplan-seat-edit {
     position: absolute;
+    width: 116px;
+    height: 116px;
+    padding-left: 4px;
     /* width: 100px;
     height: 100px; */
     /* margin: 5px; */
     z-index: 1;
-        /* display: grid; */
-    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
   }
 
   @media (max-width: 1399px) {
     /* Adjust the width to 25% for 4 columns */
     .seatplan-seat-edit {
         width: 99px;
-        /* height: 60px; */
-        background-color: violet;
+        height: 99px;
+        /* background-color: violet; */
     }
     .seatplan-lastname{
         font-size: 13px;
-        /* background-color: blue; */
         line-height: 10px;
     }
     .seatplan-firstname{
         font-size: 10px;
     }
+    .my-grid{
+        width: 535px;;
+    }
 }
-
-  @media (min-width: 1400px) {
+  @media (max-width: 1199px) {
     /* Adjust the width to 25% for 4 columns */
     .seatplan-seat-edit {
-        width: 116px;
-        /* height: 60px; */
-        background-color: rgb(75, 224, 192);
+        width: 81px;
+        height: 81px;
+        /* background-color: rgb(9, 204, 9); */
+    }
+    .my-grid{
+        width: 445px;
     }
 }
 
@@ -374,6 +379,6 @@ h1{
 
   .seatplan-main-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     /* background-color: blue; */
   }
