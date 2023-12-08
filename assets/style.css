@@ -208,7 +208,8 @@ h1{
     /* width: 100%; */
     width: 11vh;
     height: 11vh;
-    background-color: #919191;
+    background-color: #c7c7c7;
+    border-radius: 7px;
     position: relative;
     overflow: hidden;
     white-space: wrap;
@@ -254,7 +255,8 @@ h1{
     font-weight: bold;
     color: rgb(0, 0, 0);
     line-height: 15px;
-    margin: 4px 0 0 4px;
+    /* margin: 4px 0 0 4px; */
+    margin: 0;
     transform: color 0.3 ease;
 }
 
@@ -265,11 +267,10 @@ h1{
     text-transform: uppercase;
     /* margin-bottom: 50px; */
     transform: color 0.3 ease;
-    margin-left: 4px;
+    /* margin-left: 4px; */
 }
 
-.seatplan-seat:hover,
-.seatplan-seat-edit:hover{
+.seatplan-seat:hover{
     background-color: rgb(177, 177, 177);
 }
 .seatplan-seat:hover .seatplan-status-btn {
@@ -295,12 +296,11 @@ h1{
     background-color: rgb(204, 204, 204);
 }
 
-
 .my-grid {
     position: relative;
     width: 48%;
-    background: #666666;
-    border: 5px solid transparent;
+    /* background: #e0e0e0; */
+    /* border: 5px solid black; */
   }
   .seatplan-seat-edit {
     position: absolute;
@@ -309,6 +309,9 @@ h1{
     margin: 5px;
     z-index: 1;
   }
+
+  .gri
+
   .seatplan-seat-edit.muuri-item-hidden {
     z-index: 0;
   }
@@ -320,11 +323,10 @@ h1{
   }
   .seatplan-seat-content {
     position: relative;
-    cursor: pointer;
-    /* margin: 4px; */
-    width: 11vh;
-    height: 11vh;
-    background-color: #ffffff;
+    cursor: move;
+    margin: 4px;
+    /* width: 150px;
+    height: 100px; */
     overflow: hidden;
     white-space: wrap;
     overflow-wrap: break-word;
@@ -333,9 +335,13 @@ h1{
     /* border-radius: 10px; */
   }
 
-  .seatplan-seat-edit.muuri-item-dragging .seatplan-seat-content,
+  /* .seatplan-seat-edit.muuri-item-dragging .seatplan-seat-content,
   .seatplan-seat-edit.muuri-item-releasing .seatplan-seat-content {
-    background: blue;
+    background-color: rgb(177, 70, 70);
+  } */
+  .seatplan-seat-edit.muuri-item-dragging,
+  .seatplan-seat-edit.muuri-item-releasing {
+    background-color: rgb(255, 255, 255);
   }
 
   .seatplan-main-container {
