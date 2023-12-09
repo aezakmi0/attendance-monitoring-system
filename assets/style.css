@@ -125,6 +125,12 @@ h1{
     border-radius: 13px;
     width: 432px;
     padding: 0 10px;
+    transition: background-color 0.3s ease-out;
+}
+.class-container:hover{
+    background-color: #4d94ff;
+    border: 2px solid white;
+    box-shadow: 0px 5px 10px rgb(190, 190, 190);
 }
 
 /* remove underline */
