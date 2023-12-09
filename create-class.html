@@ -74,6 +74,9 @@
               <input type="checkbox" class="btn-check" id="btn-check-Sat" name="day[]" value="Sat" autocomplete="off">
               <label class="btn btn-outline-primary" for="btn-check-Sat">Sat</label>
             </div>
+
+            <div class="invalid-feedback">Please select at least one day.</div>
+
           </div>
         </div>
 
@@ -83,7 +86,28 @@
         </div>
       </div>
     </form>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          var form = document.querySelector('form');
+          var invalidFeedback = document.querySelector('.invalid-feedback');
   
+          form.addEventListener('submit', function (event) {
+              var checkboxes = document.querySelectorAll('input[name="day[]"]');
+              var checked = Array.from(checkboxes).some(function (checkbox) {
+                  return checkbox.checked;
+              });
+  
+              if (!checked) {
+                  event.preventDefault();
+                  invalidFeedback.style.display = 'block';
+              } else {
+                  invalidFeedback.style.display = 'none';
+              }
+          });
+      });
+  </script>
+
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>

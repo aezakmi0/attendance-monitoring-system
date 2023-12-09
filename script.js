@@ -31,3 +31,23 @@ function includeHTML() {
       return [grid1, grid2]
     }
   });
+
+  // Prompt the user to check at least one day for create-class.html
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.querySelector('form');
+    var invalidFeedback = document.querySelector('.invalid-feedback');
+
+    form.addEventListener('submit', function (event) {
+        var checkboxes = document.querySelectorAll('input[name="day[]"]');
+        var checked = Array.from(checkboxes).some(function (checkbox) {
+            return checkbox.checked;
+        });
+
+        if (!checked) {
+            event.preventDefault();
+            invalidFeedback.style.display = 'block';
+        } else {
+            invalidFeedback.style.display = 'none';
+        }
+    });
+});
