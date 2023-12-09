@@ -35,9 +35,48 @@
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">ROOM</p>
           <select class="form-select" id="floatingSelectGrid" name="room" aria-label="Floating label select example" required>
-            <!-- <option selected>Select Room</option> -->
             <option value="G102">G102</option>
             <option value="G103">G103</option>
+            <option value="G104">G104</option>
+            <option value="G105">G105</option>
+            <option value="G106">G106</option>
+            <option value="G200">G200</option>
+            <option value="G201">G201</option>
+            <option value="G202">G202</option>
+            <option value="G203">G203</option>
+            <option value="G204">G204</option>
+            <option value="G205">G205</option>
+            <option value="G206">G206</option>
+            <option value="G207">G207</option>
+            <option value="G208">G208</option>
+            <option value="G209">G209</option>
+            <option value="G210">G210</option>
+            <option value="G215">G215</option>
+            <option value="G216">G216</option>
+            <option value="G217">G217</option>
+            <option value="G218">G218</option>
+            <option value="G300">G300</option>
+            <option value="G301">G301</option>
+            <option value="G302">G302</option>
+            <option value="G303">G303</option>
+            <option value="G305">G305</option>
+            <option value="G306">G306</option>
+            <option value="G307">G307</option>
+            <option value="G308">G308</option>
+            <option value="G309">G309</option>
+            <option value="G310">G310</option>
+            <option value="G311">G311</option>
+            <option value="G312">G312</option>
+            <option value="G313">G313</option>
+            <option value="G314">G314</option>
+            <option value="G315">G315</option>
+            <option value="G404">G404</option>
+            <option value="G405">G405</option>
+            <option value="G406">G406</option>
+            <option value="G407">G407</option>
+            <option value="G408">G408</option>
+            <option value="G409">G409</option>
+            <option value="G410">G410</option>
         </select>
         </div>
         <!-- Time Start -->
@@ -87,27 +126,27 @@
       </div>
     </form>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-          var form = document.querySelector('form');
-          var invalidFeedback = document.querySelector('.invalid-feedback');
-  
-          form.addEventListener('submit', function (event) {
-              var checkboxes = document.querySelectorAll('input[name="day[]"]');
-              var checked = Array.from(checkboxes).some(function (checkbox) {
-                  return checkbox.checked;
-              });
-  
-              if (!checked) {
-                  event.preventDefault();
-                  invalidFeedback.style.display = 'block';
-              } else {
-                  invalidFeedback.style.display = 'none';
-              }
-          });
-      });
-  </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('form');
+            var invalidFeedback = document.querySelector('.invalid-feedback');
+
+            form.addEventListener('submit', function (event) {
+                var checkboxes = document.querySelectorAll('input[name="day[]"]');
+                var checked = Array.from(checkboxes).some(function (checkbox) {
+                    return checkbox.checked;
+                });
+
+                if (!checked) {
+                    event.preventDefault();
+                    invalidFeedback.style.display = 'block';
+                } else {
+                    invalidFeedback.style.display = 'none';
+                }
+            });
+        });
+    </script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
