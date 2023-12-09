@@ -7,7 +7,7 @@ body{
 body, html {
     margin: 0;
     height: 100%;
-  }
+}
 
 body::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
