@@ -11,20 +11,24 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+?>
 
+<?php
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $classCode = $_POST["class_code"];
-    $className = $_POST["class_name"];
+    $class_code = $_POST["class_code"];
+    $class_name = $_POST["class_name"];
     $room = $_POST["room"];
-    $startTime = $_POST["time_start"];
-    $endTime = $_POST["time_end"];
-    $selectedDays = $_POST["days"];
-    $daysString = implode(',', $selectedDays); // Assuming you store days as comma-separated values
+    $time_start = $_POST["time_start"];
+    $time_end = $_POST["time_end"];
+
+    // Check if "days" key exists and is an array
+    $days = isset($_POST["day"]) && is_array($_POST["day"]) ? implode(",", $_POST["day"]) : '';
 
     // SQL query to insert data into the database
-    $sql = "INSERT INTO tb_class (class_code, class_name, room, time_start, time_end, selected_days) VALUES ('$classCode', '$className', '$room', '$startTime', '$endTime', '$daysString')";
+    $sql = "INSERT INTO tb_class (class_code, class_name, room, time_start, time_end, day)
+            VALUES ('$class_code', '$class_name', '$room', '$time_start', '$time_end', '$days')";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
@@ -32,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-}
 
-// Close the database connection
-$conn->close();
+    // Close the database connection
+    $conn->close();
+}
 ?>

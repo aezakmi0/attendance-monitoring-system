@@ -55,62 +55,23 @@
           <div class="d-flex flex-column align-items-start">
             <p class="label-text mb-1 mt-3">DAY</p>
             <div class="d-flex ms-auto">
-              <button type="button" class="btn rounded-circle day-button active" data-bs-toggle="button" onclick="toggleDay('M')">M</button>
-              <button type="button" class="btn rounded-circle day-button" data-bs-toggle="button" onclick="toggleDay('T')">T</button>
-              <button type="button" class="btn rounded-circle day-button active" data-bs-toggle="button" onclick="toggleDay('W')">W</button>
-              <button type="button" class="btn rounded-circle day-button" data-bs-toggle="button" onclick="toggleDay('Th')">Th</button>
-              <button type="button" class="btn rounded-circle day-button" data-bs-toggle="button" onclick="toggleDay('F')">F</button>
-              <button type="button" class="btn rounded-circle day-button ml-auto" data-bs-toggle="button" onclick="toggleDay('Sat')">Sat</button>
+              <button type="button" class="btn rounded-circle day-button active" name="day[]" data-bs-toggle="button">M</button>
+              <button type="button" class="btn rounded-circle day-button" name="day[]" data-bs-toggle="button">T</button>
+              <button type="button" class="btn rounded-circle day-button active" name="day[]" data-bs-toggle="button">W</button>
+              <button type="button" class="btn rounded-circle day-button" name="day[]" data-bs-toggle="button">Th</button>
+              <button type="button" class="btn rounded-circle day-button" name="day[]" data-bs-toggle="button">F</button>
+              <button type="button" class="btn rounded-circle day-button ml-auto" name="day[]" data-bs-toggle="button">Sat</button>
             </div>
           </div>
         </div>
 
         <div class="d-flex justify-content-center mt-5">
           <a type="button" class="btn btn-outline-secondary m-1" href="index.html">Cancel</a>
-          <button class="btn btn-primary m-1" input="submit">Save</button>
+          <button class="btn btn-primary m-1" type="submit">Save</button>
         </div>
       </div>
     </form>
-
-    <script>
-      includeHTML();
-
-      let selectedDays = [];
-
-      function toggleDay(day) {
-        const index = selectedDays.indexOf(day);
-
-        if (index === -1) {
-          selectedDays.push(day);
-        } else {
-          selectedDays.splice(index, 1);
-        }
-      }
-
-      function saveSelectedDays(event) {
-        event.preventDefault();
-
-        $.ajax({
-          type: 'POST',
-          url: 'save-class.php',
-          data: { 
-            class_code: $('input[name="class_code"]').val(),
-            class_name: $('input[name="class_name"]').val(),
-            room: $('select[name="room"]').val(),
-            time_start: $('input[name="time_start"]').val(),
-            time_end: $('input[name="time_end"]').val(),
-            days: selectedDays
-          },
-          success: function(response) {
-            console.log('Data saved successfully');
-          },
-          error: function(error) {
-            console.error('Error saving data:', error);
-          } 
-        });
-      }
-    </script>
-
+  
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
