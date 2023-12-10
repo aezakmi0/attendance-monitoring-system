@@ -34,9 +34,9 @@ function fetchAndCreateButtons() {
           data.forEach(classData => {
               const buttonContainer = document.createElement('div');
               buttonContainer.classList.add('class-container', 'border', 'm-2');
-              buttonContainer.setAttribute('onclick', `location.href='class.html?id=${classData.id}';`);
               buttonContainer.style.cursor = 'pointer';
 
+              // 
               // Assuming classData.time_start and classData.time_end are in HH:mm:ss format
               const startTime = new Date(`1970-01-01T${classData.time_start}`);
               const endTime = new Date(`1970-01-01T${classData.time_end}`);
@@ -69,10 +69,16 @@ function fetchAndCreateButtons() {
                     </div>
                 </div>
               `;
-
+              
               buttonContainer.innerHTML = buttonContent;
+              buttonContainer.setAttribute('onclick', `redirectToClassPage(${classData.class_ID});`);
               buttonsContainer.appendChild(buttonContainer);
           });
       })
       .catch(error => console.error('Error fetching data:', error));
+}
+
+function redirectToClassPage(class_ID) {
+  console.log('Redirecting to class.php with class_ID:', class_ID);
+  window.location.href = `class.php?id=${class_ID}`;
 }

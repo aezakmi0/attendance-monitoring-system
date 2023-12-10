@@ -15,8 +15,9 @@
     <!-- <div id="navbar-container"></div> -->
     <div class="container" style="background-color: rgb(255, 255, 255);">
         <div class="text-center pt-4">
-            <h1 class="class-code-lg">CS-ITE 313</h1>
-            <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p>
+            <!-- <h1 class="class-code-lg">CS-ITE 313</h1>
+            <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p> -->
+            <?php include 'class-header.php'; ?>
         </div>
         <!-- <hr class="hr" /> -->
         <div class="d-flex justify-content-center">    
@@ -399,6 +400,12 @@
             </div>
         </div>
     </div>
+
+    <!-- <script>
+        function redirectToClassPage(class_ID) {
+            window.location.href = `class.php?id=${classID}`;
+        }
+    </script> -->
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
