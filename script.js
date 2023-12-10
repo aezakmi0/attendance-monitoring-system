@@ -37,6 +37,14 @@ function fetchAndCreateButtons() {
               buttonContainer.setAttribute('onclick', `location.href='class.html?id=${classData.id}';`);
               buttonContainer.style.cursor = 'pointer';
 
+              // Assuming classData.time_start and classData.time_end are in HH:mm:ss format
+              const startTime = new Date(`1970-01-01T${classData.time_start}`);
+              const endTime = new Date(`1970-01-01T${classData.time_end}`);
+
+              const formattedStartTime = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'}).replace(/\s/g, '');
+              const formattedEndTime = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'}).replace(/\s/g, '');
+
+
               const buttonContent = `
                   <div class="container-fluid p-3">
                     <div class="row">
@@ -48,7 +56,7 @@ function fetchAndCreateButtons() {
                     <div class="row d-flex justify-content-between">
                         <div class="col-auto d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24Zm0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88Zm64-88a8 8 0 0 1-8 8h-56a8 8 0 0 1-8-8V72a8 8 0 0 1 16 0v48h48a8 8 0 0 1 8 8Z"/></svg>
-                            <span class="p-1" style="font-size: 12px;">${classData.time_start}-${classData.time_end} ${classData.day}</span> <!-- Display the "time_start"+"-"+"time_end"+"day" from database -->
+                            <span class="p-1" style="font-size: 12px;">${formattedStartTime}-${formattedEndTime} ${classData.day}</span> <!-- Display the "time_start"+"-"+"time_end"+"day" from database -->
                         </div>
                         <div class="col-auto d-flex justify-content-center align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 256 256"><path fill="currentColor" d="m218.83 103.77l-80-75.48a1.14 1.14 0 0 1-.11-.11a16 16 0 0 0-21.53 0l-.11.11l-79.91 75.48A16 16 0 0 0 32 115.55V208a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-92.45a16 16 0 0 0-5.17-11.78ZM208 208H48v-92.45l.11-.1L128 40l79.9 75.43l.11.1Z"/></svg>
