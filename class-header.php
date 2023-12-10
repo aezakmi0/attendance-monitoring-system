@@ -18,8 +18,8 @@ if ($conn->connect_error) {
 
 // Check if class_id is provided in the GET request
 if (isset($_GET['id'])) {
-    $classId = trim($_GET['id']);  // Trim any whitespace
-    
+    $classId = $_GET['id'];
+        
     // Assuming you have a table named 'tb_class' with columns 'class_id', 'class_code', and 'class_name'
     $sql = "SELECT class_code, class_name FROM tb_class WHERE class_ID = $classId";
     $result = $conn->query($sql);
