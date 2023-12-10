@@ -79,6 +79,5 @@ function fetchAndCreateButtons() {
 }
 
 function redirectToClassPage(class_ID) {
-  console.log('Redirecting to class.php with class_ID:', class_ID);
   window.location.href = `class.php?id=${class_ID}`;
 }
