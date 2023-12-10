@@ -95,13 +95,28 @@
           <div class="d-flex flex-column align-items-start">
             <p class="label-text mb-1 mt-3">DAY</p>
             <div class="d-flex ms-auto">
-              <button type="button" class="btn rounded-circle day-button active" data-bs-toggle="button" onclick="toggleDay('M')">M</button>
-              <button type="button" class="btn rounded-circle day-button" data-bs-toggle="button" onclick="toggleDay('T')">T</button>
-              <button type="button" class="btn rounded-circle day-button active" data-bs-toggle="button" onclick="toggleDay('W')">W</button>
-              <button type="button" class="btn rounded-circle day-button" data-bs-toggle="button" onclick="toggleDay('Th')">Th</button>
-              <button type="button" class="btn rounded-circle day-button" data-bs-toggle="button" onclick="toggleDay('F')">F</button>
-              <button type="button" class="btn rounded-circle day-button ml-auto" data-bs-toggle="button" onclick="toggleDay('Sat')">Sat</button>
+              <!-- Monday -->
+              <input type="checkbox" class="btn-check" id="btn-check-M" name="day[]" value="M" autocomplete="off">
+              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-M">M</label>
+              <!-- Tuesday -->
+              <input type="checkbox" class="btn-check" id="btn-check-T" name="day[]" value="T" autocomplete="off">
+              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-T">T</label>
+              <!-- Monday -->
+              <input type="checkbox" class="btn-check" id="btn-check-W" name="day[]" value="W" autocomplete="off">
+              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-W">W</label>
+              <!-- Wednesday -->
+              <input type="checkbox" class="btn-check" id="btn-check-Th" name="day[]" value="Th" autocomplete="off">
+              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-Th">Th</label>
+              <!-- Thursday -->
+              <input type="checkbox" class="btn-check" id="btn-check-F" name="day[]" value="F" autocomplete="off">
+              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-F">F</label>
+              <!-- Saturday -->
+              <input type="checkbox" class="btn-check" id="btn-check-Sat" name="day[]" value="Sat" autocomplete="off">
+              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-Sat">Sat</label>
             </div>
+
+            <div class="invalid-feedback">Please select at least one day.</div>
+
           </div>
         </div>
 
