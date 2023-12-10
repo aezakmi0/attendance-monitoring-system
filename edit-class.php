@@ -1,3 +1,47 @@
+<?php
+// Assuming you have a database connection established
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "db_attendance";
+
+// Create connection
+$db = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+}
+
+// Check if the class_ID is provided in the URL
+if (isset($_GET['id'])) {
+    $classID = $_GET['id'];
+
+    // Fetch class details from the database
+    $query = "SELECT * FROM tb_class WHERE class_ID = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("i", $classID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if the class exists
+    if ($result->num_rows > 0) {
+        $classData = $result->fetch_assoc();
+    } else {
+        // Handle the case where the class is not found
+        echo "Class not found!";
+        exit;
+    }
+
+    // Close the prepared statement
+    $stmt->close();
+} else {
+    // Handle the case where class_ID is not provided
+    echo "Class ID not provided!";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +59,8 @@
   <!-- <div id="navbar-container"></div> -->
     
   <div class="container mb-3 page-title">
-    <form class="form-control p-5">
+    <form class="form-control p-5" action="update-class.php" method="post">
+      <input type="hidden" name="class_id" value="<?php echo $classID; ?>">
       <h1 class="text-center">Edit Class</h1>
       <div class="row">
         <!-- Class Code -->
@@ -122,10 +167,32 @@
 
         <div class="d-flex justify-content-center mt-5">
           <a href="#" type="button" class="btn btn-outline-secondary m-1" value="Cancel" onclick="history.back();">Cancel</a>
-          <a type="button" class="btn btn-primary m-1" href="class.php">Save</a>
+          <button type="submit" class="btn btn-primary m-1">Update</button>
         </div>
       </div>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if classData is defined
+            if (typeof <?php echo json_encode($classData); ?> !== 'undefined') {
+                var classData = <?php echo json_encode($classData); ?>;
+                
+                // Set values for each input field
+                document.querySelector('input[name="class_code"]').value = classData.class_code;
+                document.querySelector('input[name="class_name"]').value = classData.class_name;
+                document.querySelector('select[name="room"]').value = classData.room;
+                document.querySelector('input[name="time_start"]').value = classData.time_start;
+                document.querySelector('input[name="time_end"]').value = classData.time_end;
+
+                // Set values for checkboxes based on the days
+                var days = <?php echo json_encode(explode(',', $classData['day'])); ?>;
+                days.forEach(function (day) {
+                    document.querySelector('input[name="day[]"][value="' + day + '"]').checked = true;
+                });
+            }
+        });
+    </script>
 
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>

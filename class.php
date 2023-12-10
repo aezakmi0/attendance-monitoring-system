@@ -23,7 +23,7 @@
         <div class="d-flex justify-content-center">    
             <a href="edit-seatplan.html" type="button" class="btn m-1 btn-secondary">Edit Seatplan</a>
             <a href="enroll-student.html" type="button" class="btn m-1 btn-secondary">Enroll Student</a>
-            <a href="edit-class.html" type="button" class="btn m-1 btn-secondary">Edit Class</a>
+            <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Class</a>
             <a href="#" type="button" class="btn m-1 btn-secondary">Generate Report</a>
             <a href="#" type="button" class="btn m-1 btn-danger">Delete Class</a>
         </div>
@@ -401,11 +401,9 @@
         </div>
     </div>
 
-    <!-- <script>
-        function redirectToClassPage(class_ID) {
-            window.location.href = `class.php?id=${classID}`;
-        }
-    </script> -->
+    <script>
+        sessionStorage.setItem('classId', '<?php echo $classId; ?>');
+    </script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
