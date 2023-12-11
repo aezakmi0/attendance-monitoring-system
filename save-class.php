@@ -2,6 +2,7 @@
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
+    // $classId = $_POST['class_id'];
     $class_code = $_POST["class_code"];
     $class_name = $_POST["class_name"];
     $room = $_POST["room"];
@@ -30,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
-        echo "Record inserted successfully";
+        header("Location: index.html");
+        exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

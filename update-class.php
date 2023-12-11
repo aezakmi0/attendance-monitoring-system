@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE tb_class SET 
             class_code = :class_code, 
             class_name = :class_name, 
-            room = :room, 
+            room = :room,   
             time_start = :time_start, 
             time_end = :time_end, 
             day = :day 
@@ -61,7 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Close the PDO connection (not needed if the script is about to end)
     $pdo = null;
-    
+
+    header("Location: class.php?id=$classId");
+    exit();
 } else {
     // Redirect back to the form page if the form is not submitted
     header("Location: edit-class.php?id=$classId");
