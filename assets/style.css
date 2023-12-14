@@ -200,22 +200,35 @@ h1{
     /* width: 100%; */
     width: 11vh;
     height: 11vh;
-    background-color: #97f76b;
+    background-color: #c9c9c9;
     position: relative;
     overflow: hidden;
+    border-radius: 7px;
     white-space: wrap;
     overflow-wrap: break-word;
     hyphens: auto;
     transition: background-color 0.3s ease;
 }
+
+.seatplan-seat {
+    /* position: absolute; */
+    width: 116px;
+    height: 116px;
+    padding-left: 4px;
+    /* width: 100px;
+    height: 100px; */
+    /* margin: 5px; */
+    z-index: 1;
+    }
+
 .seatplan-seat-edit{
     margin: 4px;
     /* width: 100%; */
-    width: 11vh;
-    height: 11vh;
+    /* width: 11vh;
+    height: 11vh; */
     background-color: #c7c7c7;
     border-radius: 7px;
-    position: relative;
+    /* position: relative; */
     overflow: hidden;
     white-space: wrap;
     overflow-wrap: break-word;
@@ -224,6 +237,17 @@ h1{
     transition: background-color 0.3s ease;
 }
 
+.seatplan-seat-edit {
+    position: absolute;
+    width: 116px;
+    height: 116px;
+    padding-left: 4px;
+    /* width: 100px;
+    height: 100px; */
+    /* margin: 5px; */
+    z-index: 1;
+    }
+
 .seatplan-seat:hover .seatplan-status-btn-container {
     opacity: 1;
 }
@@ -231,11 +255,14 @@ h1{
 .seatplan-status-btn-container {
     text-decoration: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 30%);
-    opacity: 0;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, 30%); */
     transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    height: 100px;
+    background-color: rgb(112, 110, 112);
+
 }
 
 .seatplan-status-btn {
@@ -306,13 +333,13 @@ h1{
 .my-grid {
     position: relative;
     width: 620px;
-    /* background-color: gray; */
+    /* background-color: rgb(160, 9, 9); */
     border-radius: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
-  .seatplan-seat-edit {
+    .seatplan-seat-edit {
     position: absolute;
     width: 116px;
     height: 116px;
@@ -321,11 +348,16 @@ h1{
     height: 100px; */
     /* margin: 5px; */
     z-index: 1;
-  }
+    }
 
   @media (max-width: 1399px) {
     /* Adjust the width to 25% for 4 columns */
     .seatplan-seat-edit {
+        width: 99px;
+        height: 99px;
+        /* background-color: violet; */
+    }
+    .seatplan-seat {
         width: 99px;
         height: 99px;
         /* background-color: violet; */
@@ -348,6 +380,11 @@ h1{
         height: 81px;
         /* background-color: rgb(9, 204, 9); */
     }
+    .seatplan-seat {
+        width: 81px;
+        height: 81px;
+        /* background-color: rgb(9, 204, 9); */
+    }
     .my-grid{
         width: 445px;
     }
@@ -364,7 +401,7 @@ h1{
   }
   .seatplan-seat-content {
     position: relative;
-    cursor: move;
+    /* cursor: move; */
     margin: 4px;
     overflow: hidden;
     white-space: wrap;
