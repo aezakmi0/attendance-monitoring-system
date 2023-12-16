@@ -1,3 +1,46 @@
+<?php
+// Assuming you have a database connection established
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "db_attendance";
+
+// Create connection
+$db = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+}
+
+// Check if the class_ID is provided in the URL
+if (isset($_GET['id'])) {
+    $classID = $_GET['id'];
+
+    // Fetch class details from the database
+    $query = "SELECT * FROM tb_class WHERE class_ID = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("i", $classID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if the class exists
+    if ($result->num_rows > 0) {
+        $classData = $result->fetch_assoc();
+    } else {
+        // Handle the case where the class is not found
+        echo "Class not found!";
+        exit;
+    }
+
+    // Close the prepared statement
+    $stmt->close();
+} else {
+    // Handle the case where class_ID is not provided
+    echo "Class ID not provided!";
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,27 +59,28 @@
     <!-- <div id="navbar-container"></div> -->
     
     <div class="container">
-        <form class="form-control mt-5 p-5">
+        <form class="form-control mt-5 p-5" action="add-student.php?id=<?php echo $classID; ?>" method="post">
             <h1 class="text-center">Add Students</h1>
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
-                    <input type="text" class="form-control" placeholder="Enter ID" required>
+                    <input type="text" name="student_id" class="form-control" placeholder="Enter ID" required>
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">LAST NAME</p>
-                    <input type="text" class="form-control" placeholder="Enter Last Name" required>
+                    <input type="text" name="last_name" class="form-control" placeholder="Enter Last Name" required>
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">FIRST NAME</p>
-                    <input type="text" class="form-control" placeholder="Enter Class Code" required>
+                    <input type="text" name="first_name" class="form-control" placeholder="Enter Class Code" required>
                 </div>
                 <div class="col-md-2">
                     <p class="label-text mb-1 mt-3 invisible">ADD</p>
-                    <button class="btn btn-primary w-100">Add</button>
+                    <button class="btn btn-primary w-100" type="submit" value="Submit">Add</button>
                 </div>
             </div>
 
+            <!-- Enrolled Students -->
             <div class="mt-5">
                 <h1 class="text-center mb-2">Enrolled Students</h1>
                 <table class="table table-hover">
@@ -44,7 +88,13 @@
                     <th>STUDENT ID</th>
                     <th colspan="2">NAME</th>
                     </tr>
-                    <tr class="align-middle">
+                    <!-- <tr class="align-middle">
+                        <td>Alfreds Futterkiste</td>
+                        <td>Maria Anders</td>
+                        <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                            <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
+                    </tr> -->
+                    <!-- <tr class="align-middle">
                     <td>Alfreds Futterkiste</td>
                     <td>Maria Anders</td>
                     <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
@@ -79,20 +129,14 @@
                     <td>Maria Anders</td>
                     <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
                         <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr>
-                    <tr class="align-middle">
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
         </form>
-        <div class="d-flex justify-content-center mt-4">
+        <!-- <div class="d-flex justify-content-center mt-4">
             <a href="#" type="button" class="btn btn-outline-secondary m-1" value="Cancel" onclick="history.back();">Cancel</a>
             <a type="button" class="btn btn-primary m-1" href="class.php">Save</a>
-        </div>
+        </div> -->
     </div>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
