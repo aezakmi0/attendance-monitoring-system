@@ -1,3 +1,43 @@
+<?php
+// Assuming you have a database connection established
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_attendance";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+// Get the class_ID from the URL
+$classId = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($classId) {
+    // Fetch student data for the specified class_ID
+    $query = "SELECT tb_student.first_name, tb_student.last_name
+              FROM tb_enrollment
+              JOIN tb_student ON tb_enrollment.student_ID = tb_student.student_ID
+              WHERE tb_enrollment.class_ID = $classId
+              LIMIT 50"; // Limit to 50 students
+
+    // Execute the query
+    $result = mysqli_query($conn, $query);
+
+    // Check if there are results
+    if ($result) {
+        // Fetch the data as an associative array
+        $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        // Close the database connection
+        mysqli_close($conn);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,311 +67,53 @@
     
     <!-- seatplan layout -->
     <div class="container seatplan-main-container">
-        <div class="my-grid grid-1">
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Smith</p>
-                    <p class="seatplan-firstname">John</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Johnson</p>
-                    <p class="seatplan-firstname">Emily</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Williams</p>
-                    <p class="seatplan-firstname">Michael</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Brown</p>
-                    <p class="seatplan-firstname">Olivia</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Jones</p>
-                    <p class="seatplan-firstname">Daniel</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Davis</p>
-                    <p class="seatplan-firstname">Sophia</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Miller</p>
-                    <p class="seatplan-firstname">Ethan</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Wilson</p>
-                    <p class="seatplan-firstname">Ava</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname invisible">Lastnm</p>
-                    <p class="seatplan-firstname invisible">Firstnm</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Anderson</p>
-                    <p class="seatplan-firstname">Isabella</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname invisible">Lastnm</p>
-                    <p class="seatplan-firstname invisible">Firstnm</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Jackson</p>
-                    <p class="seatplan-firstname">Mia</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">White</p>
-                    <p class="seatplan-firstname">Lucas</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Hall</p>
-                    <p class="seatplan-firstname">Emma</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Carter</p>
-                    <p class="seatplan-firstname">Aiden</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Adams</p>
-                    <p class="seatplan-firstname">Grace</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Evans</p>
-                    <p class="seatplan-firstname">Logan</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Cooper</p>
-                    <p class="seatplan-firstname">Chloe</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Baker</p>
-                    <p class="seatplan-firstname">Ella</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Garcia</p>
-                    <p class="seatplan-firstname">Mason</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Bennett</p>
-                    <p class="seatplan-firstname">Lily</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Ward</p>
-                    <p class="seatplan-firstname">Caleb</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname invisible">Lastnm</p>
-                    <p class="seatplan-firstname invisible">Firstnm</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Ward</p>
-                    <p class="seatplan-firstname">Caleb</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Robinson</p>
-                    <p class="seatplan-firstname">Amelia</p>
-                </div>
-            </div>
+        <div class="my-grid">
+            <?php
+            // Loop through the first 25 seats and display student names
+            for ($i = 0; $i < 25; $i++) {
+                echo '<div class="seatplan-seat">';
+                echo '<div class="seatplan-seat-content">';
+                
+                // Check if there is a student for this seat
+                if (isset($students[$i])) {
+                    echo '<p class="seatplan-lastname">' . $students[$i]['last_name'] . '</p>';
+                    echo '<p class="seatplan-firstname">' . $students[$i]['first_name'] . '</p>';
+                } else {
+                    // Display empty seat
+                    echo '<p class="seatplan-lastname"></p>';
+                    echo '<p class="seatplan-firstname"></p>';
+                }
+
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
         </div>
-        <div class="my-grid grid-2">
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Taylor</p>
-                    <p class="seatplan-firstname">Brandon</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Fisher</p>
-                    <p class="seatplan-firstname">Jessica</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Mitchell</p>
-                    <p class="seatplan-firstname">Alexis</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname invisible">Lastnm</p>
-                    <p class="seatplan-firstname invisible">Firstnm</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Barnes</p>
-                    <p class="seatplan-firstname">Taylor</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Henderson</p>
-                    <p class="seatplan-firstname">Madison</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Fleming</p>
-                    <p class="seatplan-firstname">Aaron</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Mason</p>
-                    <p class="seatplan-firstname">Rachel</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Wells</p>
-                    <p class="seatplan-firstname">Jordan</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Gordon</p>
-                    <p class="seatplan-firstname">Avery</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Harrison</p>
-                    <p class="seatplan-firstname">Sydney</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Frazier</p>
-                    <p class="seatplan-firstname">Connor</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Manning</p>
-                    <p class="seatplan-firstname">Evelyn</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Bryant</p>
-                    <p class="seatplan-firstname">Natalie</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Ross</p>
-                    <p class="seatplan-firstname">Dylan</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Larson</p>
-                    <p class="seatplan-firstname">Haley</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Fletcher</p>
-                    <p class="seatplan-firstname">Elijah</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname invisible">Lastnm</p>
-                    <p class="seatplan-firstname invisible">Firstnm</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Brewer</p>
-                    <p class="seatplan-firstname">Jason</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Keller</p>
-                    <p class="seatplan-firstname">Sophie</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Horton</p>
-                    <p class="seatplan-firstname">Austin</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname invisible">Lastnm</p>
-                    <p class="seatplan-firstname invisible">Firstnm</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Felix</p>
-                    <p class="seatplan-firstname">Colton</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Quinn</p>
-                    <p class="seatplan-firstname">Makayla</p>
-                </div>
-            </div>
-            <div class="seatplan-seat-edit">
-                <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Blackwell</p>
-                    <p class="seatplan-firstname">Colton</p>
-                </div>
-            </div>
+
+        <div class="my-grid">
+            <?php
+            // Loop through the next 25 seats and display student names
+            for ($i = 25; $i < 50; $i++) {
+                echo '<div class="seatplan-seat">';
+                echo '<div class="seatplan-seat-content">';
+                
+                // Check if there is a student for this seat
+                if (isset($students[$i])) {
+                    echo '<p class="seatplan-lastname">' . $students[$i]['last_name'] . '</p>';
+                    echo '<p class="seatplan-firstname">' . $students[$i]['first_name'] . '</p>';
+                } else {
+                    // Display empty seat
+                    echo '<p class="seatplan-lastname"></p>';
+                    echo '<p class="seatplan-firstname"></p>';
+                }
+
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
         </div>
     </div>
+    
     <div class="d-flex justify-content-center mt-4">
         <a href="#" type="button" class="btn btn-outline-secondary m-1" value="Cancel" onclick="history.back();">Cancel</a>
         <a type="button" class="btn btn-primary m-1" href="class.php">Save</a>

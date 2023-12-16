@@ -61,7 +61,7 @@ if ($classId) {
         </div>
         <!-- <hr class="hr" /> -->
         <div class="d-flex justify-content-center">    
-            <a href="edit-seatplan.html" type="button" class="btn m-1 btn-secondary">Edit Seatplan</a>
+            <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Seatplan</a>
             <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Enroll Student</a>
             <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Class</a>
             <a href="#" type="button" class="btn m-1 btn-secondary">Generate Report</a>
