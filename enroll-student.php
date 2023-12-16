@@ -88,12 +88,6 @@ if (isset($_GET['id'])) {
                     <th>STUDENT ID</th>
                     <th colspan="2">NAME</th>
                     </tr>
-                    <tr class="align-middle">
-                        <td>Student ID</td>
-                        <td>Student Name</td>
-                        <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                            <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr>
                     <?php
                         // Fetch enrolled students for the given classID
                         $enrolledQuery = "SELECT s.student_ID, s.first_name, s.last_name FROM tb_student s
@@ -110,8 +104,8 @@ if (isset($_GET['id'])) {
                             echo "<td>{$row['student_ID']}</td>";
                             echo "<td>{$row['first_name']} {$row['last_name']}</td>";
                             echo "<td class='text-end'>
-                                    <a type='button' class='btn btn-sm btn-outline-secondary'>Edit</a>
-                                    <a type='button' class='btn btn-sm btn-danger'>Remove</a>
+                                    <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID'>Edit</a>
+                                    <a type='button' class='btn btn-sm btn-danger' href='delete-student.php?id=$classID'>Remove</a>
                                 </td>";
                             echo "</tr>";
                         }
