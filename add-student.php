@@ -14,19 +14,22 @@ if ($conn->connect_error) {
 
 // Process form data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $student_id = $_POST["student_id"];
+    $id_number = $_POST["ID_number"];
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
 
     // Insert into tb_student
-    $sql_student = "INSERT INTO tb_student (student_ID, first_name, last_name) VALUES ('$student_id', '$first_name', '$last_name')";
+    $sql_student = "INSERT INTO tb_student (ID_number, first_name, last_name) VALUES ('$id_number', '$first_name', '$last_name')";
     $conn->query($sql_student);
+
+    // Retrieve the auto-incremented student_ID
+    $studentID = $conn->insert_id;
 
     if (isset($_GET['id'])) {
         $classID = $_GET['id'];
 
         // Insert into tb_enrollment
-        $sql_enrollment = "INSERT INTO tb_enrollment (student_ID, class_ID) VALUES ('$student_id', '$classID')";
+        $sql_enrollment = "INSERT INTO tb_enrollment (student_ID, class_ID) VALUES ('$studentID', '$classID')";
         $conn->query($sql_enrollment);
 
         echo "Student added and enrolled in class!";

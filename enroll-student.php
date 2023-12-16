@@ -64,7 +64,7 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
-                    <input type="text" name="student_id" class="form-control" placeholder="Enter ID" required>
+                    <input type="text" name="ID_number" class="form-control" placeholder="Enter ID" required>
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">FIRST NAME</p>
@@ -90,7 +90,7 @@ if (isset($_GET['id'])) {
                     </tr>
                     <?php
                     // Fetch enrolled students for the given classID
-                    $enrolledQuery = "SELECT s.student_ID, s.first_name, s.last_name FROM tb_student s
+                    $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name FROM tb_student s
                   INNER JOIN tb_enrollment e ON s.student_ID = e.student_ID
                   WHERE e.class_ID = ?";
                     $enrolledStmt = $db->prepare($enrolledQuery);
@@ -101,12 +101,12 @@ if (isset($_GET['id'])) {
                     // Display enrolled students
                     while ($row = $enrolledResult->fetch_assoc()) {
                         echo "<tr class='align-middle'>";
-                        echo "<td>{$row['student_ID']}</td>";
+                        echo "<td>{$row['ID_number']}</td>";
                         echo "<td>{$row['first_name']} {$row['last_name']}</td>";
                         echo "<td class='text-end'>
                                 <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
                                 <a type='button' class='btn btn-sm btn-danger' href='delete-student.php?id=$classID'>Remove</a>
-                            </td>";
+                            </td>"; 
                         echo "</tr>";
                     }
 

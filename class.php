@@ -43,11 +43,11 @@
                     <p class="seatplan-lastname">Smith</p>
                     <p class="seatplan-firstname">John</p>
                 </div>
-                <!-- <span class="seatplan-status-btn-container d-flex">
+                <span class="seatplan-status-btn-container d-flex">
                     <a href="#" class="seatplan-status-btn">P</a>
                     <a href="#" class="seatplan-status-btn">A</a>
                     <a href="#" class="seatplan-status-btn">L</a>
-                </span> -->
+                </span>
                 <div class="seatplan-status-btn-container d-flex">
                     <label><input type="radio" name="status" value="present" class="seatplan-status-radio-btn"> P</label>
                     <label><input type="radio" name="status" value="absent" class="seatplan-status-radio-btn"> A</label>
@@ -203,20 +203,20 @@
         <div class="my-grid">
             <div class="seatplan-seat">
                 <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Taylor</p>
-                    <p class="seatplan-firstname">Brandon</p>
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
             </div>
             <div class="seatplan-seat">
                 <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Fisher</p>
-                    <p class="seatplan-firstname">Jessica</p>
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
             </div>
             <div class="seatplan-seat">
                 <div class="seatplan-seat-content">
-                    <p class="seatplan-lastname">Mitchell</p>
-                    <p class="seatplan-firstname">Alexis</p>
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
             </div>
             <div class="seatplan-seat">
