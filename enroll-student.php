@@ -90,8 +90,8 @@ if (isset($_GET['id'])) {
                     </tr>
                     <?php
                     // Fetch enrolled students for the given classID
-                    $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name FROM tb_student s
-                  INNER JOIN tb_enrollment e ON s.student_ID = e.student_ID
+                    $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name FROM tb_enrollment e
+                  INNER JOIN tb_student s ON s.student_ID = e.student_ID
                   WHERE e.class_ID = ?";
                     $enrolledStmt = $db->prepare($enrolledQuery);
                     $enrolledStmt->bind_param("i", $classID);
