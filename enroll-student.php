@@ -67,12 +67,12 @@ if (isset($_GET['id'])) {
                     <input type="text" name="student_id" class="form-control" placeholder="Enter ID" required>
                 </div>
                 <div class="col-md-4 mt-3">
-                    <p class="label-text mb-1">LAST NAME</p>
-                    <input type="text" name="last_name" class="form-control" placeholder="Enter Last Name" required>
-                </div>
-                <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">FIRST NAME</p>
                     <input type="text" name="first_name" class="form-control" placeholder="Enter Class Code" required>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <p class="label-text mb-1">LAST NAME</p>
+                    <input type="text" name="last_name" class="form-control" placeholder="Enter Last Name" required>
                 </div>
                 <div class="col-md-2">
                     <p class="label-text mb-1 mt-3 invisible">ADD</p>
@@ -104,7 +104,7 @@ if (isset($_GET['id'])) {
                             echo "<td>{$row['student_ID']}</td>";
                             echo "<td>{$row['first_name']} {$row['last_name']}</td>";
                             echo "<td class='text-end'>
-                                    <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID'>Edit</a>
+                                    <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
                                     <a type='button' class='btn btn-sm btn-danger' href='delete-student.php?id=$classID'>Remove</a>
                                 </td>";
                             echo "</tr>";
@@ -117,7 +117,8 @@ if (isset($_GET['id'])) {
             </div>
         </form>
         <div class="d-flex justify-content-center mt-4">
-            <a href="#" type="button" class="btn btn-outline-secondary m-1" onclick="history.back();">Back</a>
+            <!-- <a href="#" type="button" class="btn btn-outline-secondary m-1" onclick="history.back();">Back</a> -->
+            <a href="class.php?id=<?php echo $classID; ?>" type="button" class="btn btn-outline-secondary m-1">Back</a>
             <!-- <a type="button" class="btn btn-primary m-1" href="class.php">Save</a> -->
         </div>
     </div>
