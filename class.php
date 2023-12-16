@@ -43,19 +43,8 @@
                     <p class="seatplan-lastname">Smith</p>
                     <p class="seatplan-firstname">John</p>
                 </div>
-                <span class="seatplan-status-btn-container d-flex">
-                    <a href="#" class="seatplan-status-btn">P</a>
-                    <a href="#" class="seatplan-status-btn">A</a>
-                    <a href="#" class="seatplan-status-btn">L</a>
-                </span>
-                <div class="seatplan-status-btn-container d-flex">
-                    <label><input type="radio" name="status" value="present" class="seatplan-status-radio-btn"> P</label>
-                    <label><input type="radio" name="status" value="absent" class="seatplan-status-radio-btn"> A</label>
-                    <label><input type="radio" name="status" value="late" class="seatplan-status-radio-btn"> L</label>
-                    <label><input type="radio" name="status" value="excused" class="seatplan-status-radio-btn"> E</label>
-                </div>
             </div>
-            <div class="seatplan-seat" onmouseover="showRadioButtons(this)" onmouseout="hideRadioButtons(this)">
+            <div class="seatplan-seat">
                 <div class="seatplan-seat-content">
                     <p class="seatplan-lastname">Johnson</p>
                     <p class="seatplan-firstname">Emily</p>
@@ -357,19 +346,6 @@
         <a type="button" class="btn btn-primary m-1 mb-2" href="#">Save Attendance</a>
     </div>
 
-    <script>
-        sessionStorage.setItem('classId', '<?php echo $classId; ?>');
-
-        function showRadioButtons(element) {
-            var radioButtons = element.querySelector('.radio-buttons');
-            radioButtons.style.display = 'block';
-        }
-
-        function hideRadioButtons(element) {
-            var radioButtons = element.querySelector('.radio-buttons');
-            radioButtons.style.display = 'none';
-        }
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/haltu/muuri@0.9.5/dist/muuri.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
