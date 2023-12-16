@@ -89,30 +89,31 @@ if (isset($_GET['id'])) {
                     <th colspan="2">NAME</th>
                     </tr>
                     <?php
-                        // Fetch enrolled students for the given classID
-                        $enrolledQuery = "SELECT s.student_ID, s.first_name, s.last_name FROM tb_student s
-                                        INNER JOIN tb_enrollment e ON s.student_ID = e.student_ID
-                                        WHERE e.class_ID = ?";
-                        $enrolledStmt = $db->prepare($enrolledQuery);
-                        $enrolledStmt->bind_param("i", $classID);
-                        $enrolledStmt->execute();
-                        $enrolledResult = $enrolledStmt->get_result();
+                    // Fetch enrolled students for the given classID
+                    $enrolledQuery = "SELECT s.student_ID, s.first_name, s.last_name FROM tb_student s
+                  INNER JOIN tb_enrollment e ON s.student_ID = e.student_ID
+                  WHERE e.class_ID = ?";
+                    $enrolledStmt = $db->prepare($enrolledQuery);
+                    $enrolledStmt->bind_param("i", $classID);
+                    $enrolledStmt->execute();
+                    $enrolledResult = $enrolledStmt->get_result();
 
-                        // Display enrolled students
-                        while ($row = $enrolledResult->fetch_assoc()) {
-                            echo "<tr class='align-middle'>";
-                            echo "<td>{$row['student_ID']}</td>";
-                            echo "<td>{$row['first_name']} {$row['last_name']}</td>";
-                            echo "<td class='text-end'>
-                                    <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
-                                    <a type='button' class='btn btn-sm btn-danger' href='delete-student.php?id=$classID'>Remove</a>
-                                </td>";
-                            echo "</tr>";
-                        }
+                    // Display enrolled students
+                    while ($row = $enrolledResult->fetch_assoc()) {
+                        echo "<tr class='align-middle'>";
+                        echo "<td>{$row['student_ID']}</td>";
+                        echo "<td>{$row['first_name']} {$row['last_name']}</td>";
+                        echo "<td class='text-end'>
+                                <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
+                                <a type='button' class='btn btn-sm btn-danger' href='delete-student.php?id=$classID'>Remove</a>
+                            </td>";
+                        echo "</tr>";
+                    }
 
-                        // Close the prepared statement
-                        $enrolledStmt->close();
+                    // Close the prepared statement
+                    $enrolledStmt->close();
                     ?>
+
                 </table>
             </div>
         </form>
