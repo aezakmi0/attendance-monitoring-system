@@ -88,55 +88,19 @@ if (isset($_GET['id'])) {
                     <th>STUDENT ID</th>
                     <th colspan="2">NAME</th>
                     </tr>
-                    <!-- <tr class="align-middle">
+                    <tr class="align-middle">
                         <td>Alfreds Futterkiste</td>
                         <td>Maria Anders</td>
                         <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
                             <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr> -->
-                    <!-- <tr class="align-middle">
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
                     </tr>
-                    <tr class="align-middle">
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr>
-                    <tr class="align-middle">
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr>
-                    <tr class="align-middle">
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr>
-                    <tr class="align-middle">
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr>
-                    <tr class="align-middle">
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td class="text-end"><a type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a type="button" class="btn btn-sm btn-danger">Remove</a></td>
-                    </tr> -->
                 </table>
             </div>
         </form>
-        <!-- <div class="d-flex justify-content-center mt-4">
-            <a href="#" type="button" class="btn btn-outline-secondary m-1" value="Cancel" onclick="history.back();">Cancel</a>
-            <a type="button" class="btn btn-primary m-1" href="class.php">Save</a>
-        </div> -->
+        <div class="d-flex justify-content-center mt-4">
+            <a href="#" type="button" class="btn btn-outline-secondary m-1" onclick="history.back();">Back</a>
+            <!-- <a type="button" class="btn btn-primary m-1" href="class.php">Save</a> -->
+        </div>
     </div>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
