@@ -33,13 +33,28 @@
 
         // Fetch seatplan data for the specific class_ID
         if ($classId) {
-            $query = "SELECT seatplan_ID, student_ID, seat_number FROM tb_seatplan WHERE class_ID = $classId ORDER BY seat_number";
+            // $query = "SELECT seatplan_ID, student_ID, seat_number FROM tb_seatplan WHERE class_ID = $classId ORDER BY seat_number";
+            $query = "SELECT sp.seatplan_ID, sp.student_ID, sp.seat_number, st.first_name, st.last_name 
+              FROM tb_seatplan sp
+              JOIN tb_student st ON sp.student_ID = st.student_ID
+              WHERE sp.class_ID = $classId 
+              ORDER BY sp.seat_number";
             $result = mysqli_query($conn, $query);
 
             if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<div class="item" data-id="' . $row['seatplan_ID'] . '">';
-                    echo '<div class="item-content">' . $row['seat_number'] . '</div>';
+                    // echo '<div class="seatplan-seat">';
+                    // echo '<div class="seatplan-seat-content">';
+
+                    echo '<div class="seatplan-seat item" data-id="' . $row['seatplan_ID'] . '">';
+                    echo '<div class="item-content seatplan-seat-content">' . $row['seat_number'];
+
+                    echo '<p class="seatplan-lastname">' . $row['last_name'] . '</p>';
+                    echo '<p class="seatplan-firstname">' . $row['first_name'] . '</p>';
+
+                    // echo '</div>';
+                    // echo '</div>';
+                    echo '</div>';
                     echo '</div>';
                 }
             }
