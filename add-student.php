@@ -25,21 +25,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the auto-incremented student_ID
     $studentID = $conn->insert_id;
 
-    if (isset($_GET['id'])) {
-        $classID = $_GET['id'];
+    // Assign initial seat_number and class_ID
+    list($seatNumber, $classID) = assignInitialSeatNumber($conn, $studentID);
 
-        // Insert into tb_enrollment
-        $sql_enrollment = "INSERT INTO tb_enrollment (student_ID, class_ID) VALUES ('$studentID', '$classID')";
-        $conn->query($sql_enrollment);
+    // Insert into tb_enrollment
+    $sql_enrollment = "INSERT INTO tb_enrollment (student_ID, class_ID) VALUES ('$studentID', '$classID')";
+    $conn->query($sql_enrollment);
 
-        echo "Student added and enrolled in class!";
-    } else {
-        echo "Class ID not provided!";
-    }
+    echo "Student added and enrolled in class!";
 }
 
 $conn->close();
 
 header("Location: enroll-student.php?id=$classID");
 exit;
+
+function assignInitialSeatNumber($conn, $studentID) {
+    // Assuming $classID is already set or retrieved
+    $classID = $_GET['id'];
+
+    // Determine the next available seat_number (adjust as needed)
+    $sql_max_seat = "SELECT MAX(seat_number) AS max_seat FROM tb_seatplan WHERE class_ID = '$classID'";
+    $result_max_seat = $conn->query($sql_max_seat);
+    $maxSeat = $result_max_seat->fetch_assoc()['max_seat'];
+
+    $nextSeatNumber = $maxSeat + 1;
+
+    // Insert into tb_seatplan
+    $sql_seatplan = "INSERT INTO tb_seatplan (student_ID, seat_number, class_ID) VALUES ('$studentID', '$nextSeatNumber', '$classID')";
+    $conn->query($sql_seatplan);
+
+    return [$nextSeatNumber, $classID];
+}
 ?>

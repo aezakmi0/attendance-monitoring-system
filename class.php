@@ -12,17 +12,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
 // Get the class_ID from the URL
 $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
 if ($classId) {
-    // Fetch student data for the specified class_ID
-    $query = "SELECT tb_student.first_name, tb_student.last_name
-              FROM tb_enrollment
-              JOIN tb_student ON tb_enrollment.student_ID = tb_student.student_ID
-              WHERE tb_enrollment.class_ID = $classId
-              LIMIT 50"; // Limit to 50 students
+    // Fetch seatplan data for the specified class_ID
+    $query = "SELECT tb_student.first_name, tb_student.last_name, tb_seatplan.seat_number
+              FROM tb_seatplan
+              JOIN tb_student ON tb_seatplan.student_ID = tb_student.student_ID
+              WHERE tb_seatplan.class_ID = $classId
+              ORDER BY tb_seatplan.seat_number";
 
     // Execute the query
     $result = mysqli_query($conn, $query);
@@ -30,7 +29,7 @@ if ($classId) {
     // Check if there are results
     if ($result) {
         // Fetch the data as an associative array
-        $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $seatplanData = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         // Close the database connection
         mysqli_close($conn);
@@ -61,7 +60,7 @@ if ($classId) {
         </div>
         <!-- <hr class="hr" /> -->
         <div class="d-flex justify-content-center">    
-            <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Seatplan</a>
+            <a href="arrange_seats.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Seatplan</a>
             <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Enroll Student</a>
             <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Class</a>
             <a href="#" type="button" class="btn m-1 btn-secondary">Generate Report</a>
@@ -78,44 +77,13 @@ if ($classId) {
     <div class="container seatplan-main-container">
         <div class="my-grid">
             <?php
-            // Loop through the first 25 seats and display student names
-            for ($i = 0; $i < 25; $i++) {
+            // Loop through the seatplan data and display student names and seat numbers
+            foreach ($seatplanData as $seat) {
                 echo '<div class="seatplan-seat">';
                 echo '<div class="seatplan-seat-content">';
-                
-                // Check if there is a student for this seat
-                if (isset($students[$i])) {
-                    echo '<p class="seatplan-lastname">' . $students[$i]['last_name'] . '</p>';
-                    echo '<p class="seatplan-firstname">' . $students[$i]['first_name'] . '</p>';
-                } else {
-                    // Display empty seat
-                    echo '<p class="seatplan-lastname"></p>';
-                    echo '<p class="seatplan-firstname"></p>';
-                }
-
-                echo '</div>';
-                echo '</div>';
-            }
-            ?>
-        </div>
-
-        <div class="my-grid">
-            <?php
-            // Loop through the next 25 seats and display student names
-            for ($i = 25; $i < 50; $i++) {
-                echo '<div class="seatplan-seat">';
-                echo '<div class="seatplan-seat-content">';
-                
-                // Check if there is a student for this seat
-                if (isset($students[$i])) {
-                    echo '<p class="seatplan-lastname">' . $students[$i]['last_name'] . '</p>';
-                    echo '<p class="seatplan-firstname">' . $students[$i]['first_name'] . '</p>';
-                } else {
-                    // Display empty seat
-                    echo '<p class="seatplan-lastname"></p>';
-                    echo '<p class="seatplan-firstname"></p>';
-                }
-
+                echo '<p class="seatplan-lastname">' . $seat['last_name'] . '</p>';
+                echo '<p class="seatplan-firstname">' . $seat['first_name'] . '</p>';
+                echo '<p class="seatplan-seat-number">Seat ' . $seat['seat_number'] . '</p>';
                 echo '</div>';
                 echo '</div>';
             }

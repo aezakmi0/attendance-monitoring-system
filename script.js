@@ -80,4 +80,74 @@ function fetchAndCreateButtons() {
 
 function redirectToClassPage(class_ID) {
   window.location.href = `class.php?id=${class_ID}`;
+  // window.location.href = `view_seats.php?id=${class_ID}`;
+}
+
+
+
+
+
+initGrid();
+
+function initGrid() {
+    var grid = new Muuri('.grid', {
+        dragEnabled: true,
+        layoutOnInit: false
+    }).on('move', function () {
+        saveLayout(grid);
+    });
+
+    var layout = window.localStorage.getItem('layout');
+    if (layout) {
+        loadLayout(grid, layout);
+    } else {
+        grid.layout(true);
+    }
+}
+
+function serializeLayout(grid) {
+    var itemIds = grid.getItems().map(function (item) {
+        return item.getElement().getAttribute('data-id');
+    });
+    return JSON.stringify(itemIds);
+}
+
+function saveLayout(grid) {
+    var layout = serializeLayout(grid);
+    window.localStorage.setItem('layout', layout);
+
+    // Send the layout data to the server to save in the database
+    // Use Ajax or fetch API to send data to the server
+    // Example using fetch:
+    fetch('save_layout.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ layout: layout }),
+    })
+        .then(response => response.json())
+        .then(data => console.log('Layout saved:', data))
+        .catch(error => console.error('Error saving layout:', error));
+}
+
+function loadLayout(grid, serializedLayout) {
+    var layout = JSON.parse(serializedLayout);
+    var currentItems = grid.getItems();
+    var currentItemIds = currentItems.map(function (item) {
+        return item.getElement().getAttribute('data-id')
+    });
+    var newItems = [];
+    var itemId;
+    var itemIndex;
+
+    for (var i = 0; i < layout.length; i++) {
+        itemId = layout[i];
+        itemIndex = currentItemIds.indexOf(itemId);
+        if (itemIndex > -1) {
+            newItems.push(currentItems[itemIndex])
+        }
+    }
+
+    grid.sort(newItems, { layout: 'instant' });
 }
