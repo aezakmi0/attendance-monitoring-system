@@ -105,7 +105,7 @@ if (isset($_GET['id'])) {
                         echo "<td>{$row['first_name']} {$row['last_name']}</td>";
                         echo "<td class='text-end'>
                                 <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
-                                <a type='button' class='btn btn-sm btn-danger' href='delete-student.php?id=$classID'>Remove</a>
+                                <a type='button' class='btn btn-sm btn-danger' href='delete-student.php?id=$classID&studentid={$row['student_ID']}'>Remove</a>
                             </td>"; 
                         echo "</tr>";
                     }
