@@ -364,6 +364,32 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         <a type="button" class="btn btn-primary m-1 mb-2" href="#">Save Attendance</a>
     </div>
 
+    <script>
+        const seatplanSeats = document.querySelectorAll('.seatplan-seat');
+        const assignModal = document.getElementById('assignModal');
+        const studentList = document.getElementById('studentList');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch seat assignments for the class
+            fetch(`get_seat_assignments.php?classId=<?php echo $classId; ?>`)
+                .then(response => response.json())
+                .then(seatAssignments => {
+                    // Loop through each seat and update the seat information
+                    seatplanSeats.forEach(seat => {
+                        const seatNumber = seat.querySelector('.seatplan-seat-content').getAttribute('data-seat');
+                        const seatInfo = seatAssignments[seatNumber];
+
+                        if (seatInfo) {
+                            // Update the seat information
+                            seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
+                            seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching seat assignments:', error));
+        });
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/haltu/muuri@0.9.5/dist/muuri.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

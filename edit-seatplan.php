@@ -384,8 +384,8 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
     </div>
 
     <div class="d-flex justify-content-center mt-4">
-        <a href="#" type="button" class="btn btn-outline-secondary m-1" value="Cancel" onclick="history.back();">Cancel</a>
-        <a type="button" class="btn btn-primary m-1" href="#">Save</a>
+        <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-outline-secondary m-1" value="Cancel">Back</a>
+        <!-- <a type="button" class="btn btn-primary m-1" href="#">Save</a> -->
     </div>
         
     <script>
@@ -393,6 +393,26 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         const seatplanSeats = document.querySelectorAll('.seatplan-seat');
         const assignModal = document.getElementById('assignModal');
         const studentList = document.getElementById('studentList');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch seat assignments for the class
+            fetch(`get_seat_assignments.php?classId=<?php echo $classId; ?>`)
+                .then(response => response.json())
+                .then(seatAssignments => {
+                    // Loop through each seat and update the seat information
+                    seatplanSeats.forEach(seat => {
+                        const seatNumber = seat.querySelector('.seatplan-seat-content').getAttribute('data-seat');
+                        const seatInfo = seatAssignments[seatNumber];
+
+                        if (seatInfo) {
+                            // Update the seat information
+                            seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
+                            seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching seat assignments:', error));
+        });
 
         // Variable to store the selected seat number
         let selectedSeatNumber = null;
@@ -437,7 +457,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                                         .then(data => {
                                             // Handle the response if needed
                                             console.log('Assignment successful:', data);
-
+                                            location.reload();
                                             // After assigning, close the modal
                                             closeModal();
                                         })
