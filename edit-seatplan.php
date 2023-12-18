@@ -64,7 +64,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
     <div class="container" style="background-color: rgb(255, 255, 255);">
         <h1 class="text-center mt-5">Edit Seatplan</h1>
-        <h1 class="label-text text-center">Click and drag to rearrange seats</h1>
+        <h1 class="label-text text-center">Click seat to assign to student</h1>
         <hr class="hr invisible"/>
     </div>
     
@@ -377,10 +377,11 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
     </div>
     
     <!-- Modal -->
-    <div id="assignModal">
-        <h3>Assign Seat To:</h3>
+    <div id="assignModal" class="rounded">
+        <h4>Assign Seat To:</h4>
+        <hr class="hr">
         <ul id="studentList" class="list-unstyled"></ul>
-        <button id="cancelButton" onclick="closeModal()">Cancel</button>
+        <button id="cancelButton" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
     </div>
 
     <div class="d-flex justify-content-center mt-4">
@@ -436,7 +437,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
                             // Create a div to hold student information and the "Assign" button
                             const studentDiv = document.createElement('div');
-                            studentDiv.className = "student-info";
+                            studentDiv.className = "student-info bg-secondary";
 
                             // Display student information
                             studentDiv.innerHTML = `${student.first_name} ${student.last_name}`;

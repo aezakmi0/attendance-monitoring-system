@@ -302,6 +302,8 @@ h1{
     /* margin-bottom: 50px; */
     transform: color 0.3 ease;
     /* margin-left: 4px; */
+    margin-top: 2px;
+    line-height: 1.2;
 }
 
 .seatplan-seat:hover{
