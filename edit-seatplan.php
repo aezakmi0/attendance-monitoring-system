@@ -40,6 +40,8 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
             background-color: #fff;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            overflow-y: auto; /* Add this line to make the modal scrollable */
+            max-height: 80vh; /* Set a max height for the modal */
         }
 
         #modalContent {
@@ -381,6 +383,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         <h4>Assign Seat To:</h4>
         <hr class="hr">
         <ul id="studentList" class="list-unstyled"></ul>
+        <hr class="hr">
         <button id="cancelButton" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
     </div>
 
@@ -430,6 +433,10 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 fetch(`get_students.php?classId=<?php echo $classId; ?>`)
                     .then(response => response.json())
                     .then(data => {
+                        
+                        // Sort the data by last name
+                        data.sort((a, b) => a.last_name.localeCompare(b.last_name));
+
                         // Populate the modal with student information
                         studentList.innerHTML = '';
                         data.forEach(student => {
@@ -437,14 +444,18 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
                             // Create a div to hold student information and the "Assign" button
                             const studentDiv = document.createElement('div');
-                            studentDiv.className = "student-info bg-secondary";
-
+                            studentDiv.style = "padding: 3px 0;"
+                            studentDiv.classList = "modal-body d-flex justify-content-between";
+                            
                             // Display student information
-                            studentDiv.innerHTML = `${student.first_name} ${student.last_name}`;
+                            const studentName = document.createElement('span');
+                            studentName.classList = "align-middle";
+                            studentName.style = "margin-right: 50px";
+                            studentName.innerHTML = `${student.last_name},  ${student.first_name}`;
 
                             // Create the "Assign" button
                             const assignButton = document.createElement('button');
-                            assignButton.classList = "btn btn-sm btn-outline-primary";
+                            assignButton.classList = "btn btn-sm btn-outline-primary float-right";
                             assignButton.textContent = "Assign";
                             assignButton.addEventListener('click', function () {
                                 // Set the selected student ID
@@ -468,7 +479,8 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                                 }
                             });
 
-                            // Append the "Assign" button to the student div
+                            // Append the button to the studentDiv
+                            studentDiv.appendChild(studentName);
                             studentDiv.appendChild(assignButton);
 
                             // Append the student div to the list item
@@ -477,7 +489,6 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                             // Append the list item to the student list
                             studentList.appendChild(listItem);
                         });
-
                         // Show the modal
                         assignModal.style.display = 'block';
                     })
