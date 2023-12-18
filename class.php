@@ -370,24 +370,61 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         const studentList = document.getElementById('studentList');
 
         document.addEventListener('DOMContentLoaded', function () {
+            // Define an array of colors to loop through
+            const colors = ['red', 'blue', 'pink'];
+
+            // Initialize a counter to keep track of the current color
+            let colorIndex = 0;
+
+            // Function to toggle through colors
+            function toggleColor() {
+                // Get the current color from the array
+                const currentColor = colors[colorIndex];
+
+                // Log the current color to the console
+                console.log(`Seat color changed to: ${currentColor}`);
+
+                // Toggle the color by adding a class to the clicked seat
+                this.style.backgroundColor = currentColor;
+
+                // Increment the color index or reset to 0 if at the end of the array
+                colorIndex = (colorIndex + 1) % colors.length;
+            }
+
             // Fetch seat assignments for the class
             fetch(`get_seat_assignments.php?classId=<?php echo $classId; ?>`)
-                .then(response => response.json())
-                .then(seatAssignments => {
+            .then(response => response.json())
+            .then(seatAssignments => {
+                // Check if seatAssignments is an object with seat numbers
+                if (seatAssignments && typeof seatAssignments === 'object') {
                     // Loop through each seat and update the seat information
-                    seatplanSeats.forEach(seat => {
-                        const seatNumber = seat.querySelector('.seatplan-seat-content').getAttribute('data-seat');
+                    Object.keys(seatAssignments).forEach(seatNumber => {
                         const seatInfo = seatAssignments[seatNumber];
+                        const seat = document.querySelector(`.seatplan-seat-content[data-seat="${seatNumber}"]`);
 
-                        if (seatInfo) {
+                        if (seat) {
                             // Update the seat information
                             seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
                             seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
+
+                            // Make the seat clickable
+                            seat.parentElement.classList.add('clickable');
                         }
                     });
-                })
-                .catch(error => console.error('Error fetching seat assignments:', error));
+                } else {
+                    console.error('Invalid seat assignments format:', seatAssignments);
+                }
+
+                // Add click event listener to each seat with the 'clickable' class
+                const clickableSeats = document.querySelectorAll('.seatplan-seat.clickable');
+                clickableSeats.forEach(seat => {
+                    seat.addEventListener('click', toggleColor);
+                });
+            })
+            .catch(error => console.error('Error fetching seat assignments:', error));  
         });
+
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
