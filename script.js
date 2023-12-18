@@ -7,24 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 });
 
-// For edit-class drag and drop
-  var grid1 = new Muuri('.grid-1', {
-    dragEnabled: true,
-    dragContainer: document.body,
-    dragSort: function () {
-      return [grid1, grid2]
-    }
-  });
-  
-  var grid2 = new Muuri('.grid-2', {
-    dragEnabled: true,
-    dragContainer: document.body,
-    dragSort: function () {
-      return [grid1, grid2]
-    }
-  });
-
-
   // Function to fetch and create buttons dynamically
 function fetchAndCreateButtons() {
   fetch('class-buttons.php')
