@@ -92,7 +92,7 @@ if (isset($_GET['id'])) {
                     // Fetch enrolled students for the given classID
                     $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name FROM tb_enrollment e
                   INNER JOIN tb_student s ON s.student_ID = e.student_ID
-                  WHERE e.class_ID = ?";
+                  WHERE e.class_ID = ? AND e.is_deleted = 0";
                     $enrolledStmt = $db->prepare($enrolledQuery);
                     $enrolledStmt->bind_param("i", $classID);
                     $enrolledStmt->execute();
@@ -105,8 +105,8 @@ if (isset($_GET['id'])) {
                         echo "<td>{$row['first_name']} {$row['last_name']}</td>";
                         echo "<td class='text-end'>
                                 <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
-                                <a type='button' class='btn btn-sm btn-danger' href='delete-student.php?id=$classID&studentid={$row['student_ID']}'>Remove</a>
-                            </td>"; 
+                                <a type='button' class='btn btn-sm btn-danger' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove this student?')\">Remove</a>
+                            </td>";
                         echo "</tr>";
                     }
 
@@ -116,6 +116,7 @@ if (isset($_GET['id'])) {
 
                 </table>
             </div>
+
         </form>
         <div class="d-flex justify-content-center mt-4">
             <!-- <a href="#" type="button" class="btn btn-outline-secondary m-1" onclick="history.back();">Back</a> -->
@@ -123,6 +124,8 @@ if (isset($_GET['id'])) {
             <!-- <a type="button" class="btn btn-primary m-1" href="class.php">Save</a> -->
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>

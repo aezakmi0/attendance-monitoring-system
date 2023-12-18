@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $classId = isset($_GET['classId']) ? $_GET['classId'] : null;
 
 // Fetch student data based on class_ID
-$sql = "SELECT * FROM tb_student WHERE student_ID IN (SELECT student_ID FROM tb_enrollment WHERE class_ID = ?)";
+$sql = "SELECT * FROM tb_student WHERE student_ID IN (SELECT student_ID FROM tb_enrollment WHERE class_ID = ? AND is_deleted = 0)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $classId);
 $stmt->execute();

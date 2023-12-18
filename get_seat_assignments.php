@@ -19,7 +19,7 @@ if ($classId !== null) {
     $sql = "SELECT seat_number, first_name, last_name
             FROM tb_seatplan
             INNER JOIN tb_student ON tb_seatplan.student_ID = tb_student.student_ID
-            WHERE tb_seatplan.class_ID = $classId";
+            WHERE tb_seatplan.class_ID = $classId AND tb_seatplan.is_deleted = 0";
 
     $result = $conn->query($sql);
 
