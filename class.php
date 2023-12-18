@@ -43,7 +43,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
             <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Enroll Student</a>
             <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Class</a>
             <a href="#" type="button" class="btn m-1 btn-secondary">Generate Report</a>
-            <a href="#" type="button" class="btn m-1 btn-danger">Delete Class</a>
+            <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-danger" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
         </div>
         <hr class="hr" />
         <div class="d-flex justify-content-between">

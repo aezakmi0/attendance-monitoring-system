@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Fetch data from the tb_class table
-$sql = "SELECT * FROM tb_class";
+$sql = "SELECT * FROM tb_class WHERE is_deleted = 0";
 $result = $conn->query($sql);
 
 // Create an array to store the results
