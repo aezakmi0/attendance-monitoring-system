@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $classId = isset($_GET['classId']) ? $_GET['classId'] : null;
 
 if ($classId !== null) {
-    $sql = "SELECT seat_number, first_name, last_name
+    $sql = "SELECT tb_seatplan.seat_number, tb_student.student_ID, tb_student.first_name, tb_student.last_name
             FROM tb_seatplan
             INNER JOIN tb_student ON tb_seatplan.student_ID = tb_student.student_ID
             WHERE tb_seatplan.class_ID = $classId AND tb_seatplan.is_deleted = 0";
@@ -27,6 +27,7 @@ if ($classId !== null) {
         $seatAssignments = array();
         while ($row = $result->fetch_assoc()) {
             $seatAssignments[$row['seat_number']] = array(
+                'studentID' => $row['student_ID'],
                 'firstName' => $row['first_name'],
                 'lastName' => $row['last_name'],
             );

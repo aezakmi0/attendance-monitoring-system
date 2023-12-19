@@ -1,7 +1,6 @@
 <?php
 // save_attendance.php
 
-// Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -9,37 +8,35 @@ $dbname = "db_attendance";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the class_ID from the URL
-$classId = isset($_GET['id']) ? $_GET['id'] : null;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $classId = $_POST['classId'];
+    $studentId = $_POST['studentId'];
+    $date = $_POST['date'];
+    $status = $_POST['status']; 
 
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Loop through the seat assignments and save attendance to the database
-    foreach ($_POST['seats'] as $seatNumber => $status) {
-        // Assuming you have a session or some other way to get the student_ID
-        $studentId = 1; // Replace with your logic to get the student_ID
+    // Use UPSERT (INSERT ON DUPLICATE KEY UPDATE) to handle new or existing records
+    $sql = "INSERT INTO tb_attendance (class_ID, student_ID, date, status)
+            VALUES (?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE status = VALUES(status)";
 
-        // Get the current date
-        $date = date('Y-m-d');
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iiss", $classId, $studentId, $date, $status);
 
-        // Insert or update the attendance record
-        $sql = "INSERT INTO tb_attendance (class_ID, student_ID, date, status) VALUES (?, ?, ?, ?)
-                ON DUPLICATE KEY UPDATE status = VALUES(status)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('iiss', $classId, $studentId, $date, $status);
+    try {
         $stmt->execute();
+        echo "Attendance record updated successfully";
+    } catch (mysqli_sql_exception $e) {
+        // Log or echo the detailed error message for debugging
+        echo "Error: " . $e->getMessage();
     }
+    
 
-    // Close the database connection
-    $conn->close();
-
-    // Redirect back to the seatplan page or any other page
-    header("Location: seatplan.php?id=" . $classId);
-    exit();
+    $stmt->close();
 }
+
+$conn->close();
 ?>
