@@ -2,6 +2,8 @@
     --present: #66dc5b;
     --late: #fffa75;
     --absent: #ffb0b7;
+    --excused: #add2db;
+    --lateLegend: #d8d21e;
 }
 
 body{
@@ -119,6 +121,7 @@ h1{
     line-height: 0;
 }
 
+
 /* Create Class Form */
 .day-button{
     width: 40px;
@@ -158,16 +161,16 @@ h1{
     color: black;
 }
 .class-code-2{
-    font-size: 4em;
+    font-size: 2.5em;
     font-weight: bold;
     color: black;
-    line-height: 75px;
+    line-height: 1;
 }
 
 .class-name{
     color: black;
 }
-.class-name{
+.class-name-2{
     margin-bottom: 0;
 }
 
@@ -445,7 +448,8 @@ h1{
 
 .legend-color,
 .legend-color-2,
-.legend-color-3{
+.legend-color-3,
+.legend-color-4{
     width: 10px;
     height: 10px;
     margin-right: 5px;
@@ -454,14 +458,7 @@ h1{
     /* border: .2px solid rgb(138, 138, 138); */
 }
 
-:root {
-    --present: #66dc5b;
-    --absent: #ffb0b7;
-    --late: #fffa75;
-    --lateLegend: #d8d21e;
-}
-
-.legend-container > .legend-color:first-child{
+.legend-color{
     margin-left: 0;
     background-color: var(--present);
 }
@@ -469,5 +466,12 @@ h1{
     background-color: var(--absent);
 }
 .legend-color-3{
-    background-color: var(--lateLegend);
+    background-color: var(--late);
+}
+.legend-color-4{
+    background-color: var(--excused);
+}
+
+.btn-rounded{
+    border-radius: 25px;
 }

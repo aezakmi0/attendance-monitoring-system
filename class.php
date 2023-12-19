@@ -31,39 +31,43 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 <body>
     <!-- Navbar -->
     <!-- <div id="navbar-container"></div> -->
-    <div class="container" style="background-color: rgb(255, 255, 255);">
+    <div class="container">
         <!-- <div class="text-center pt-4"> -->
             <!-- <h1 class="class-code-lg">CS-ITE 313</h1>
             <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p> -->
             <!-- </div> -->
             <!-- <hr class="hr" /> -->
-        <div class="d-flex justify-content-between align-items-center">    
+        <div class="d-flex justify-content-between align-items-center mt-4">    
             <?php include 'class-header.php'; ?>
             <div class="float-right">
-                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-outline-secondary">Edit Seatplan</a>
-                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-outline-secondary">Enroll Student</a>
-                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-outline-secondary">Edit Class</a>
-                <a href="#" type="button" class="btn m-1 btn-outline-secondary">Generate Report</a>
-                <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-danger" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
+                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Edit Seatplan</a>
+                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Enroll Student</a>
+                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Edit Class</a>
+                <a href="#" type="button" class="btn  btn-outline-dark btn-rounded">Generate Report</a>
+                <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-danger btn-rounded" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
             </div>
         </div>
         <hr class="hr" />
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center mb-2">
             <!-- <p>December 1, 2023 | 5:36 PM</p> -->
-            <div class="legend-container d-flex justify-content-between align-items-center">
+            <div class="legend-container d-flex align-items-center">
                 <div class="legend-color"></div>
                 <p class="label-text-2">PRESENT</p>
                 <div class="legend-color-2"></div>
                 <p class="label-text-2">ABSENT</p>
                 <div class="legend-color-3"></div>
                 <p class="label-text-2">LATE</p>
+                <div class="legend-color-4"></div>
+                <p class="label-text-2">EXCUSED</p>
             </div>
-            <button class="btn btn-outline-primary">Check attendance</button>
+            <p class="label-text-2">Click a seat to change the student's status.</p>
+            <button class="btn btn-outline-primary btn-rounded">Save Attendance</button>
         </div>
+        <!-- <hr class="hr" /> -->
     </div>
     
-        <!-- seatplan layout -->
-        <div class="container seatplan-main-container">
+    <!-- seatplan layout -->
+    <div class="container seatplan-main-container">
         <div class="my-grid">
             <div class="seatplan-seat">
                 <div class="seatplan-seat-content" data-seat="1">
@@ -381,8 +385,8 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
         document.addEventListener('DOMContentLoaded', function () {
             // Define an array of colors to loop through
-            const colors = ['#66dc5b', '#ffb0b7', '#fffa75'];
-            const status = ['present', 'absent', 'late'];
+            const colors = ['#66dc5b', '#ffb0b7', '#fffa75', '#ADD2DB'];
+            const status = ['present', 'absent', 'late', 'excused'];
 
             // Initialize a counter to keep track of the current color
             let colorIndex = 0;

@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
     $classId = $_GET['id'];
         
     // Assuming you have a table named 'tb_class' with columns 'class_id', 'class_code', and 'class_name'
-    $sql = "SELECT class_code, class_name FROM tb_class WHERE class_ID = $classId";
+    $sql = "SELECT * FROM tb_class WHERE class_ID = $classId AND is_deleted = 0";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -29,10 +29,10 @@ if (isset($_GET['id'])) {
         $row = $result->fetch_assoc();
 
         // Display values in the HTML tags
-        echo `<div>
-                <h1 class="class-code-2">` . $row["class_code"] . `</h1>
-                <p class="class-name-2">` . $row["class_name"] . `</p>
-            </div>`;
+        echo "<div>
+                <h1 class=\"class-code-2\">" . $row["class_code"] . "</h1>
+                <p class=\"class-name-2\">" . $row["class_name"] . " | " . $row["room"] . " " . $row["time_start"] . "-" . $row["time_end"] . " " . $row["day"] . "</p>
+            </div>";
     } else {
         echo "No results for the specified class_id";
     }
