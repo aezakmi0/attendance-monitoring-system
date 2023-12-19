@@ -49,7 +49,6 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         </div>
         <hr class="hr" />
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <!-- <p>December 1, 2023 | 5:36 PM</p> -->
             <div class="legend-container d-flex align-items-center">
                 <div class="legend-color"></div>
                 <p class="label-text-2">PRESENT</p>
@@ -60,7 +59,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="legend-color-4"></div>
                 <p class="label-text-2">EXCUSED</p>
             </div>
-            <p class="label-text-2">Click a seat to change the student's status.</p>
+            <p class="label-text-2">Click a seat to change the student's attendance status.</p>
             <button class="btn btn-outline-primary btn-rounded">Save Attendance</button>
         </div>
         <!-- <hr class="hr" /> -->
