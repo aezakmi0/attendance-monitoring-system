@@ -1,3 +1,9 @@
+:root {
+    --present: #66dc5b;
+    --late: #fffa75;
+    --absent: #ffb0b7;
+}
+
 body{
     font-family: Inter;
     padding-top: 67px;
@@ -106,6 +112,12 @@ h1{
     margin: 0;
     color: #777;
 }
+.label-text-2 {
+    font-size: 13px;
+    margin: 0;
+    color: #777;
+    line-height: 0;
+}
 
 /* Create Class Form */
 .day-button{
@@ -145,7 +157,7 @@ h1{
     font-weight: bold;
     color: black;
 }
-.class-code-lg{
+.class-code-2{
     font-size: 4em;
     font-weight: bold;
     color: black;
@@ -154,6 +166,9 @@ h1{
 
 .class-name{
     color: black;
+}
+.class-name{
+    margin-bottom: 0;
 }
 
 .btn:focus{
@@ -427,3 +442,32 @@ h1{
     justify-content: space-between;
     /* background-color: blue; */
   }
+
+.legend-color,
+.legend-color-2,
+.legend-color-3{
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    margin-left: 15px;
+    border-radius: 50%;
+    /* border: .2px solid rgb(138, 138, 138); */
+}
+
+:root {
+    --present: #66dc5b;
+    --absent: #ffb0b7;
+    --late: #fffa75;
+    --lateLegend: #d8d21e;
+}
+
+.legend-container > .legend-color:first-child{
+    margin-left: 0;
+    background-color: var(--present);
+}
+.legend-color-2{
+    background-color: var(--absent);
+}
+.legend-color-3{
+    background-color: var(--lateLegend);
+}

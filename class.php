@@ -32,23 +32,33 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
     <!-- Navbar -->
     <!-- <div id="navbar-container"></div> -->
     <div class="container" style="background-color: rgb(255, 255, 255);">
-        <div class="text-center pt-4">
+        <!-- <div class="text-center pt-4"> -->
             <!-- <h1 class="class-code-lg">CS-ITE 313</h1>
             <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p> -->
+            <!-- </div> -->
+            <!-- <hr class="hr" /> -->
+        <div class="d-flex justify-content-between align-items-center">    
             <?php include 'class-header.php'; ?>
-        </div>
-        <!-- <hr class="hr" /> -->
-        <div class="d-flex justify-content-center">    
-            <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Seatplan</a>
-            <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Enroll Student</a>
-            <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-secondary">Edit Class</a>
-            <a href="#" type="button" class="btn m-1 btn-secondary">Generate Report</a>
-            <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-danger" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
+            <div class="float-right">
+                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-outline-secondary">Edit Seatplan</a>
+                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-outline-secondary">Enroll Student</a>
+                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-outline-secondary">Edit Class</a>
+                <a href="#" type="button" class="btn m-1 btn-outline-secondary">Generate Report</a>
+                <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn m-1 btn-danger" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
+            </div>
         </div>
         <hr class="hr" />
-        <div class="d-flex justify-content-between">
-            <p>December 1, 2023</p>
-            <p>5:36 PM</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- <p>December 1, 2023 | 5:36 PM</p> -->
+            <div class="legend-container d-flex justify-content-between align-items-center">
+                <div class="legend-color"></div>
+                <p class="label-text-2">PRESENT</p>
+                <div class="legend-color-2"></div>
+                <p class="label-text-2">ABSENT</p>
+                <div class="legend-color-3"></div>
+                <p class="label-text-2">LATE</p>
+            </div>
+            <button class="btn btn-outline-primary">Check attendance</button>
         </div>
     </div>
     
@@ -360,9 +370,9 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         </div>
     </div>
 
-    <div class="d-flex justify-content-center mt-4">
+    <!-- <div class="d-flex justify-content-center mt-4">
         <a type="button" class="btn btn-primary m-1 mb-2" href="#">Save Attendance</a>
-    </div>
+    </div> -->
 
     <script>
         const seatplanSeats = document.querySelectorAll('.seatplan-seat');
@@ -371,24 +381,28 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
         document.addEventListener('DOMContentLoaded', function () {
             // Define an array of colors to loop through
-            const colors = ['red', 'blue', 'pink'];
+            const colors = ['#66dc5b', '#ffb0b7', '#fffa75'];
+            const status = ['present', 'absent', 'late'];
 
             // Initialize a counter to keep track of the current color
             let colorIndex = 0;
+            let statusIndex = 0;
 
             // Function to toggle through colors
             function toggleColor() {
                 // Get the current color from the array
                 const currentColor = colors[colorIndex];
+                const currentStatus = status[statusIndex];
 
                 // Log the current color to the console
-                console.log(`Seat color changed to: ${currentColor}`);
+                console.log(`Seat color changed to: ${currentColor} ${currentStatus}`);
 
                 // Toggle the color by adding a class to the clicked seat
                 this.style.backgroundColor = currentColor;
 
                 // Increment the color index or reset to 0 if at the end of the array
                 colorIndex = (colorIndex + 1) % colors.length;
+                statusIndex = (statusIndex + 1) % status.length;
             }
 
             // Fetch seat assignments for the class

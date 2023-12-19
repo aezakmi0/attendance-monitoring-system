@@ -29,10 +29,10 @@ if (isset($_GET['id'])) {
         $row = $result->fetch_assoc();
 
         // Display values in the HTML tags
-        echo '<div class="text-center pt-4">
-                <h1 class="class-code-lg">' . $row["class_code"] . '</h1>
-                <p class="class-name">' . $row["class_name"] . '</p>
-            </div>';
+        echo `<div>
+                <h1 class="class-code-2">` . $row["class_code"] . `</h1>
+                <p class="class-name-2">` . $row["class_name"] . `</p>
+            </div>`;
     } else {
         echo "No results for the specified class_id";
     }
