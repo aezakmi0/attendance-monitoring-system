@@ -39,7 +39,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
             <!-- <hr class="hr" /> -->
         <div class="d-flex justify-content-between align-items-center mt-4">    
             <?php include 'class-header.php'; ?>
-            <div class="float-right">
+            <div class="text-end">
                 <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Edit Seatplan</a>
                 <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Enroll Student</a>
                 <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Edit Class</a>
@@ -51,9 +51,10 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
     
     <!-- seatplan layout -->
-    <form class="container" id="attendanceForm" method="post" action="save_attendance.php">
+    <div class="container">
         <hr class="hr" />
         <div class="d-flex justify-content-between align-items-center mb-2">
+            <p class="label-text-2">Click a seat to change the student's attendance status.</p>
             <div class="legend-container d-flex align-items-center">
                 <div class="legend-color"></div>
                 <p class="label-text-2">PRESENT</p>
@@ -64,9 +65,9 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="legend-color-4"></div>
                 <p class="label-text-2">EXCUSED</p>
             </div>
-            <p class="label-text-2">Click a seat to change the student's attendance status.</p>
-            <button type="submit" class="btn btn-outline-primary btn-rounded" id="saveAttendanceBtn">Save Attendance</button>
+            <!-- <button type="submit" class="btn btn-outline-primary btn-rounded" id="saveAttendanceBtn">Save Attendance</button> -->
         </div>
+        <hr class="hr" />
         <div class="seatplan-main-container">
             <div class="my-grid">
                 <div class="seatplan-seat">
@@ -373,7 +374,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 </div>
             </div>
         </div>
-    </form>
+</div>
     <!-- <div class="d-flex justify-content-center mt-4">
         <a type="button" class="btn btn-primary m-1 mb-2" href="#">Save Attendance</a>
     </div> -->
@@ -440,18 +441,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 });
             })
             .catch(error => console.error('Error fetching seat assignments:', error));  
-
-            const saveAttendanceBtn = document.getElementById('saveAttendanceBtn');
-            const attendanceForm = document.getElementById('attendanceForm');
-
-            saveAttendanceBtn.addEventListener('click', function () {
-                // Trigger the form submission when the button is clicked
-                console.log('Submit button clicked');
-                attendanceForm.submit();
-            });
         });
-
-
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
