@@ -26,14 +26,6 @@ if ($resultClass->num_rows > 0) {
         $classId = $rowClass['class_ID'];
         $sqlStudents = "SELECT COUNT(*) AS total_students FROM tb_enrollment WHERE class_ID = $classId AND is_deleted = 0";
         $resultStudents = $conn->query($sqlStudents);
-
-        // Fetch the data and store it in the array
-        $rowClass['total_students'] = 0; // default value if no students found
-        if ($resultStudents->num_rows > 0) {
-            $rowStudents = $resultStudents->fetch_assoc();
-            $rowClass['total_students'] = $rowStudents['total_students'];
-        }
-
         $data[] = $rowClass;
     }
 }

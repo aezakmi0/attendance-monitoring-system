@@ -15,6 +15,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+function formatTime($time)
+{
+    return date("h:iA", strtotime($time));
+}
 
 // Check if class_id is provided in the GET request
 if (isset($_GET['id'])) {
@@ -26,12 +30,12 @@ if (isset($_GET['id'])) {
 
     if ($result->num_rows > 0) {
         // Output data of the first row (assuming class_id is unique)
-        $row = $result->fetch_assoc();
+        $row = $result->fetch_assoc();  
 
         // Display values in the HTML tags
         echo "<div>
                 <h1 class=\"class-code-2\">" . $row["class_code"] . "</h1>
-                <p class=\"class-name-2\">" . $row["class_name"] . " | " . $row["room"] . " " . $row["time_start"] . "-" . $row["time_end"] . " " . $row["day"] . "</p>
+                <p class=\"class-name-2\">" . $row["class_name"] . " | " . $row["room"] . " " . formatTime($row["time_start"]) . "-" . formatTime($row["time_end"]) . " " . $row["day"] . "</p>
             </div>";
     } else {
         echo "No results for the specified class_id";
