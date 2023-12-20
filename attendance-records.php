@@ -33,7 +33,25 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
     <!-- <div id="navbar-container"></div> -->
 
 <div class="container">
-    
+    <table class="table table-sm">
+    <thead>
+        <tr>
+        <th>ID Number</th>
+        <th>Student Name</th>
+        <th rowspan="2">Date</th>
+        <th>asdadasd</th>
+        <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>202112748</td>
+            <td>Lastname, First Name</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+        </tr>
+    </tbody>
+    </table>    
 </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
