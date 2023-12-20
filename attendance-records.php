@@ -28,10 +28,9 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        .table td.fit, 
-        .table th.fit {
+        .table td.fit{
             white-space: nowrap;
-            width: 10%;
+            width: 15%;
         }
         .status-warning{
             background-color: #ffb0b7 !important;
@@ -55,11 +54,11 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <th rowspan="2">ID Number</th>
                 <th rowspan="2">Student Name</th>
                 <!-- Months -->
-                <th colspan="9" class="th-months">November 2023</th>  <!-- colspan is equals to the total count of days in the month -->
-                <th colspan="6" class="th-months">December 2023</th>
+                <th colspan="9">November 2023</th>  <!-- colspan is equals to the total count of days in the month -->
+                <th colspan="6">December 2023</th>
                 <th colspan="4">Total</th>
             </tr>
-            <tr class="dates">
+            <tr>
                 <th>1</th>
                 <th>6</th>
                 <th>8</th>
@@ -81,17 +80,6 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <th>E</th>
             </tr>
         </thead>
-        <!-- 
-        ID Number	Name	                Nov-23								Dec-23					TOTAL			
-                                            1	6	8	13	15	20	22	27	29	4	6	11	13	18	20	P	A	L	E
-        -------------------------------------------------------------------------------------------------------------
-        202111227	Estores, Ivan James	    P	P	A	L	L	L	E	P	P	P	P	P	P	P	P	10	1	3	1
-        452415435	Garingo, Joshua Razzi	P	P	P	P	P	P	L	L	P	P	P	L	P	A	P	11	3	3	0
-        264314985	Geraldez, Jan Anthony	P	L	P	P	P	L	P	P	P	P	P	P	P	P	P	12	3	2	0
-        223457541	Hayag, Alexiss	        A	A	P	P	P	P	P	P	L	L	L	L	P	P	P	11	2	5	0
-        224563783	Taboada, Vene Lucille	P	P	P	P	P	P	P	P	P	L	L	P	P	L	P	10	0	3	0
-        324556843	Taladtad, Jelan Roy	    P	A	P	P	P	P	A	A	P	P	P	P	P	P	P	14	3	0	0
-         -->
         <tbody >
             <tr>
                 <td>202112748</td>
@@ -140,7 +128,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <td>1</td>
             </tr>
             <tr>
-                <td class="fit">202143234</td>
+                <td>202143234</td>
                 <td class="fit">Taladtad, Jelan Roy</td>
                 <td>P</td>
                 <td>A</td>
