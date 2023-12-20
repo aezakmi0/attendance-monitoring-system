@@ -40,11 +40,11 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="d-flex justify-content-between align-items-center mt-5">    
             <?php include 'class-header.php'; ?>
             <div class="text-end">
-                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Edit Seatplan</a>
-                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Enroll Student</a>
-                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Edit Class</a>
-                <a href="#" type="button" class="btn  btn-outline-dark btn-rounded">Generate Report</a>
-                <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-danger btn-rounded" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
+                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded">Edit Seatplan</a>
+                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded">Enroll Student</a>
+                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded">Edit Class</a>
+                <a href="attendance-records.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded">View Attendance Records</a>
+                <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-danger btn-rounded" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
             </div>
         </div>
     </div>
