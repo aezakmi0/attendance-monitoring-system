@@ -407,13 +407,21 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                             if (seat) {
                                 // Update the seat information
                                 seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
-                                seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
+                                // seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
 
                                 // Make the seat clickable
                                 seat.parentElement.classList.add('clickable');
                                 
                                 // Set the student_ID as a data attribute
                                 seat.parentElement.setAttribute('data-student-id', seatInfo.studentID);
+
+                                fetch(`get_attendance_status.php?classId=<?php echo $classId; ?>&studentId=${seatInfo.studentID}`)
+                                    .then(response => response.json())
+                                    .then(attendanceStatus => {
+                                        // Update the seat with attendance status
+                                        seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${attendanceStatus.status}`;
+                                    })
+                                    .catch(error => console.error('Error fetching attendance status:', error));
                             }
                         });
                     } else {
