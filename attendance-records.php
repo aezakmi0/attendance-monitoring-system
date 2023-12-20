@@ -27,31 +27,121 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .table td.fit, 
+        .table th.fit {
+            white-space: nowrap;
+            width: 5%;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     <!-- <div id="navbar-container"></div> -->
-
 <div class="container">
-    <table class="table table-sm">
-    <thead>
-        <tr>
-        <th>ID Number</th>
-        <th>Student Name</th>
-        <th rowspan="2">Date</th>
-        <th>asdadasd</th>
-        <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>202112748</td>
-            <td>Lastname, First Name</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-        </tr>
-    </tbody>
-    </table>    
+    <div class="d-flex justify-content-between align-items-center mt-5">    
+        <?php include 'class-header.php'; ?>
+    </div>
+    <hr/>
+
+    <div class="table-responsive">
+        <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>ID Number</th>
+                <th>Student Name</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>10/4/23</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>202112748</td>
+                <td class="fit">Garingo, Joshua Razzi</td>
+                <td>P</td>
+                <td>A</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>E</td>
+                <td>E</td>
+                <td>P</td>
+                <td>L</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td class="fit">P=13 A=1 L=4 E=0</td>
+            </tr>
+            <tr>
+                <td>202143234</td>
+                <td class="fit">Taboada, Vene Lucille</td>
+                <td>P</td>
+                <td>A</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>E</td>
+                <td>E</td>
+                <td>P</td>
+                <td>L</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td class="fit">P=15 A=3 L=4 E=0</td>
+            </tr>
+            <tr>
+                <td class="fit">202143234</td>
+                <td class="fit">Taladtad, Jelan Roy</td>
+                <td>P</td>
+                <td>A</td>
+                <td>P</td>
+                <td>A</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>P</td>
+                <td>E</td>
+                <td>P</td>
+                <td>A</td>
+                <td>P</td>
+                <td>L</td>
+                <td>P</td>
+                <td>L</td>
+                <td>P</td>
+                <td>P</td>
+                <td class="fit">P=12 A=3 L=4 E=2</td>
+            </tr>
+        </tbody>
+        </table>    
+    </div>
+    <!-- End of table div -->
+
 </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
