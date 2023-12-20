@@ -50,7 +50,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
     </div>
 
     
-    <!-- seatplan layout -->
+    <!-- aseatplan layout -->
     <div class="container">
         <hr class="hr" />
         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -70,308 +70,333 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         <hr class="hr" />
         <div class="seatplan-main-container">
             <div class="my-grid">
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="1">
+                <div class="seatplan-seat" data-seat="1">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="2">
+                <div class="seatplan-seat" data-seat="2">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="3">
+                <div class="seatplan-seat" data-seat="3">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="4">
+                <div class="seatplan-seat" data-seat="4">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="5">
+                <div class="seatplan-seat" data-seat="5">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="6">
+                <div class="seatplan-seat" data-seat="6">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="7">
+                <div class="seatplan-seat" data-seat="7">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="8">
+                <div class="seatplan-seat" data-seat="8">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="9">
+                <div class="seatplan-seat" data-seat="9">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="10">
+                <div class="seatplan-seat" data-seat="10">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="11">
+                <div class="seatplan-seat" data-seat="11">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="12">
+                <div class="seatplan-seat" data-seat="12">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="13">
+                <div class="seatplan-seat" data-seat="13">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="14">
+                <div class="seatplan-seat" data-seat="14">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="15">
+                <div class="seatplan-seat" data-seat="15">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="16">
+                <div class="seatplan-seat" data-seat="16">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="17">
+                <div class="seatplan-seat" data-seat="17">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="18">
+                <div class="seatplan-seat" data-seat="18">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="19">
+                <div class="seatplan-seat" data-seat="19">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="20">
+                <div class="seatplan-seat" data-seat="20">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="21">
+                <div class="seatplan-seat" data-seat="21">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="22">
+                <div class="seatplan-seat" data-seat="22">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="23">
+                <div class="seatplan-seat" data-seat="23">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="24">
+                <div class="seatplan-seat" data-seat="24">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="25">
+                <div class="seatplan-seat" data-seat="25">
+                    <div class="seatplan-seat-content">
                         <p class="seatplan-lastname"></p>
                         <p class="seatplan-firstname"></p>
                     </div>
                 </div>
             </div>
             <div class="my-grid">
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="26">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            <div class="seatplan-seat" data-seat="26">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="27">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="27">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="28">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="28">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="29">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="29">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="30">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="30">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="31">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="31">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="32">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="32">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="33">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="33">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="34">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="34">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="35">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="35">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="36">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="36">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="37">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="37">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="38">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="38">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="39">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="39">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="40">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="40">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="41">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="41">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="42">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="42">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="43">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="43">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="44">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="44">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="45">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="45">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="46">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="46">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="47">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="47">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="48">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="48">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="49">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="49">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
-                <div class="seatplan-seat">
-                    <div class="seatplan-seat-content" data-seat="50">
-                        <p class="seatplan-lastname"></p>
-                        <p class="seatplan-firstname"></p>
-                    </div>
+            </div>
+
+            <div class="seatplan-seat" data-seat="50">
+                <div class="seatplan-seat-content">
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
                 </div>
+            </div>
+
             </div>
         </div>
 </div>
@@ -409,7 +434,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                     // Loop through each seat and update the seat information
                     Object.keys(seatAssignments).forEach(seatNumber => {
                         const seatInfo = seatAssignments[seatNumber];
-                        const seat = document.querySelector(`.seatplan-seat-content[data-seat="${seatNumber}"]`);
+                        const seat = document.querySelector(`.seatplan-seat[data-seat="${seatNumber}"]`);
 
                         if (seat) {
                             // Update the seat information
@@ -417,16 +442,16 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                             seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
 
                             // Make the seat clickable
-                            seat.parentElement.classList.add('clickable');
+                            seat.classList.add('clickable');
                             
                             // Set the student_ID as a data attribute
-                            seat.parentElement.setAttribute('data-student-id', seatInfo.studentID);
+                            seat.setAttribute('data-student-id', seatInfo.studentID);
 
                             fetch(`get_attendance_status.php?classId=<?php echo $classId; ?>&studentId=${seatInfo.studentID}`)
                             .then(response => response.json())
                             .then(attendanceStatus => {
                                 const status = attendanceStatus.status;
-                                seat.querySelector('.seatplan-seat').style.backgroundColor = colorStatus[status];
+                                seat.style.backgroundColor = colorStatus[status];
                                 seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${status}`;
                             })
                             .catch(error => console.error('Error fetching attendance status:', error));
