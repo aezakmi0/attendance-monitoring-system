@@ -409,6 +409,12 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         const assignModal = document.getElementById('assignModal');
         const studentList = document.getElementById('studentList');
 
+        var currentDate = new Date();
+        var year = currentDate.getFullYear();
+        var month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+        var day = ('0' + currentDate.getDate()).slice(-2);
+        var formattedDate = year + '-' + month + '-' + day;
+
         document.addEventListener('DOMContentLoaded', function () {
             // Define an array of colors to loop through
             const colors = ['#66dc5b', '#ffb0b7', '#fffa75', '#ADD2DB'];
@@ -502,7 +508,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                     data: {
                         classId: <?php echo $classId; ?>,
                         studentId: studentId,
-                        date: (new Date()).toISOString().split('T')[0], // Get current date in 'YYYY-MM-DD' format
+                        date: formattedDate,
                         status: currentStatus
                     },
                     success: function (response) {
@@ -518,7 +524,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         function reloadPage() {
             location.reload();
         }
-        </script>
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
