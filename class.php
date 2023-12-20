@@ -37,7 +37,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
             <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p> -->
             <!-- </div> -->
             <!-- <hr class="hr" /> -->
-        <div class="d-flex justify-content-between align-items-center mt-4">    
+        <div class="d-flex justify-content-between align-items-center mt-5">    
             <?php include 'class-header.php'; ?>
             <div class="text-end">
                 <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn  btn-outline-dark btn-rounded">Edit Seatplan</a>
@@ -52,9 +52,8 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
     
     <!-- aseatplan layout -->
     <div class="container">
-        <hr class="hr" />
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <p class="label-text-2">Click a seat to change the student's attendance status.</p>
+        <hr/>
+        <div class="d-flex justify-content-between align-items-center">
             <div class="legend-container d-flex align-items-center">
                 <div class="legend-color"></div>
                 <p class="label-text-2">PRESENT</p>
@@ -65,10 +64,11 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="legend-color-4"></div>
                 <p class="label-text-2">EXCUSED</p>
             </div>
-            <a href="#" type="button" class="btn btn-sm btn-outline-primary btn-rounded" onclick="reloadPage()">Save Attendance</a>
+            <p class="label-text-2">Click a seat to change the student's attendance status.</p>
+            <a href="#" type="button" class="btn btn-sm btn-outline-primary btn-rounded" onclick="reloadPage()">Save Attendance</a>    
         </div>
-        <hr class="hr" />
-        <div class="seatplan-main-container">
+        <hr/>
+        <div class="seatplan-main-container" style="user-select: none">
             <div class="my-grid">
                 <div class="seatplan-seat" data-seat="1">
                     <div class="seatplan-seat-content">
@@ -452,7 +452,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                             .then(attendanceStatus => {
                                 const status = attendanceStatus.status;
                                 seat.style.backgroundColor = colorStatus[status];
-                                seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${status}`;
+                                // seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${status}`;
                             })
                             .catch(error => console.error('Error fetching attendance status:', error));
                         }
@@ -485,7 +485,6 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
                 // Toggle the color by adding a class to the clicked seat
                 this.style.backgroundColor = currentColor;
-                // document.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${attendanceStatus.status}`;
 
                 // Increment the color index or reset to 0 if at the end of the array
                 colorIndex = (colorIndex + 1) % colors.length;
