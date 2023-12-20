@@ -65,7 +65,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="legend-color-4"></div>
                 <p class="label-text-2">EXCUSED</p>
             </div>
-            <!-- <button type="submit" class="btn btn-outline-primary btn-rounded" id="saveAttendanceBtn">Save Attendance</button> -->
+            <a href="#" type="button" class="btn btn-sm btn-outline-primary btn-rounded" onclick="reloadPage()">Save Attendance</a>
         </div>
         <hr class="hr" />
         <div class="seatplan-main-container">
@@ -388,6 +388,13 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
             // Define an array of colors to loop through
             const colors = ['#66dc5b', '#ffb0b7', '#fffa75', '#ADD2DB'];
             const status = ['present', 'absent', 'late', 'excused'];
+            
+            const colorSeat = {
+                'present': '#66dc5b',
+                'absent': '#ffb0b7',
+                'late': '#fffa75',
+                'excused': '#ADD2DB'
+            };
 
             // Initialize a counter to keep track of the current color
             let colorIndex = 0;
@@ -397,90 +404,101 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
             fetch(`get_seat_assignments.php?classId=<?php echo $classId; ?>`)
                 .then(response => response.json())
                 .then(seatAssignments => {
-                    // Check if seatAssignments is an object with seat numbers
-                    if (seatAssignments && typeof seatAssignments === 'object') {
-                        // Loop through each seat and update the seat information
-                        Object.keys(seatAssignments).forEach(seatNumber => {
-                            const seatInfo = seatAssignments[seatNumber];
-                            const seat = document.querySelector(`.seatplan-seat-content[data-seat="${seatNumber}"]`);
+                // Check if seatAssignments is an object with seat numbers
+                if (seatAssignments && typeof seatAssignments === 'object') {
+                    // Loop through each seat and update the seat information
+                    Object.keys(seatAssignments).forEach(seatNumber => {
+                        const seatInfo = seatAssignments[seatNumber];
+                        const seat = document.querySelector(`.seatplan-seat-content[data-seat="${seatNumber}"]`);
 
-                            if (seat) {
-                                // Update the seat information
-                                seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
-                                // seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
+                        if (seat) {
+                            // Update the seat information
+                            seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
+                            // seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
 
-                                // Make the seat clickable
-                                seat.parentElement.classList.add('clickable');
-                                
-                                // Set the student_ID as a data attribute
-                                seat.parentElement.setAttribute('data-student-id', seatInfo.studentID);
+                            // Make the seat clickable
+                            seat.parentElement.classList.add('clickable');
+                            
+                            // Set the student_ID as a data attribute
+                            seat.parentElement.setAttribute('data-student-id', seatInfo.studentID);
 
-                                fetch(`get_attendance_status.php?classId=<?php echo $classId; ?>&studentId=${seatInfo.studentID}`)
-                                    .then(response => response.json())
-                                    .then(attendanceStatus => {
-                                        // Update the seat with attendance status
-                                        seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${attendanceStatus.status}`;
-                                    })
-                                    .catch(error => console.error('Error fetching attendance status:', error));
-                            }
-                        });
-                    } else {
-                        console.error('Invalid seat assignments format:', seatAssignments);
-                    }
-
-                    // Add click event listener to each seat with the 'clickable' class
-                    const clickableSeats = document.querySelectorAll('.seatplan-seat.clickable');
-                    clickableSeats.forEach(seat => {
-                        // Get the student ID from the seat element
-                        const studentId = seat.getAttribute('data-student-id');
-
-                        seat.addEventListener('click', function () {
-                            toggleColor.call(this, studentId);
-                        });
+                            fetch(`get_attendance_status.php?classId=<?php echo $classId; ?>&studentId=${seatInfo.studentID}`)
+                                .then(response => response.json())
+                                .then(attendanceStatus => {
+                                    // Update the seat with attendance status
+                                    // seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${attendanceStatus.status}`;
+                                    // Set the background color based on attendance status
+                                    seat.querySelector('.seatplan-seat').style.backgroundColor = colorSeat[attendanceStatus.status];
+                                })
+                                .catch(error => console.error('Error fetching attendance status:', error));
+                        }
                     });
-                })
-                .catch(error => console.error('Error fetching seat assignments:', error));
+                } else {
+                    console.error('Invalid seat assignments format:', seatAssignments);
+                }
+
+                // Add click event listener to each seat with the 'clickable' class
+                const clickableSeats = document.querySelectorAll('.seatplan-seat.clickable');
+                clickableSeats.forEach(seat => {
+                    // Get the student ID from the seat element
+                    const studentId = seat.getAttribute('data-student-id');
+
+                    seat.addEventListener('click', function () {
+                        toggleColor.call(this, studentId);
+                    });
+                });
+            })
+            .catch(error => console.error('Error fetching seat assignments:', error));
 
             // Function to toggle through colors
             function toggleColor(studentId) {
-                // Get the current color from the array
-                const currentColor = colors[colorIndex];
-                const currentStatus = status[statusIndex];
+                            // Get the current color from the array
+                            const currentColor = colors[colorIndex];
+                            const currentStatus = status[statusIndex];
 
-                // Log the current color to the console
-                console.log(`Seat color changed to: ${currentColor} ${currentStatus}`);
+                            // Log the current color to the console
+                            console.log(`Seat color changed to: ${currentColor} ${currentStatus}`);
 
-                // Toggle the color by adding a class to the clicked seat
-                this.style.backgroundColor = currentColor;
+                            // Toggle the color by adding a class to the clicked seat
+                            this.style.backgroundColor = currentColor;
+                            document.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${attendanceStatus.status}`;
 
-                // Increment the color index or reset to 0 if at the end of the array
-                colorIndex = (colorIndex + 1) % colors.length;
-                statusIndex = (statusIndex + 1) % status.length;
+                            // Increment the color index or reset to 0 if at the end of the array
+                            colorIndex = (colorIndex + 1) % colors.length;
+                            statusIndex = (statusIndex + 1) % status.length;
 
-                // Get the student ID from the seat assignment
-                // const studentId = this.getAttribute('data-student-id');
-                console.log('Student ID:', studentId);
-                console.log('Class ID:', <?php echo $classId; ?>);
+                            // Get the student ID from the seat assignment
+                            // const studentId = this.getAttribute('data-student-id');
+                            console.log('Student ID:', studentId);
+                            console.log('Class ID:', <?php echo $classId; ?>);
 
-                // Send an AJAX request to update the attendance record
-                $.ajax({
-                    type: 'POST',
-                    url: 'save_attendance.php',
-                    data: {
-                        classId: <?php echo $classId; ?>,
-                        studentId: studentId,
-                        date: (new Date()).toISOString().split('T')[0], // Get current date in 'YYYY-MM-DD' format
-                        status: currentStatus
-                    },
-                    success: function (response) {
-                        console.log('Attendance record updated successfully:', response);
-                    },
-                    error: function (error) {
-                        console.error('Error updating attendance record:', error);
-                    }
-                });
-            }
+                            // Send an AJAX request to update the attendance record
+                            $.ajax({
+                                type: 'POST',
+                                url: 'save_attendance.php',
+                                data: {
+                                    classId: <?php echo $classId; ?>,
+                                    studentId: studentId,
+                                    date: (new Date()).toISOString().split('T')[0], // Get current date in 'YYYY-MM-DD' format
+                                    status: currentStatus
+                                },
+                                success: function (response) {
+                                    console.log('Attendance record updated successfully:', response);
+                                },
+                                error: function (error) {
+                                    console.error('Error updating attendance record:', error);
+                                }
+                            });
+                        }
+
+            
+
+            
         });
+
+        function reloadPage() {
+            location.reload();
+        }
         </script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
