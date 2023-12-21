@@ -16,9 +16,9 @@
     <!-- for "online attendance" and date today -->
     <div class="page-title container d-flex justify-content-between align-items-center">
         <h1 class="class-code">Online Attendance</h1>
-        <div class="date-today">
-            <h2>Thursday</h2>
-            <h3>09 November 2023</h3>
+        <div class="date-today" id="dateToday">
+            <h2 id="dayOfWeek"></h2>
+            <h3 id="fullDate"></h3>
         </div>
     </div>
     
@@ -122,6 +122,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
         fetchAndCreateButtons();
+        updateDate();
         });
     </script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

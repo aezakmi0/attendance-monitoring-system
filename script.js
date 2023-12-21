@@ -74,3 +74,23 @@ function redirectToClassPage(class_ID) {
 function reloadPage() {
     location.reload();
 }
+
+function updateDate() {
+    var dateContainer = document.getElementById('dateToday');
+    var dayOfWeekContainer = document.getElementById('dayOfWeek');
+    var fullDateContainer = document.getElementById('fullDate');
+
+    var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var currentDate = new Date();
+    var dayOfWeek = daysOfWeek[currentDate.getDay()];
+
+    // Use options to format the date as "21 December 2023"
+    var options = { day: 'numeric', month: 'long', year: 'numeric' };
+    var fullDate = currentDate.toLocaleDateString("en-US", options);
+
+    dayOfWeekContainer.textContent = dayOfWeek;
+    fullDateContainer.textContent = fullDate;
+
+    // Update the date every 1 second (1000 milliseconds)
+    setInterval(updateDate, 1000);
+}
