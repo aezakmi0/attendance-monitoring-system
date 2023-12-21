@@ -19,12 +19,12 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 $studentsQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name 
                   FROM tb_student s
                   JOIN tb_enrollment e ON s.student_ID = e.student_ID
-                  WHERE e.class_ID = $classId AND e.is_deleted = 0";
+                  WHERE e.class_ID = $classId AND e.is_deleted = 0 ORDER BY s.last_name ASC";
 
 $studentsResult = $conn->query($studentsQuery);
 
 // Fetch attendance data from tb_attendance
-$attendanceQuery = "SELECT student_ID, date, status FROM tb_attendance WHERE class_ID = $classId";
+$attendanceQuery = "SELECT student_ID, date, status FROM tb_attendance WHERE class_ID = $classId ORDER BY date ASC";
 $attendanceResult = $conn->query($attendanceQuery);
 
 // Organize attendance data by date and student_ID
@@ -33,7 +33,7 @@ while ($row = $attendanceResult->fetch_assoc()) {
     $attendanceData[$row['date']][$row['student_ID']] = $row['status'];
 }
 
-$datesQuery = "SELECT DISTINCT date FROM tb_attendance WHERE class_ID = $classId";
+$datesQuery = "SELECT DISTINCT date FROM tb_attendance WHERE class_ID = $classId ORDER BY date ASC";
 $datesResult = $conn->query($datesQuery);
 
 // Organize dates by month
