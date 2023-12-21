@@ -514,3 +514,38 @@ h1{
     font-weight: 600;
     border: 2px solid rgb(211, 61, 61);   
 }
+
+.status-warning{
+    background-color: #ffb0b7 !important;
+}
+table{
+    white-space: nowrap;
+    width: 15%;
+}
+
+.label-text-dark{
+    font-size: 13px;
+    margin: 0;
+    /* text-transform: uppercase; */
+}
+.label-text-red{
+    font-size: 13px;
+    margin: 0;
+    color: rgb(226, 4, 4);
+    /* text-transform: uppercase; */
+}
+@media (max-width: 767px) {
+    .table td.fit{
+        white-space: nowrap;
+        width: 15%;
+        background-color: violet;
+    }
+}
+.attendance-report-legend{
+    /* width: 100px; */
+    margin-right: 15px;
+    /* border: 1px solid; */
+}
+.th-width{
+    min-width: 40px;
+}

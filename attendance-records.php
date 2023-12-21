@@ -62,36 +62,6 @@ while ($row = $datesResult->fetch_assoc()) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
-    <style>
-        .status-warning{
-            background-color: #ffb0b7 !important;
-        }
-        table{
-            white-space: nowrap;
-            width: 15%;
-        }
-
-        .label-text-dark{
-            font-size: 13px;
-            margin: 0;
-            /* text-transform: uppercase; */
-        }
-        @media (max-width: 767px) {
-            .table td.fit{
-                white-space: nowrap;
-                width: 15%;
-                background-color: violet;
-            }
-        }
-        .attendance-report-legend{
-            /* width: 100px; */
-            margin-right: 15px;
-            /* border: 1px solid; */
-        }
-        .th-width{
-            min-width: 40px;
-        }
-    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -201,7 +171,7 @@ while ($row = $datesResult->fetch_assoc()) {
 
     <!-- <p class="label-text">NOTE:</p> -->
     <!-- <p class="label-text">P = Present, A = Absent, L = Late, E = Excused</p> -->
-    <p class="label-text-dark text-italic"><b>NOTE:</b> Three lates are equivalent to one absence and are already included in the total number of absences.</p>
+    <p class="label-text-dark"><b>NOTE:</b> Three lates are equivalent to one absence and are already included in the total number of absences.</p>
     <div class="d-flex">
         <p class="label-text-dark attendance-report-legend"><b>P</b> - Present</p>
         <p class="label-text-dark attendance-report-legend"><b>A</b> - Absent</p>
