@@ -59,31 +59,31 @@ if (isset($_GET['id'])) {
     <!-- <div id="navbar-container"></div> -->
     
     <div class="container">
-        <form class="form-control mt-5 p-5" action="add-student.php?id=<?php echo $classID; ?>" method="post">
+        <form class="form-control mt-5 p-5 bg-light" action="add-student.php?id=<?php echo $classID; ?>" method="post">
             <h1 class="text-center">Add Students</h1>
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
-                    <input type="text" name="ID_number" class="form-control" placeholder="Enter ID" required>
+                    <input type="text" name="ID_number" class="form-control input-border" placeholder="Enter ID" required>
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">FIRST NAME</p>
-                    <input type="text" name="first_name" class="form-control" placeholder="Enter Class Code" required>
+                    <input type="text" name="first_name" class="form-control input-border" placeholder="Enter First Name" required>
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">LAST NAME</p>
-                    <input type="text" name="last_name" class="form-control" placeholder="Enter Last Name" required>
+                    <input type="text" name="last_name" class="form-control input-border" placeholder="Enter Last Name" required>
                 </div>
                 <div class="col-md-2">
                     <p class="label-text mb-1 mt-3 invisible">ADD</p>
-                    <button class="btn btn-primary w-100" type="submit" value="Submit">Add</button>
+                    <button class="btn input-border create-class-button w-100" type="submit" value="Submit">Add</button>
                 </div>
             </div>
 
             <!-- Enrolled Students -->
             <div class="mt-5">
                 <h1 class="text-center mb-2">Enrolled Students</h1>
-                <table class="table table-sm table-hover">
+                <table class="table table-sm table-hover table-light">
                     <tr>
                     <th>STUDENT ID</th>
                     <th colspan="2">NAME</th>
@@ -104,8 +104,8 @@ if (isset($_GET['id'])) {
                         echo "<td>{$row['ID_number']}</td>";
                         echo "<td>{$row['first_name']} {$row['last_name']}</td>";
                         echo "<td class='text-end'>
-                                <a type='button' class='btn btn-sm btn-outline-dark' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
-                                <a type='button' class='btn btn-sm btn-danger' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove this student?')\">Remove</a>
+                                <a type='button' class='btn btn-sm btn-outline-dark  btn-rounded' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
+                                <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove this student?')\">Remove</a>
                             </td>";
                         echo "</tr>";
                     }
@@ -120,7 +120,7 @@ if (isset($_GET['id'])) {
         </form>
         <div class="d-flex justify-content-center mt-4 pb-5">
             <!-- <a href="#" type="button" class="btn btn-outline-secondary m-1" onclick="history.back();">Back</a> -->
-            <a href="class.php?id=<?php echo $classID; ?>" type="button" class="btn btn-sm btn-outline-dark m-1">Back</a>
+            <a href="class.php?id=<?php echo $classID; ?>" type="button" class="btn btn-sm btn-outline-dark btn-black m-1">Back</a>
             <!-- <a type="button" class="btn btn-primary m-1" href="class.php">Save</a> -->
         </div>
     </div>
