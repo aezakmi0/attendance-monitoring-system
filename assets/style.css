@@ -51,7 +51,7 @@ body::-webkit-scrollbar {
     background-color: #dddddd;
 }
 .nav-link svg path {
-    fill: #6e6e6e;
+    fill: #000000;
     transition: fill 0.3s ease; 
 }
 /* .active-nav svg path {

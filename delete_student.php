@@ -39,9 +39,9 @@ if (isset($_GET['id']) && isset($_GET['studentid'])) {
         if ($updateSeatplanStmt->errno) {
             $response = array('success' => false, 'message' => 'Error soft deleting student in tb_seatplan: ' . $updateSeatplanStmt->error);
         } else {
-            $response = array('success' => true, 'message' => 'Student soft deleted successfully.');
-            header("Location: enroll-student.php?id=" . $classID);
-            exit(); // Ensure that no other output is sent
+            // $response = array('success' => true, 'message' => 'Student soft deleted successfully.');
+            header("enroll-student.php?id=<?php echo $classID; ?>");
+            exit();
         }
 
         // Close the prepared statement for tb_seatplan
@@ -53,6 +53,7 @@ if (isset($_GET['id']) && isset($_GET['studentid'])) {
 } else {
     // Handle the case where class_ID or student_ID is not provided
     $response = array('success' => false, 'message' => 'Class ID or Student ID not provided!');
+   
 }
 
 // Close the database connection
@@ -61,4 +62,3 @@ $db->close();
 // Return a JSON response
 echo json_encode($response);
 ?>
-
