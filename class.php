@@ -65,7 +65,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <p class="label-text-2">EXCUSED</p>
             </div>
             <p class="label-text-2">Click a seat to change the student's attendance status.</p>
-            <a href="#" type="button" class="btn btn-sm btn-outline-primary input-border btn-rounded btn-green" onclick="reloadPage()">Save Attendance</a>    
+            <a href="#" type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-green" onclick="reloadPage()">Save Attendance</a>    
         </div>
         <hr/>
         <div class="seatplan-main-container" style="user-select: none">

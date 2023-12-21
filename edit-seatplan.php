@@ -378,7 +378,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 </div>
             </div>
         </div>
-        <h1 id="duplicateSeatWarning" class="label-text-red mt-1"><b>DUPLICATE SEAT ASSIGNMENT:</b> Both Student 1 and Student 2 are currently assigned to the same seat. Please review and resolve this assignment conflict.</h1>
+        <h1 id="duplicateSeatWarning" class="label-text-red mt-1"></h1>
     </div>
     
     <!-- Modal -->
@@ -408,15 +408,20 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 .then(seatAssignments => {
                     // Loop through each seat and update the seat information
                     seatplanSeats.forEach(seat => {
-                        const seatNumber = seat.querySelector('.seatplan-seat-content').getAttribute('data-seat');
-                        const seatInfo = seatAssignments[seatNumber];
-
-                        if (seatInfo) {
-                            // Update the seat information
-                            seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
-                            seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
-                        }
-                    });
+                const seatNumber = seat.querySelector('.seatplan-seat-content').getAttribute('data-seat');
+                const seatInfo = seatAssignments[seatNumber];
+                
+                console.log('seatNumber:', seatNumber);
+                console.log('seatInfo:', seatInfo);
+                console.log('seatAssignments:', seatAssignments);
+                
+                if (seatInfo) {
+                    // Update the seat information
+                    seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
+                    seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
+                    
+                }
+            });
                 })
                 .catch(error => console.error('Error fetching seat assignments:', error));
         });
