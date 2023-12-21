@@ -66,16 +66,21 @@ while ($row = $datesResult->fetch_assoc()) {
         .status-warning{
             background-color: #ffb0b7 !important;
         }
+        table{
+            white-space: nowrap;
+            width: 15%;
+        }
+
         .label-text-dark{
             font-size: 13px;
             margin: 0;
-            color: #000000;
             /* text-transform: uppercase; */
         }
         @media (max-width: 767px) {
             .table td.fit{
                 white-space: nowrap;
                 width: 15%;
+                background-color: violet;
             }
         }
         .attendance-report-legend{
@@ -83,20 +88,23 @@ while ($row = $datesResult->fetch_assoc()) {
             margin-right: 15px;
             /* border: 1px solid; */
         }
+        .th-width{
+            min-width: 40px;
+        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <!-- <div id="navbar-container"></div> -->
-<div class="container">
+<div class="container pb-5">
     <div class="d-flex justify-content-between align-items-center mt-5">    
         <?php include 'class-header.php'; ?>
     </div>
     <hr/>
 
-    <div class="table-responsive text-center">
+    <div class="table-responsive text-center tableFixHead">
         <!-- <table class="table table-sm table-striped"> -->
-        <table class="table table-hover table-bordered">
+        <table class="table table-sm table-hover table-striped table-bordered">
         <thead class="table-light">
             <tr class="align-middle">
                 <th rowspan="2">ID Number</th>
@@ -114,14 +122,17 @@ while ($row = $datesResult->fetch_assoc()) {
                 // Generate header for each day
                 foreach ($months as $days) {
                     foreach ($days as $day) {
-                        echo "<th>$day</th>";
+                        echo "<th class=\"th-width\">$day</th>";
                     }
                 }
                 ?>
-                <th>P</th>
-                <th>A</th>
-                <th>L</th>
-                <th>E</th>
+                <!-- 
+                    class="border border-end-0 border-top-0 border-bottom-0 border-3"
+                 -->
+                <th class="th-width">P</th>
+                <th class="th-width">A</th>
+                <th class="th-width">L</th>
+                <th class="th-width">E</th>
             </tr>
         </thead>
         <tbody>
@@ -129,7 +140,7 @@ while ($row = $datesResult->fetch_assoc()) {
             while ($student = $studentsResult->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td class=\"fit\">{$student['ID_number']}</td>";
-                echo "<td class=\"fit\">{$student['last_name']}, {$student['first_name']}</td>";
+                echo "<td class=\"fit text-start\">{$student['last_name']}, {$student['first_name']}</td>";
 
                 // Loop through each date
                 $presentCount = 0;
@@ -170,7 +181,7 @@ while ($row = $datesResult->fetch_assoc()) {
                     $lateCount = $NewlateCount; 
                 }
 
-                echo "<td>$presentCount</td>";
+                echo "<td class=\"border border-end-0 border-top-0 border-bottom-0 border-2 border-secondary\">$presentCount</td>";
                 if ($absentCount >= 7) {
                     echo "<td class=\"status-warning\"> $absentCount</td>";
                 }else{
