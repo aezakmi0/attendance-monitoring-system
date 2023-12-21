@@ -1,8 +1,8 @@
 :root {
-    --present: #66dc5b;
-    --late: #fffa75;
-    --absent: #ffb0b7;
-    --excused: #add2db;
+    --present: #4ab33d;
+    --late: #f1e25a;
+    --absent: #f1929a;
+    --excused: #96c4cf;
     --lateLegend: #d8d21e;
 }
 
@@ -58,7 +58,7 @@ body::-webkit-scrollbar {
     fill: #202020;
 } */
 .nav-link:hover svg path {
-    fill: #7fca1e;
+    fill: #4cb10a;
 }
 .dropdown-menu {
     width: 100%;
@@ -330,8 +330,8 @@ h1{
 }
 
 .seatplan-firstname{
-    font-weight: bold;
-    color: rgb(39, 39, 39);
+    font-weight: 600;
+    color: rgb(0, 0, 0);
     font-size: 11px;
     /* font-size:.55vw; */
     text-transform: uppercase;
@@ -492,4 +492,25 @@ h1{
 
 .btn-rounded{
     border-radius: 25px;
+}
+
+.btn-green{
+    color: #227710 !important;
+    border: 2px solid #227710;   
+    font-weight: 600;
+}
+.btn-green:hover{
+    border: 2px solid #227710;   
+    background-color: #227710;
+    color: white !important;
+}
+
+.btn-black{
+    font-weight: 600;
+    border: 2px solid black;   
+}
+
+.btn-red{
+    font-weight: 600;
+    border: 2px solid rgb(211, 61, 61);   
 }

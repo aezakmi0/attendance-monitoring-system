@@ -40,11 +40,11 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="d-flex justify-content-between align-items-center mt-5">    
             <?php include 'class-header.php'; ?>
             <div class="text-end">
-                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded">Edit Seatplan</a>
-                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded">Enroll Student</a>
-                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded">Edit Class</a>
-                <a href="attendance-records.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded">View Attendance Records</a>
-                <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-danger btn-rounded" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
+                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">Edit Seatplan</a>
+                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">Enroll Student</a>
+                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">Edit Class</a>
+                <a href="attendance-records.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">View Attendance Records</a>
+                <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-danger btn-rounded btn-red" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <p class="label-text-2">EXCUSED</p>
             </div>
             <p class="label-text-2">Click a seat to change the student's attendance status.</p>
-            <a href="#" type="button" class="btn btn-sm btn-outline-primary btn-rounded" onclick="reloadPage()">Save Attendance</a>    
+            <a href="#" type="button" class="btn btn-sm btn-outline-primary input-border btn-rounded btn-green" onclick="reloadPage()">Save Attendance</a>    
         </div>
         <hr/>
         <div class="seatplan-main-container" style="user-select: none">
@@ -417,11 +417,11 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
         document.addEventListener('DOMContentLoaded', function () {
             // Define an array of colors to loop through
-            const colors = ['#66dc5b', '#ffb0b7', '#fffa75', '#ADD2DB'];
+            const colors = ['#4ab33d', '#ffb0b7', '#fffa75', '#ADD2DB'];
             const status = ['present', 'absent', 'late', 'excused'];
             
             const colorStatus = {
-                'present': '#66dc5b',
+                'present': '#4ab33d',
                 'absent': '#ffb0b7',
                 'late': '#fffa75',
                 'excused': '#ADD2DB'
