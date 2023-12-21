@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="col-md-2">
                     <p class="label-text mb-1 mt-3 invisible">EDIT</p>
-                    <button class="btn input-border create-class-button w-100 type="submit" value="Submit">Save Changes</button>
+                    <button class="btn input-border create-class-button w-100" type="submit" value="Submit">Save Changes</button>
                 </div>
             </div>
         </form>

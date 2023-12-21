@@ -59,19 +59,19 @@ if (isset($_GET['id'])) {
   <!-- <div id="navbar-container"></div> -->
     
   <div class="container mb-3 page-title">
-    <form class="form-control p-5" action="update-class.php" method="post">
+    <form class="form-control p-5 bg-light" action="update-class.php" method="post">
       <input type="hidden" name="class_id" value="<?php echo $classID; ?>">
       <h1 class="text-center">Edit Class</h1>
       <div class="row">
         <!-- Class Code -->
         <div class="col-md-4">
             <p class="label-text mb-1 mt-3">CLASS CODE</p>
-            <input type="text" class="form-control" name="class_code" placeholder="Enter Class Code" required>
+            <input type="text" class="form-control input-border" name="class_code" placeholder="Enter Class Code" required>
         </div>
         <!-- Class Name -->
         <div class="col-md-8">
           <p class="label-text mb-1 mt-3">CLASS NAME</p>
-          <input type="text" class="form-control" name="class_name" placeholder="Enter Class Name" required>
+          <input type="text" class="form-control input-border" name="class_name" placeholder="Enter Class Name" required>
         </div>
       </div>
       
@@ -79,7 +79,7 @@ if (isset($_GET['id'])) {
         <!-- Room -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">ROOM</p>
-          <select class="form-select" id="floatingSelectGrid" name="room" aria-label="Floating label select example" required>
+          <select class="form-select input-border" id="floatingSelectGrid" name="room" aria-label="Floating label select example" required>
             <!-- <option selected>Select Room</option> -->
             <option value="G102">G102</option>
             <option value="G103">G103</option>
@@ -128,12 +128,12 @@ if (isset($_GET['id'])) {
         <!-- Time Start -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">START</p>
-          <input type="time" class="form-control" name="time_start" id="floatingInputGrid" required>
+          <input type="time" class="form-control input-border" name="time_start" id="floatingInputGrid" required>
         </div>
         <!-- Time End -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">END</p>
-          <input type="time" class="form-control" name="time_end" id="floatingInputGrid" required>
+          <input type="time" class="form-control input-border" name="time_end" id="floatingInputGrid" required>
         </div>
         <!-- Day -->
         <div class="col-md">
@@ -142,22 +142,22 @@ if (isset($_GET['id'])) {
             <div class="d-flex ms-auto">
               <!-- Monday -->
               <input type="checkbox" class="btn-check" id="btn-check-M" name="day[]" value="M" autocomplete="off">
-              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-M">M</label>
+              <label class="btn btn-outline-dark input-border day-button rounded-circle" for="btn-check-M">M</label>
               <!-- Tuesday -->
               <input type="checkbox" class="btn-check" id="btn-check-T" name="day[]" value="T" autocomplete="off">
-              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-T">T</label>
+              <label class="btn btn-outline-dark input-border day-button rounded-circle" for="btn-check-T">T</label>
               <!-- Monday -->
               <input type="checkbox" class="btn-check" id="btn-check-W" name="day[]" value="W" autocomplete="off">
-              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-W">W</label>
+              <label class="btn btn-outline-dark input-border day-button rounded-circle" for="btn-check-W">W</label>
               <!-- Wednesday -->
               <input type="checkbox" class="btn-check" id="btn-check-Th" name="day[]" value="Th" autocomplete="off">
-              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-Th">Th</label>
+              <label class="btn btn-outline-dark input-border day-button rounded-circle" for="btn-check-Th">Th</label>
               <!-- Thursday -->
               <input type="checkbox" class="btn-check" id="btn-check-F" name="day[]" value="F" autocomplete="off">
-              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-F">F</label>
+              <label class="btn btn-outline-dark input-border day-button rounded-circle" for="btn-check-F">F</label>
               <!-- Saturday -->
               <input type="checkbox" class="btn-check" id="btn-check-Sat" name="day[]" value="Sat" autocomplete="off">
-              <label class="btn btn-outline-secondary day-button rounded-circle" for="btn-check-Sat">Sat</label>
+              <label class="btn btn-outline-dark input-border day-button rounded-circle" for="btn-check-Sat">Sat</label>
             </div>
 
             <div class="invalid-feedback">Please select at least one day.</div>
@@ -166,8 +166,8 @@ if (isset($_GET['id'])) {
         </div>
 
         <div class="d-flex justify-content-center mt-5">
-          <a href="#" type="button" class="btn btn-outline-secondary m-1" value="Cancel" onclick="history.back();">Cancel</a>
-          <button type="submit" class="btn btn-primary m-1">Update</button>
+          <a href="#" type="button" class="btn btn-black btn-outline-dark m-1" value="Cancel" onclick="history.back();">Cancel</a>
+          <button type="submit" class="btn input-border create-class-button m-1">Update</button>
         </div>
       </div>
     </form>
