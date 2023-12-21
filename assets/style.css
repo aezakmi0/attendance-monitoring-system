@@ -223,6 +223,10 @@ h1{
 .class-container{
     width: 100%;
     }
+.table td.fit{
+    white-space: nowrap;
+    width: 15%;
+}
 }
 
 .seatplan-container{
@@ -533,13 +537,6 @@ table{
     margin: 0;
     color: rgb(226, 4, 4);
     /* text-transform: uppercase; */
-}
-@media (max-width: 767px) {
-    .table td.fit{
-        white-space: nowrap;
-        width: 15%;
-        background-color: violet;
-    }
 }
 .attendance-report-legend{
     /* width: 100px; */

@@ -69,6 +69,9 @@ while ($row = $datesResult->fetch_assoc()) {
 <div class="container pb-5">
     <div class="d-flex justify-content-between align-items-center mt-5">    
         <?php include 'class-header.php'; ?>
+        <div class="text-end">
+            <a href="#" type="button" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a>
+        </div>
     </div>
     <hr/>
 
@@ -110,7 +113,7 @@ while ($row = $datesResult->fetch_assoc()) {
             while ($student = $studentsResult->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td class=\"fit\">{$student['ID_number']}</td>";
-                echo "<td class=\"fit text-start\">{$student['last_name']}, {$student['first_name']}</td>";
+                echo "<td class=\"fit text-start\"><b>{$student['last_name']}, {$student['first_name']}</b></td>";
 
                 // Loop through each date
                 $presentCount = 0;
@@ -171,7 +174,7 @@ while ($row = $datesResult->fetch_assoc()) {
 
     <!-- <p class="label-text">NOTE:</p> -->
     <!-- <p class="label-text">P = Present, A = Absent, L = Late, E = Excused</p> -->
-    <p class="label-text-dark"><b>NOTE:</b> Three lates are equivalent to one absence and are already included in the total number of absences.</p>
+    <p class="label-text-dark"><b>NOTE: </b>Three instances of being late are considered equivalent to one absence and will be included in the total number of absences if and when they occur.</p>
     <div class="d-flex">
         <p class="label-text-dark attendance-report-legend"><b>P</b> - Present</p>
         <p class="label-text-dark attendance-report-legend"><b>A</b> - Absent</p>
@@ -191,7 +194,7 @@ while ($row = $datesResult->fetch_assoc()) {
 
     <!-- Back Button -->
     <div class="d-flex justify-content-center mt-4">
-        <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark m-1" value="Cancel">Back</a>
+        <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-black m-1" value="Cancel">Back</a>
     </div>
 
 </div>
