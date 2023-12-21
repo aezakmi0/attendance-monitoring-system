@@ -42,7 +42,7 @@ while ($row = $datesResult->fetch_assoc()) {
     $date = strtotime($row['date']);
     $month = date('F Y', $date);
     $day = date('j', $date);
-
+ 
     if (!isset($months[$month])) {
         $months[$month] = [];
     }
@@ -70,7 +70,7 @@ while ($row = $datesResult->fetch_assoc()) {
     <div class="d-flex justify-content-between align-items-center mt-5">    
         <?php include 'class-header.php'; ?>
         <div class="text-end">
-            <a href="#" type="button" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a>
+            <a href="generate_pdf.php?id=<?php echo $classId; ?>" type="button" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a>
         </div>
     </div>
     <hr/>
