@@ -21,7 +21,6 @@ body::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
 }
 
-
 .profile-picture{
     height: 35px;
     border-radius: 50%;
@@ -49,7 +48,7 @@ body::-webkit-scrollbar {
     padding-left: 0px !important;
 }
 .nav-profile{
-    background-color: #dfdfdf;
+    background-color: #e4e4e4;
 }
 .nav-link svg path {
     fill: #ffffff;
@@ -80,12 +79,15 @@ h1{
     padding: 0;
     margin-bottom: 0;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #227710;
 }
 .date-today > h3{
     font-size: 25px;
     padding: 0;
     margin-bottom: 0;
+    font-weight: 400;
 }
 
 .search-and-filter {
@@ -107,17 +109,23 @@ h1{
     justify-content: center;
     color: #FFF;
     background-color: #227710 !important;
+    transition: all 0.3s ease !important;
 }
 
 .create-class-button svg {
     margin-right: 5px;
     color: #fff;
 }
+.create-class-button:hover{
+    color: white;
+    background-color: #4fb93a !important;
+}
 .label-text {
     font-size: 13px;
     margin: 0;
     /* color: #777; */
     color: #227710 !important;
+    font-weight: 600;
 }
 .label-text-2 {
     font-size: 13px;
@@ -142,7 +150,7 @@ h1{
 }
 
 .input-border{
-    border: 1px solid #227710;
+    border: 2px solid #227710;
 }
 
 .class-container{
@@ -153,9 +161,9 @@ h1{
     transition: background-color 0.3s ease-out;
 }
 .class-container:hover{
-    background-color: #6eca6e;
+    background-color: #4fb13b;
     /* border: 2px solid #369124; */
-    box-shadow: 0px 5px 10px rgb(116, 116, 116);
+    box-shadow: 0px 5px 10px rgb(196, 196, 196);
 }
 
 /* remove underline */
@@ -173,7 +181,7 @@ h1{
 .class-code-2{
     font-size: 2.5em;
     font-weight: bold;
-    color: black;
+    color: #227710;
     line-height: 1;
 }
 
