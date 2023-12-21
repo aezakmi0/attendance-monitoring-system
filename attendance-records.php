@@ -32,6 +32,23 @@ $attendanceData = [];
 while ($row = $attendanceResult->fetch_assoc()) {
     $attendanceData[$row['date']][$row['student_ID']] = $row['status'];
 }
+
+$datesQuery = "SELECT DISTINCT date FROM tb_attendance WHERE class_ID = $classId";
+$datesResult = $conn->query($datesQuery);
+
+// Organize dates by month
+$months = [];
+while ($row = $datesResult->fetch_assoc()) {
+    $date = strtotime($row['date']);
+    $month = date('F Y', $date);
+    $day = date('j', $date);
+
+    if (!isset($months[$month])) {
+        $months[$month] = [];
+    }
+
+    $months[$month][] = $day;
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,12 +63,25 @@ while ($row = $attendanceResult->fetch_assoc()) {
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        .table td.fit{
-            white-space: nowrap;
-            width: 15%;
-        }
         .status-warning{
             background-color: #ffb0b7 !important;
+        }
+        .label-text-dark{
+            font-size: 13px;
+            margin: 0;
+            color: #000000;
+            /* text-transform: uppercase; */
+        }
+        @media (max-width: 767px) {
+            .table td.fit{
+                white-space: nowrap;
+                width: 15%;
+            }
+        }
+        .attendance-report-legend{
+            /* width: 100px; */
+            margin-right: 15px;
+            /* border: 1px solid; */
         }
     </style>
 </head>
@@ -71,27 +101,23 @@ while ($row = $attendanceResult->fetch_assoc()) {
             <tr class="align-middle">
                 <th rowspan="2">ID Number</th>
                 <th rowspan="2">Student Name</th>
-                <!-- Months -->
-                <th colspan="9">November 2023</th>  <!-- colspan is equals to the total count of days in the month -->
-                <th colspan="6">December 2023</th>
+                <?php
+                // Generate header for each month
+                foreach ($months as $month => $days) {
+                    echo "<th colspan='" . count($days) . "'>$month</th>";
+                }
+                ?>
                 <th colspan="4">Total</th>
             </tr>
             <tr>
-                <th>1</th>
-                <th>6</th>
-                <th>8</th>
-                <th>13</th>
-                <th>15</th>
-                <th>20</th>
-                <th>22</th>
-                <th>27</th>
-                <th>29</th>
-                <th>4</th>
-                <th>6</th>
-                <th>11</th>
-                <th>13</th>
-                <th>18</th>
-                <th>20</th>
+                <?php
+                // Generate header for each day
+                foreach ($months as $days) {
+                    foreach ($days as $day) {
+                        echo "<th>$day</th>";
+                    }
+                }
+                ?>
                 <th>P</th>
                 <th>A</th>
                 <th>L</th>
@@ -102,8 +128,8 @@ while ($row = $attendanceResult->fetch_assoc()) {
             <?php
             while ($student = $studentsResult->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>{$student['ID_number']}</td>";
-                echo "<td class='fit'>{$student['last_name']}, {$student['first_name']}</td>";
+                echo "<td class=\"fit\">{$student['ID_number']}</td>";
+                echo "<td class=\"fit\">{$student['last_name']}, {$student['first_name']}</td>";
 
                 // Loop through each date
                 $presentCount = 0;
@@ -118,35 +144,75 @@ while ($row = $attendanceResult->fetch_assoc()) {
                             switch ($status) {
                                 case 'present':
                                     $presentCount++;
+                                    echo "<td>P</td>";
                                     break;
                                 case 'absent':
                                     $absentCount++;
+                                    echo "<td>A</td>";
                                     break;
                                 case 'late':
                                     $lateCount++;
+                                    echo "<td>L</td>";
                                     break;
                                 case 'excused':
                                     $excusedCount++;
+                                    echo "<td>E</td>";
                                     break;
                             }
-                            echo "<td>$status</td>";
+                            // echo "<td>$status</td>";
                         }
                     }
-
                 }
+                
+                if ($lateCount >= 3) { // 8
+                    $NewlateCount = $lateCount % 3; //2
+                    $absentCount += ($lateCount - $NewlateCount) / 3; 
+                    $lateCount = $NewlateCount; 
+                }
+
                 echo "<td>$presentCount</td>";
-                echo "<td>$absentCount</td>";
+                if ($absentCount >= 7) {
+                    echo "<td class=\"status-warning\"> $absentCount</td>";
+                }else{
+                    echo "<td>$absentCount</td>";
+                }
+
                 echo "<td>$lateCount</td>";
                 echo "<td>$excusedCount</td>";
-
                 echo "</tr>";
             }
             ?>
         </tbody>
-        </table>    
+        </table>  
+        
     </div>
     <!-- End of table div -->
-    
+
+    <!-- <p class="label-text">NOTE:</p> -->
+    <!-- <p class="label-text">P = Present, A = Absent, L = Late, E = Excused</p> -->
+    <p class="label-text-dark text-italic"><b>NOTE:</b> Three lates are equivalent to one absence and are already included in the total number of absences.</p>
+    <div class="d-flex">
+        <p class="label-text-dark attendance-report-legend"><b>P</b> - Present</p>
+        <p class="label-text-dark attendance-report-legend"><b>A</b> - Absent</p>
+        <p class="label-text-dark attendance-report-legend"><b>L</b> - Late</p>
+        <p class="label-text-dark attendance-report-legend"><b>E</b> - Excused</p>
+    </div>
+    <!-- <div class="legend-container d-flex align-items-center mt-2">
+        <div class="legend-color"></div>
+        <p class="label-text-2">PRESENT</p>
+        <div class="legend-color-2"></div>
+        <p class="label-text-2">ABSENT</p>
+        <div class="legend-color-3"></div>
+        <p class="label-text-2">LATE</p>
+        <div class="legend-color-4"></div>
+        <p class="label-text-2">EXCUSED</p>
+    </div> -->
+
+    <!-- Back Button -->
+    <div class="d-flex justify-content-center mt-4">
+        <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark m-1" value="Cancel">Back</a>
+    </div>
+
 </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
