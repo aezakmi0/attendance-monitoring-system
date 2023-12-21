@@ -106,22 +106,34 @@ while ($row = $attendanceResult->fetch_assoc()) {
                 echo "<td class='fit'>{$student['last_name']}, {$student['first_name']}</td>";
 
                 // Loop through each date
+                $presentCount = 0;
+                $absentCount = 0;
+                $lateCount = 0;
+                $excusedCount = 0;
+
                 foreach ($attendanceData as $date => $statuses) {
                     // Loop through each student for the current date
                     foreach ($statuses as $studentID => $status) {
-                        // Check if the current student matches the looped student
                         if ($studentID == $student['student_ID']) {
+                            switch ($status) {
+                                case 'present':
+                                    $presentCount++;
+                                    break;
+                                case 'absent':
+                                    $absentCount++;
+                                    break;
+                                case 'late':
+                                    $lateCount++;
+                                    break;
+                                case 'excused':
+                                    $excusedCount++;
+                                    break;
+                            }
                             echo "<td>$status</td>";
                         }
                     }
+
                 }
-
-                // Calculate and display total counts
-                $presentCount = array_count_values($statuses)['present'] ?? 0;
-                $absentCount = array_count_values($statuses)['absent'] ?? 0;
-                $lateCount = array_count_values($statuses)['late'] ?? 0;
-                $excusedCount = array_count_values($statuses)['excused'] ?? 0;
-
                 echo "<td>$presentCount</td>";
                 echo "<td>$absentCount</td>";
                 echo "<td>$lateCount</td>";
@@ -134,6 +146,7 @@ while ($row = $attendanceResult->fetch_assoc()) {
         </table>    
     </div>
     <!-- End of table div -->
+    
 </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
