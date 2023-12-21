@@ -458,7 +458,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                             .then(attendanceStatus => {
                                 const status = attendanceStatus.status;
                                 seat.style.backgroundColor = colorStatus[status];
-                                seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${status}`;
+                                // seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${status}`;
                             })
                             .catch(error => console.error('Error fetching attendance status:', error));
                         }

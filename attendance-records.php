@@ -14,6 +14,24 @@ if ($conn->connect_error) {
 
 // Get the class_ID from the URL
 $classId = isset($_GET['id']) ? $_GET['id'] : null;
+
+// Fetch student data from tb_student using a JOIN with tb_enrollment
+$studentsQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name 
+                  FROM tb_student s
+                  JOIN tb_enrollment e ON s.student_ID = e.student_ID
+                  WHERE e.class_ID = $classId AND e.is_deleted = 0";
+
+$studentsResult = $conn->query($studentsQuery);
+
+// Fetch attendance data from tb_attendance
+$attendanceQuery = "SELECT student_ID, date, status FROM tb_attendance WHERE class_ID = $classId";
+$attendanceResult = $conn->query($attendanceQuery);
+
+// Organize attendance data by date and student_ID
+$attendanceData = [];
+while ($row = $attendanceResult->fetch_assoc()) {
+    $attendanceData[$row['date']][$row['student_ID']] = $row['status'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -80,83 +98,43 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
                 <th>E</th>
             </tr>
         </thead>
-        <tbody >
-            <tr>
-                <td>202112748</td>
-                <td class="fit">Garingo, Joshua Razzi</td>
-                <td>P</td>
-                <td>A</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>E</td>
-                <td>E</td>
-                <td>P</td>
-                <td>L</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>13</td>
-                <td>6</td>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>202143234</td>
-                <td class="fit">Taboada, Vene Lucille</td>
-                <td>P</td>
-                <td>A</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>E</td>
-                <td>E</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>13</td>
-                <td>6</td>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>202143234</td>
-                <td class="fit">Taladtad, Jelan Roy</td>
-                <td>P</td>
-                <td>A</td>
-                <td>P</td>
-                <td>A</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>P</td>
-                <td>E</td>
-                <td>P</td>
-                <td>A</td>
-                <td>P</td>
-                <td>L</td>
-                <td>P</td>
-                <td>P</td>
-                <td>13</td>
-                <td class="status-warning">6</td>
-                <td>0</td>
-                <td>1</td>
-            </tr>
+        <tbody>
+            <?php
+            while ($student = $studentsResult->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>{$student['ID_number']}</td>";
+                echo "<td class='fit'>{$student['last_name']}, {$student['first_name']}</td>";
+
+                // Loop through each date
+                foreach ($attendanceData as $date => $statuses) {
+                    // Loop through each student for the current date
+                    foreach ($statuses as $studentID => $status) {
+                        // Check if the current student matches the looped student
+                        if ($studentID == $student['student_ID']) {
+                            echo "<td>$status</td>";
+                        }
+                    }
+                }
+
+                // Calculate and display total counts
+                $presentCount = array_count_values($statuses)['present'] ?? 0;
+                $absentCount = array_count_values($statuses)['absent'] ?? 0;
+                $lateCount = array_count_values($statuses)['late'] ?? 0;
+                $excusedCount = array_count_values($statuses)['excused'] ?? 0;
+
+                echo "<td>$presentCount</td>";
+                echo "<td>$absentCount</td>";
+                echo "<td>$lateCount</td>";
+                echo "<td>$excusedCount</td>";
+
+                echo "</tr>";
+            }
+            ?>
         </tbody>
         </table>    
     </div>
     <!-- End of table div -->
-
 </div>
-
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
