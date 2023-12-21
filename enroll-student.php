@@ -83,7 +83,7 @@ if (isset($_GET['id'])) {
             <!-- Enrolled Students -->
             <div class="mt-5">
                 <h1 class="text-center mb-2">Enrolled Students</h1>
-                <table class="table table-hover">
+                <table class="table table-sm table-hover">
                     <tr>
                     <th>STUDENT ID</th>
                     <th colspan="2">NAME</th>
@@ -92,7 +92,7 @@ if (isset($_GET['id'])) {
                     // Fetch enrolled students for the given classID
                     $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name FROM tb_enrollment e
                   INNER JOIN tb_student s ON s.student_ID = e.student_ID
-                  WHERE e.class_ID = ? AND e.is_deleted = 0";
+                  WHERE e.class_ID = ? AND e.is_deleted = 0 ORDER BY s.last_name ASC";
                     $enrolledStmt = $db->prepare($enrolledQuery);
                     $enrolledStmt->bind_param("i", $classID);
                     $enrolledStmt->execute();
@@ -104,7 +104,7 @@ if (isset($_GET['id'])) {
                         echo "<td>{$row['ID_number']}</td>";
                         echo "<td>{$row['first_name']} {$row['last_name']}</td>";
                         echo "<td class='text-end'>
-                                <a type='button' class='btn btn-sm btn-outline-secondary' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
+                                <a type='button' class='btn btn-sm btn-outline-dark' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
                                 <a type='button' class='btn btn-sm btn-danger' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove this student?')\">Remove</a>
                             </td>";
                         echo "</tr>";
@@ -118,9 +118,9 @@ if (isset($_GET['id'])) {
             </div>
 
         </form>
-        <div class="d-flex justify-content-center mt-4">
+        <div class="d-flex justify-content-center mt-4 pb-5">
             <!-- <a href="#" type="button" class="btn btn-outline-secondary m-1" onclick="history.back();">Back</a> -->
-            <a href="class.php?id=<?php echo $classID; ?>" type="button" class="btn btn-outline-secondary m-1">Back</a>
+            <a href="class.php?id=<?php echo $classID; ?>" type="button" class="btn btn-sm btn-outline-dark m-1">Back</a>
             <!-- <a type="button" class="btn btn-primary m-1" href="class.php">Save</a> -->
         </div>
     </div>

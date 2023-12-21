@@ -40,6 +40,8 @@ if (isset($_GET['id']) && isset($_GET['studentid'])) {
             $response = array('success' => false, 'message' => 'Error soft deleting student in tb_seatplan: ' . $updateSeatplanStmt->error);
         } else {
             $response = array('success' => true, 'message' => 'Student soft deleted successfully.');
+            header("Location: enroll-student.php?id=" . $classID);
+            exit(); // Ensure that no other output is sent
         }
 
         // Close the prepared statement for tb_seatplan
@@ -59,3 +61,4 @@ $db->close();
 // Return a JSON response
 echo json_encode($response);
 ?>
+
