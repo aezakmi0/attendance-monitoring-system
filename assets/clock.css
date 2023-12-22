@@ -1,6 +1,6 @@
 :root {
-  --main-bg-color: #fff;
-  --main-text-color: #888888;
+  --main-bg-color: #ffffff;
+  --main-text-color: #8d8d8d;
 }
 
 
@@ -22,12 +22,13 @@ body {
   transition: all ease 0.2s;
 }
 .page-header {
-  font-size: 2rem;
-  color: var(--main-text-color);
+  font-size: 2.5rem;
+  color: black;
   padding: 1em 0;
-  font-family: monospace;
+  font-family: Inter;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 0px;
   transition: all ease 0.2s;
 }
 
@@ -38,7 +39,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--main-bg-color);
-  background-image: url("https://drive.google.com/uc?export=view&id=1SqOy9tGuUOX1cp_GcLEN0BqTfYMEV11Z");
+  background-image: url("../img/clock.png");
   background-position: center center;
   background-size: cover;
   border-radius: 50%;
@@ -53,7 +54,7 @@ body {
   height: 0.75rem;
   width: 0.75rem;
   background-color: var(--main-text-color);
-  border: 2px solid var(--main-bg-color);
+  border: 2px solid #227710;
   position: absolute;
   border-radius: 50%;
   z-index: 1000;
@@ -98,6 +99,6 @@ body {
   content: "";
   height: 60%;
   width: 2px;
-  background-color: #f00;
+  background-color: #227710;
   border-radius: 2px;
 }
