@@ -7,13 +7,20 @@ $dbname = "db_attendance";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Get the class_ID from the URL
 $classId = isset($_GET['id']) ? $_GET['id'] : null;
+$sql = "SELECT class_code FROM tb_class WHERE class_ID = $classId";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Assuming class_code is a unique identifier; you may need to adjust accordingly
+    $row = $result->fetch_assoc();
+    $classCode = $row['class_code'];
+} else {
+    $classCode = "Unknown"; // Set a default value if class_code is not found
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +28,7 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class Code</title>
+    <title><?php echo htmlspecialchars($classCode); ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
