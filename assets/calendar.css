@@ -1,19 +1,18 @@
-* {
+/* * {
   padding: 0;
   margin: 0;
   font-family: consolas;
   box-sizing: border-box;
-}
+}*/ 
 
-body {
+.calendar-container {
   display: flex;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   justify-content: center;
   align-items: center;
   place-items: center;
   font-family: Inter !important;
-  /* background: linear-gradient(to right, #9796f0, #42445A); */
   overflow: hidden;
 }
 
@@ -96,10 +95,10 @@ body {
   font-size: 1.5rem;
 }
 
-.year-picker {
+/* .year-picker {
   display: flex;
   align-items: center;
-}
+} */
 
 .year-picker .yearchange,
 .year-picker .year-change #year{
