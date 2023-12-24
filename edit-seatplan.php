@@ -1,6 +1,7 @@
 <?php
 // Assuming you have a database connection established
 $servername = "localhost";
+$host = "localhost";
 $username = "root";
 $password = "";
 $dbname = "db_attendance";
@@ -12,10 +13,35 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Attempt to establish a connection
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    // Handle connection errors
+    die("Connection failed: " . $e->getMessage());
+}
 
 // Get the class_ID from the URL
 $classId = isset($_GET['id']) ? $_GET['id'] : null;
+
+
+// Fetch seat assignments for the current class
+$sql = "SELECT seat_number, COUNT(*) as seat_count
+        FROM tb_seatplan
+        WHERE class_ID = :classId
+        GROUP BY seat_number
+        HAVING seat_count > 1";
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':classId', $classId, PDO::PARAM_INT);
+$stmt->execute();
+
+// Fetch the result
+$duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -379,6 +405,13 @@ $classId = isset($_GET['id']) ? $_GET['id'] : null;
             </div>
         </div>
         <h1 id="duplicateSeatWarning" class="label-text-red mt-1"></h1>
+        <?php
+            if (!empty($duplicateSeats)) {
+                echo '<h1 id="duplicateSeatWarning" class="label-text-red mt-1"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.</h1>';
+            } else {
+                echo '<h1 id="duplicateSeatWarning" class="label-text-red mt-1" style="display: none;"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.</h1>';
+            }
+        ?>
     </div>
     
     <!-- Modal -->
