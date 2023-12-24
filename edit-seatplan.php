@@ -26,12 +26,12 @@ try {
 $classId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
-// Fetch seat assignments for the current class
-$sql = "SELECT seat_number, COUNT(*) as seat_count
-        FROM tb_seatplan
-        WHERE class_ID = :classId
-        GROUP BY seat_number
-        HAVING seat_count > 1";
+// Fetch seat assignments for the current class with student names
+$sql = "SELECT sp.seat_number, s1.first_name as first_name1, s1.last_name as last_name1
+        FROM tb_seatplan sp
+        INNER JOIN tb_student s1 ON sp.student_ID = s1.student_ID
+        INNER JOIN tb_student s2 ON sp.student_ID <> s2.student_ID AND sp.seat_number = (SELECT seat_number FROM tb_seatplan WHERE student_ID = s2.student_ID AND class_ID = :classId)
+        WHERE sp.class_ID = :classId";
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':classId', $classId, PDO::PARAM_INT);
@@ -406,10 +406,15 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <h1 id="duplicateSeatWarning" class="label-text-red mt-1"></h1>
         <?php
+           // Check if there are duplicate seat assignments
             if (!empty($duplicateSeats)) {
-                echo '<h1 id="duplicateSeatWarning" class="label-text-red mt-1"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.</h1>';
+                echo '<div id="duplicateSeatWarning" class="label-text-red mt-1"><b>DUPLICATE SEAT ASSIGNMENT:</b> ';
+                foreach ($duplicateSeats as $seat) {
+                    echo '<b>' . $seat['first_name1'] . ' ' . $seat['last_name1'] . '</b>' . ' and ';
+                }
+                echo 'are currently assigned to the same seat. Please review and resolve this assignment conflict.</div>';
             } else {
-                echo '<h1 id="duplicateSeatWarning" class="label-text-red mt-1" style="display: none;"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.</h1>';
+                echo '<div id="duplicateSeatWarning" class="label-text-red mt-1" style="display: none;"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.</div>';
             }
         ?>
     </div>
