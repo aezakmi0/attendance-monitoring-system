@@ -14,21 +14,56 @@ if ($conn->connect_error) {
 
 // Initialize the search term variable
 $searchTerm = "";
+$filterTime = "";
+$filterRoom = "";
 
-// Check if the searchTerm parameter is set in the URL
-if (isset($_GET['search'])) {
-    $searchTerm = $_GET['search'];
-}
+$searchTerm = $_GET['search'];
+$filterTime = $_GET['filterTime'];
+$filterRoom = $_GET['filterRoom'];
+
+error_log('Search term: ' . $_GET['search']);
+error_log('Filter time: ' . $_GET['filterTime']);
+error_log('Filter Room: ' . $_GET['filterRoom']);
 
 // Fetch data from the tb_class table with the search term condition
 $sqlClass = "SELECT * FROM tb_class WHERE is_deleted = 0";
 
 // Add the search condition if the searchTerm is provided
 if (!empty($searchTerm)) {
-    $sqlClass .= " AND (class_code LIKE '%$searchTerm%' OR class_name LIKE '%$searchTerm%')";
+    $sqlClass .= " AND (class_code LIKE ? OR class_name LIKE ?)";
 }
 
-$resultClass = $conn->query($sqlClass);
+// Add the time condition if the filterTime is provided
+if (!empty($filterTime)) {
+    $sqlClass .= " AND time_start <= ? AND time_end >= ?";
+}
+
+// Add the room condition if the filterRoom is provided
+if (!empty($filterRoom)) {
+    $sqlClass .= " AND room = ?";
+}
+
+// Prepare the statement
+$stmt = $conn->prepare($sqlClass);
+
+// Bind parameters if necessary
+if (!empty($searchTerm)) {
+    $searchParam = '%' . $searchTerm . '%';
+    $stmt->bind_param("ss", $searchParam, $searchParam);
+}
+
+if (!empty($filterTime)) {
+    $stmt->bind_param("ss", $filterTime, $filterTime);
+}
+
+if (!empty($filterRoom)) {
+    $sqlClass .= " AND room = ?";
+    $stmt->bind_param("s", $filterRoom);
+}
+
+// Execute the statement
+$stmt->execute();
+$resultClass = $stmt->get_result();
 
 // Create an array to store the results
 $data = array();

@@ -7,13 +7,27 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 });
 
+function clearFilters(){
+    document.getElementById('filterSearch').value = '';
+    document.getElementById('filterTime').value = '';
+    document.getElementById('filterRoom').selectedIndex = 0;
+    reloadPage();
+}
+
 function searchClasses(searchTerm) {
-    fetchAndCreateButtons(searchTerm);
+    fetchAndCreateButtons(searchTerm, '', '');
+}
+
+function filterClassesByTime(filterTime) {
+    fetchAndCreateButtons('', filterTime, '');
+}
+function filterClassesByRoom(filterRoom) {
+    fetchAndCreateButtons('', '', filterRoom);
 }
 
 let abortController = new AbortController();
 
-function fetchAndCreateButtons(searchTerm = '') {
+function fetchAndCreateButtons(searchTerm = '', filterTime = '', filterRoom = '') {
     // Clear existing content before fetching new data
     const buttonsContainer = document.getElementById('dynamicButtonsContainer');
     buttonsContainer.innerHTML = '';
@@ -21,9 +35,17 @@ function fetchAndCreateButtons(searchTerm = '') {
     // Cancel the previous fetch request
     abortController.abort();
     abortController = new AbortController();
+    
+    const urlSearchParams = new URLSearchParams({
+        search: searchTerm,
+        filterTime: filterTime,
+        filterRoom: filterRoom
+    });
+
+    const apiUrl = `class-buttons.php?${urlSearchParams.toString()}`;
 
 
-    fetch(`class-buttons.php?search=${searchTerm}`, { signal: abortController.signal })
+    fetch(apiUrl, { signal: abortController.signal })
         .then(response => response.json())
         .then(data => {
             data.forEach(classData => {
@@ -84,6 +106,7 @@ function fetchAndCreateButtons(searchTerm = '') {
             }
         });
 }
+
 
 
 function redirectToClassPage(class_ID) {
