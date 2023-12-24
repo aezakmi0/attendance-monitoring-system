@@ -501,7 +501,7 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             // Create the "Assign" button
                             const assignButton = document.createElement('button');
-                            assignButton.classList = "btn btn-sm btn-outline-primary float-right";
+                            assignButton.classList = "btn btn-sm btn-outline-primary btn-green float-right";
                             assignButton.textContent = "Assign";
                             assignButton.addEventListener('click', function () {
                                 // Set the selected student ID
