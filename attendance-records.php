@@ -109,7 +109,7 @@ while ($row = $datesResult->fetch_assoc()) {
             </tr>
         </thead>
         <tbody>
-            <?php
+        <?php
             while ($student = $studentsResult->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td class=\"fit\">{$student['ID_number']}</td>";
@@ -122,9 +122,13 @@ while ($row = $datesResult->fetch_assoc()) {
                 $excusedCount = 0;
 
                 foreach ($attendanceData as $date => $statuses) {
+                    // Flag to check if the student has a status for the current date
+                    $hasStatus = false;
+
                     // Loop through each student for the current date
                     foreach ($statuses as $studentID => $status) {
                         if ($studentID == $student['student_ID']) {
+                            $hasStatus = true;
                             switch ($status) {
                                 case 'present':
                                     $presentCount++;
@@ -143,21 +147,25 @@ while ($row = $datesResult->fetch_assoc()) {
                                     echo "<td>E</td>";
                                     break;
                             }
-                            // echo "<td>$status</td>";
                         }
                     }
+
+                    // If the student has no status for the current date, output a blank <td>
+                    if (!$hasStatus) {
+                        echo "<td></td>";
+                    }
                 }
-                
-                if ($lateCount >= 3) { // 8
-                    $NewlateCount = $lateCount % 3; //2
-                    $absentCount += ($lateCount - $NewlateCount) / 3; 
-                    $lateCount = $NewlateCount; 
+
+                if ($lateCount >= 3) {
+                    $NewlateCount = $lateCount % 3;
+                    $absentCount += ($lateCount - $NewlateCount) / 3;
+                    $lateCount = $NewlateCount;
                 }
 
                 echo "<td class=\"border border-end-0 border-top-0 border-bottom-0 border-2 border-secondary\">$presentCount</td>";
                 if ($absentCount >= 7) {
                     echo "<td class=\"status-warning\"> $absentCount</td>";
-                }else{
+                } else {
                     echo "<td>$absentCount</td>";
                 }
 
