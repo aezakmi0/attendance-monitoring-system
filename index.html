@@ -42,19 +42,20 @@
         <div class="row g-3 ">
             <div class="col-md">
                 <div class="form-floating w-100">
-                    <input type="text" class="form-control input-border" id="floatingInputGrid" placeholder="Search class">
-                    <label for="floatingInputGrid">Search class</label>
+                    <!-- <input type="text" class="form-control input-border" id="floatingInputGrid" placeholder="Search class"> -->
+                    <input type="text" class="form-control input-border" id="filterSearch" placeholder="Search class" oninput="searchClasses(this.value)">
+                    <label for="filterSearch">Search class</label>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating w-100">
-                    <input type="time" class="form-control input-border" id="floatingInputGrid">
-                    <label for="floatingInputGrid">Time</label>
+                    <input type="time" class="form-control input-border" id="filterTime">
+                    <label for="filterTime">Time</label>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating w-100">
-                    <select class="form-select input-border" id="floatingSelectGrid" aria-label="Floating label select example">
+                    <select class="form-select input-border" id="filterRoom" aria-label="Floating label select example">
                         <option selected>Select Room</option>
                         <option value="G102">G102</option>
                         <option value="G103">G103</option>
@@ -99,7 +100,7 @@
                         <option value="G409">G409</option>
                         <option value="G410">G410</option>
                     </select>
-                    <label for="floatingSelectGrid">Room</label>
+                    <label for="filterRoom">Room</label>
                 </div>
             </div>
             <div class="col-md">
@@ -118,8 +119,13 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-        fetchAndCreateButtons();
-        updateDate();
+            const searchInput = document.getElementById('filterSearch');
+            searchInput.addEventListener('input', function () {
+                searchClasses(searchInput.value);
+            });
+
+            fetchAndCreateButtons(); // Initial fetch without search term
+            updateDate();
         });
     </script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

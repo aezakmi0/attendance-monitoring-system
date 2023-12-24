@@ -12,8 +12,22 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the tb_class table
+// Initialize the search term variable
+$searchTerm = "";
+
+// Check if the searchTerm parameter is set in the URL
+if (isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+}
+
+// Fetch data from the tb_class table with the search term condition
 $sqlClass = "SELECT * FROM tb_class WHERE is_deleted = 0";
+
+// Add the search condition if the searchTerm is provided
+if (!empty($searchTerm)) {
+    $sqlClass .= " AND (class_code LIKE '%$searchTerm%' OR class_name LIKE '%$searchTerm%')";
+}
+
 $resultClass = $conn->query($sqlClass);
 
 // Create an array to store the results
@@ -26,6 +40,7 @@ if ($resultClass->num_rows > 0) {
         $classId = $rowClass['class_ID'];
         $sqlStudents = "SELECT COUNT(*) AS total_students FROM tb_enrollment WHERE class_ID = $classId AND is_deleted = 0";
         $resultStudents = $conn->query($sqlStudents);
+        $rowClass['total_students'] = $resultStudents->fetch_assoc()['total_students'];
         $data[] = $rowClass;
     }
 }

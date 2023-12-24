@@ -7,13 +7,25 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 });
 
-  // Function to fetch and create buttons dynamically
-// Function to fetch and create buttons dynamically
-function fetchAndCreateButtons() {
-    fetch('class-buttons.php')
+function searchClasses(searchTerm) {
+    fetchAndCreateButtons(searchTerm);
+}
+
+let abortController = new AbortController();
+
+function fetchAndCreateButtons(searchTerm = '') {
+    // Clear existing content before fetching new data
+    const buttonsContainer = document.getElementById('dynamicButtonsContainer');
+    buttonsContainer.innerHTML = '';
+
+    // Cancel the previous fetch request
+    abortController.abort();
+    abortController = new AbortController();
+
+
+    fetch(`class-buttons.php?search=${searchTerm}`, { signal: abortController.signal })
         .then(response => response.json())
         .then(data => {
-            const buttonsContainer = document.getElementById('dynamicButtonsContainer');
             data.forEach(classData => {
                 // Fetch the number of students for the class
                 fetch(`get_students_count.php?class_id=${classData.class_ID}`)
@@ -59,10 +71,18 @@ function fetchAndCreateButtons() {
                         buttonContainer.setAttribute('onclick', `redirectToClassPage(${classData.class_ID});`);
                         buttonsContainer.appendChild(buttonContainer);
                     })
-                    .catch(error => console.error('Error fetching student data:', error));
+                    .catch(error => {
+                        if (error.name !== 'AbortError') {
+                            console.error('Error fetching student data:', error);
+                        }
+                    });
             });
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => {
+            if (error.name !== 'AbortError') {
+                console.error('Error fetching data:', error);
+            }
+        });
 }
 
 
