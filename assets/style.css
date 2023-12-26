@@ -546,3 +546,25 @@ table{
 .th-width{
     min-width: 40px;
 }
+
+
+@media print {
+    /* Apply styles for printing */
+    body {
+        margin: 0;
+        padding: 0;
+        line-height: .5;
+    }
+
+    table {
+        page-break-inside: auto;
+    }
+
+    td, th {
+        page-break-inside: avoid;
+    }
+}
+
+.td-student{
+    font-weight: 600;
+}

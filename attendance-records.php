@@ -68,11 +68,11 @@ while ($row = $datesResult->fetch_assoc()) {
     <!-- <div id="navbar-container"></div> -->
 <div class="container pb-5">
     <div class="d-flex justify-content-between align-items-center mt-5">    
-        <?php include 'class-header.php'; ?>
+        <span id="classHeader"><?php include 'class-header.php'; ?></span>
         <div class="text-end">
             <!-- <a href="generate_pdf.php?id=<?php echo $classId; ?>" type="button" id="generatePDF" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a> -->
             <!-- <a href="generate_pdf.php" type="button" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a> -->
-            <a href="#" type="button" id="generatePDF" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a>
+            <a href="#" type="button" id="generatePDF" class="btn btn-outline-dark btn-rounded btn-green">Print Report</a>
 
         </div>
     </div>
@@ -116,7 +116,7 @@ while ($row = $datesResult->fetch_assoc()) {
             while ($student = $studentsResult->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td class=\"fit\">{$student['ID_number']}</td>";
-                echo "<td class=\"fit text-start\"><b>{$student['last_name']}, {$student['first_name']}</b></td>";
+                echo "<td class=\"fit text-start td-student\">{$student['last_name']}, {$student['first_name']}</td>";
 
                 // Loop through each date
                 $presentCount = 0;
@@ -182,7 +182,6 @@ while ($row = $datesResult->fetch_assoc()) {
         
     </div>
     <!-- End of table div -->
-
     <p class="label-text-dark"><b>NOTE: </b>Three instances of being late are considered equivalent to one absence and will be included in the total number of absences if and when they occur.</p>
     <div class="d-flex">
         <p class="label-text-dark attendance-report-legend"><b>P</b> - Present</p>
@@ -200,25 +199,26 @@ while ($row = $datesResult->fetch_assoc()) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
 <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
-    <script>
-        let button = document.getElementById("generatePDF");
-        let makepdf = document.getElementById("makepdf");
-    
-        button.addEventListener("click", function () {
-            let mywindow = window.open("", "PRINT", 
-                    "height=1000,width=1000");
-    
-            mywindow.document.write(makepdf.innerHTML);
-    
-            mywindow.document.close();
-            mywindow.focus();
-    
-            mywindow.print();
-            mywindow.close();
-    
-            return true;
-        });
+<script>
+    let button = document.getElementById("generatePDF");
+
+    button.addEventListener("click", function () {
+        let printWindow = window.open("", "_blank");
+        printWindow.document.write('<html><head><title>Attendance Report</title>');
+        printWindow.document.write('<link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(document.getElementById("classHeader").innerHTML);
+        printWindow.document.write('<h3 class=\"text-center\">Attendance Report</h3>');
+        printWindow.document.write(document.getElementById("makepdf").outerHTML);
+        printWindow.document.write("<b>NOTE: </b>Three instances of being late are considered equivalent to one absence and will be included in the total number of absences if and when they occur.");
+        printWindow.document.write("<br><b>P</b>-Present, <b>A</b>-Absent, <b>L</b>-Late, and <b>E</b>-Excused");
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+        printWindow.close();
+    });
 </script>
+
 
 </body>
 </html>
