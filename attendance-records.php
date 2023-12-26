@@ -195,26 +195,8 @@ while ($row = $datesResult->fetch_assoc()) {
     </div>
 
 </div>
-    <script>
-        let button = document.getElementById("generatePDF");
-        let makepdf = document.getElementById("makepdf");
-    
-        button.addEventListener("click", function () {
-            let mywindow = window.open("", "PRINT", 
-                    "height=400,width=600");
-    
-            mywindow.document.write(makepdf.innerHTML);
-    
-            mywindow.document.close();
-            mywindow.focus();
-    
-            mywindow.print();
-            mywindow.close();
-    
-            return true;
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
