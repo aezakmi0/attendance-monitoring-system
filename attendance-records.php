@@ -76,7 +76,7 @@ while ($row = $datesResult->fetch_assoc()) {
     </div>
     <hr/>
 
-    <div class="table-responsive text-center tableFixHead" id="makepdf">
+    <div class="table-responsive text-center tableFixHead">
         <!-- <table class="table table-sm table-striped"> -->
         <table class="table table-sm table-hover table-striped table-bordered">
         <thead class="table-light">
@@ -181,8 +181,6 @@ while ($row = $datesResult->fetch_assoc()) {
     </div>
     <!-- End of table div -->
 
-    <!-- <p class="label-text">NOTE:</p> -->
-    <!-- <p class="label-text">P = Present, A = Absent, L = Late, E = Excused</p> -->
     <p class="label-text-dark"><b>NOTE: </b>Three instances of being late are considered equivalent to one absence and will be included in the total number of absences if and when they occur.</p>
     <div class="d-flex">
         <p class="label-text-dark attendance-report-legend"><b>P</b> - Present</p>
@@ -190,16 +188,6 @@ while ($row = $datesResult->fetch_assoc()) {
         <p class="label-text-dark attendance-report-legend"><b>L</b> - Late</p>
         <p class="label-text-dark attendance-report-legend"><b>E</b> - Excused</p>
     </div>
-    <!-- <div class="legend-container d-flex align-items-center mt-2">
-        <div class="legend-color"></div>
-        <p class="label-text-2">PRESENT</p>
-        <div class="legend-color-2"></div>
-        <p class="label-text-2">ABSENT</p>
-        <div class="legend-color-3"></div>
-        <p class="label-text-2">LATE</p>
-        <div class="legend-color-4"></div>
-        <p class="label-text-2">EXCUSED</p>
-    </div> -->
 
     <!-- Back Button -->
     <div class="d-flex justify-content-center mt-4">
