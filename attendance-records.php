@@ -71,7 +71,9 @@ while ($row = $datesResult->fetch_assoc()) {
         <?php include 'class-header.php'; ?>
         <div class="text-end">
             <!-- <a href="generate_pdf.php?id=<?php echo $classId; ?>" type="button" id="generatePDF" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a> -->
-            <a href="#" type="button" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a>
+            <!-- <a href="generate_pdf.php" type="button" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a> -->
+            <a href="#" type="button" id="generatePDF" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a>
+
         </div>
     </div>
     <hr/>
@@ -195,10 +197,29 @@ while ($row = $datesResult->fetch_assoc()) {
     </div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
 <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#generatePDF").click(function() {
+            // Make an AJAX request to the generate_pdf.php file
+            $.ajax({
+                type: "GET",
+                url: "generate_pdf.php?id=<?php echo $classId; ?>",
+                success: function(response) {
+                    console.log('PDF generated successfully');
+                    // Optionally, you can redirect or perform other actions after successful PDF generation
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error generating PDF:', error);
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
