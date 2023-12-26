@@ -408,13 +408,11 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php
            // Check if there are duplicate seat assignments
             if (!empty($duplicateSeats)) {
-                echo '<div id="duplicateSeatWarning" class="label-text-red mt-1"><b>DUPLICATE SEAT ASSIGNMENT:</b> ';
+                echo '<div id="duplicateSeatWarning" class="label-text-red mt-1"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.';
                 foreach ($duplicateSeats as $seat) {
-                    echo '<b>' . $seat['first_name1'] . ' ' . $seat['last_name1'] . '</b>' . ' and ';
+                    echo "<br>\n". '<b>' . $seat['first_name1'] . ' ' . $seat['last_name1'] . '</b>';
                 }
-                echo 'are currently assigned to the same seat. Please review and resolve this assignment conflict.</div>';
-            } else {
-                echo '<div id="duplicateSeatWarning" class="label-text-red mt-1" style="display: none;"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.</div>';
+                echo '</div>';
             }
         ?>
     </div>
