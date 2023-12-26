@@ -196,29 +196,24 @@ while ($row = $datesResult->fetch_assoc()) {
         <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-black m-1" value="Cancel">Back</a>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
-<script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $("#generatePDF").click(function() {
-            // Make an AJAX request to the generate_pdf.php file
-            $.ajax({
-                type: "GET",
-                url: "generate_pdf.php?id=<?php echo $classId; ?>",
-                success: function(response) {
-                    console.log('PDF generated successfully');
-                    // Optionally, you can redirect or perform other actions after successful PDF generation
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error generating PDF:', error);
-                }
-            });
+    <script>
+        let button = document.getElementById("generatePDF");
+        let makepdf = document.getElementById("makepdf");
+    
+        button.addEventListener("click", function () {
+            let mywindow = window.open("", "PRINT", 
+                    "height=1000,width=1000");
+    
+            mywindow.document.write(makepdf.innerHTML);
+    
+            mywindow.document.close();
+            mywindow.focus();
+    
+            mywindow.print();
+            mywindow.close();
+    
+            return true;
         });
-    });
 </script>
 
 </body>
