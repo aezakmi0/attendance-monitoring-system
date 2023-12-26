@@ -181,8 +181,6 @@ while ($row = $datesResult->fetch_assoc()) {
     </div>
     <!-- End of table div -->
 
-    <!-- <p class="label-text">NOTE:</p> -->
-    <!-- <p class="label-text">P = Present, A = Absent, L = Late, E = Excused</p> -->
     <p class="label-text-dark"><b>NOTE: </b>Three instances of being late are considered equivalent to one absence and will be included in the total number of absences if and when they occur.</p>
     <div class="d-flex">
         <p class="label-text-dark attendance-report-legend"><b>P</b> - Present</p>
@@ -190,43 +188,7 @@ while ($row = $datesResult->fetch_assoc()) {
         <p class="label-text-dark attendance-report-legend"><b>L</b> - Late</p>
         <p class="label-text-dark attendance-report-legend"><b>E</b> - Excused</p>
     </div>
-    <!-- <div class="legend-container d-flex align-items-center mt-2">
-        <div class="legend-color"></div>
-        <p class="label-text-2">PRESENT</p>
-        <div class="legend-color-2"></div>
-        <p class="label-text-2">ABSENT</p>
-        <div class="legend-color-3"></div>
-        <p class="label-text-2">LATE</p>
-        <div class="legend-color-4"></div>
-        <p class="label-text-2">EXCUSED</p>
-    </div> -->
-
-    <!-- Back Button -->
-    <div class="d-flex justify-content-center mt-4">
-        <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-black m-1" value="Cancel">Back</a>
-    </div>
-
 </div>
-    <script>
-        let button = document.getElementById("generatePDF");
-        let makepdf = document.getElementById("makepdf");
-    
-        button.addEventListener("click", function () {
-            let mywindow = window.open("", "PRINT", 
-                    "height=400,width=600");
-    
-            mywindow.document.write(makepdf.innerHTML);
-    
-            mywindow.document.close();
-            mywindow.focus();
-    
-            mywindow.print();
-            mywindow.close();
-    
-            return true;
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
