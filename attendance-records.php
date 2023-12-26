@@ -78,7 +78,7 @@ while ($row = $datesResult->fetch_assoc()) {
     </div>
     <hr/>
 
-    <div class="table-responsive text-center tableFixHead">
+    <div class="table-responsive text-center tableFixHead" id="makepdf">
         <!-- <table class="table table-sm table-striped"> -->
         <table class="table table-sm table-hover table-striped table-bordered">
         <thead class="table-light">
@@ -196,6 +196,10 @@ while ($row = $datesResult->fetch_assoc()) {
         <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-black m-1" value="Cancel">Back</a>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
+<script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
     <script>
         let button = document.getElementById("generatePDF");
         let makepdf = document.getElementById("makepdf");
