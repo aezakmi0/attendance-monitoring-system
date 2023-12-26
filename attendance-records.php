@@ -71,7 +71,7 @@ while ($row = $datesResult->fetch_assoc()) {
         <?php include 'class-header.php'; ?>
         <div class="text-end">
             <!-- <a href="generate_pdf.php?id=<?php echo $classId; ?>" type="button" id="generatePDF" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a> -->
-            <a href="#" type="button"  onclick="generatePDF()" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a>
+            <a href="#" type="button" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a>
         </div>
     </div>
     <hr/>
@@ -197,25 +197,8 @@ while ($row = $datesResult->fetch_assoc()) {
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
 <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-
-function generatePDF(){
-    const { jsPDF } = window.jspdf;
-    console.log('generate report btn clicked!S');
-
-    // Default export is a4 paper, portrait, using millimeters for units
-    const doc = new jsPDF();
-    
-    doc.text("Hello world!", 10, 10);
-    doc.save("a4.pdf");
-}
-
-</script>
-
 <script src="script.js"></script>
 </body>
 </html>
