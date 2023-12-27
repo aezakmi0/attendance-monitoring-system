@@ -137,7 +137,10 @@ if ($result->num_rows > 0) {
                 <p class="label-text-2">EXCUSED</p>
             </div>
             <p class="label-text-2">Click a seat to change the student's attendance status.</p>
-            <a href="#" type="button" class="btn btn-sm btn-outline-primary btn-rounded btn-green" onclick="reloadPage()">Save Attendance</a>    
+            <span class="text-end">
+                <a href="#" id="markAllPresentBtn" class="btn btn-sm btn-rounded btn-green">Mark all as present</a>
+                <a href="#" type="button" class="btn btn-sm btn-rounded btn-green" onclick="reloadPage()">Save Attendance</a>    
+            </span>
         </div>
         <hr/>
         <div class="seatplan-main-container" style="user-select: none">
@@ -592,6 +595,37 @@ if ($result->num_rows > 0) {
                 });
             }
         });
+        // Add click event listener to the "Mark all as present" button
+        const markAllPresentBtn = document.getElementById('markAllPresentBtn');
+            markAllPresentBtn.addEventListener('click', function () {
+                // Iterate through all seatplan seats and mark them as present
+                const allSeats = document.querySelectorAll('.seatplan-seat.clickable');
+                allSeats.forEach(seat => {
+                    const studentId = seat.getAttribute('data-student-id');
+
+                    // Assuming 'present' is the status code for present
+                    seat.style.backgroundColor = '#4ab33d';
+
+                    // Send an AJAX request to update the attendance record
+                    $.ajax({
+                        type: 'POST',
+                        url: 'save_attendance.php',
+                        data: {
+                            classId: <?php echo $classId; ?>,
+                            studentId: studentId,
+                            date: formattedDate,
+                            status: 'present'
+                        },
+                        success: function (response) {
+                            console.log('Updated:', response);
+                        },
+                        error: function (error) {
+                            console.error('Error updating attendance record:', error);
+                        }
+                    });
+                });
+            });
+
 
         function reloadPage() {
             location.reload();
