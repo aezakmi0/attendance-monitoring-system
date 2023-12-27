@@ -44,9 +44,9 @@ body::-webkit-scrollbar {
     padding: 16px 24px !important;
 }
 /* Removed the padding-left of the Home icon */
-#navbarNav > ul > li:first-child .nav-link {
+/* #navbarNav > ul > li:first-child .nav-link {
     padding-left: 0px !important;
-}
+} */
 .nav-profile{
     background-color: #e4e4e4;
 }
