@@ -40,7 +40,7 @@ if (isset($_GET['id']) && isset($_GET['studentid'])) {
             $response = array('success' => false, 'message' => 'Error soft deleting student in tb_seatplan: ' . $updateSeatplanStmt->error);
         } else {
             // $response = array('success' => true, 'message' => 'Student soft deleted successfully.');
-            header("enroll-student.php?id=<?php echo $classID; ?>");
+            header("Location: enroll-student.php?id=$classID");
             exit();
         }
 
@@ -59,6 +59,9 @@ if (isset($_GET['id']) && isset($_GET['studentid'])) {
 // Close the database connection
 $db->close();
 
-// Return a JSON response
-echo json_encode($response);
+// Redirect to enroll-student.php or handle the error as needed
+if (isset($response['success']) && $response['success']) {
+    header("Location: enroll-student.php?id=$classID");
+    exit();
+} 
 ?>
