@@ -177,6 +177,7 @@ if (isset($_GET['id'])) {
             // Check if classData is defined
             if (typeof <?php echo json_encode($classData); ?> !== 'undefined') {
                 var classData = <?php echo json_encode($classData); ?>;
+                console.log(<?php echo json_encode($classData['day']); ?>);
                 
                 // Set values for each input field
                 document.querySelector('input[name="class_code"]').value = classData.class_code;
@@ -187,9 +188,47 @@ if (isset($_GET['id'])) {
 
                 // Set values for checkboxes based on the days
                 var days = <?php echo json_encode(explode(',', $classData['day'])); ?>;
-                days.forEach(function (day) {
-                    document.querySelector('input[name="day[]"][value="' + day + '"]').checked = true;
+                days.forEach(function (combinedValue) {
+                    var separatedDays = [];
+                    var currentGroup = "";
+
+                    for (var i = 0; i < combinedValue.length; i++) {
+                        var char = combinedValue.charAt(i);
+
+                        if (char.match(/[A-Z]/)) {
+                            // Uppercase letter found
+                            if (currentGroup !== "") {
+                                // Save the current group
+                                separatedDays.push(currentGroup);
+                            }
+                            currentGroup = char;
+                        } else if (char.match(/[a-z]/)) {
+                            // Lowercase letter found
+                            currentGroup += char;
+                        }
+                        // Ignore other characters (if any)
+                    }
+
+                    // Add the last group if any
+                    if (currentGroup !== "") {
+                        separatedDays.push(currentGroup);
+                    }
+
+                    // Now, separatedDays contains the desired values
+                    separatedDays.forEach(function (day) {
+                        var selector = 'input[name="day[]"][value="' + day + '"]';
+                        var checkbox = document.querySelector(selector);
+                        console.log("Selector:", selector);
+                        console.log("Checkbox:", checkbox);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        } else {
+                            console.error("Checkbox not found for selector:", selector);
+                        }
+                    });
                 });
+
+
             }
         });
     </script>
