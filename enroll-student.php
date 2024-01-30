@@ -64,14 +64,16 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
-                    <input type="text" name="student_ID" class="form-control input-border" placeholder="Enter ID" required list="student_id">
+                    <input type="text" name="student_ID" class="form-control input-border" placeholder="Enter ID" required list="dl_student_id">
 
-                    <ul class="autocomplete-list">
+                    <!-- <ul class="autocomplete-list">
                         <li><button>202111227</button></li>
                         <li><button>202134331</button></li>
                         <li><button>202110114</button></li>
-                    </ul>
-                    <!-- <datalist id="student_id">
+                    </ul> -->
+
+                    <!-- https://www.youtube.com/watch?v=pdyFf1ugVfk -->
+                    <datalist id="dl_student_id">
                         <option value="202111227"></option>
                         <option value="202115839"></option>
                         <option value="202134526"></option>
@@ -96,7 +98,7 @@ if (isset($_GET['id'])) {
                         <option value="202143467"></option>
                         <option value="202138442"></option>
                         <option value="202160234"></option>
-                    </datalist> -->
+                    </datalist>
                     <!-- https://www.youtube.com/watch?v=4zzTT6GQ3hA -->
 
                 </div>
