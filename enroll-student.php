@@ -53,62 +53,71 @@ if (isset($_GET['id'])) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        /* form {
+        width: 75vmin;
+        height: 100%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        padding: 40px 0;
+        }
+        input[type="text"] {
+        width: 100%;
+        padding: 15px 10px;
+        border: none;
+        border-bottom: 1px solid #645979;
+        outline: none;
+        border-radius: 5px 5px 0 0;
+        background-color: #ffffff;
+        font-size: 16px;
+        }
+        ul {
+        list-style: none;
+        }*/
+        .autocomplete-list {
+        width: 100%;
+        background-color: white;
+        border-radius: 0 0 5px 5px;
+        border: solid 1px green;
+        list-style: none;
+        /* padding: 5px; */
+    }    
+        .autocomplete-list-items {
+        transition: background-color .2s ease-in-out;
+        /* padding: 5px; */
+        }
+        .autocomplete-list-items:hover {
+        background-color: #fcdbae;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     <!-- <div id="navbar-container"></div> -->
     
     <div class="container">
-        <form class="form-control mt-5 p-5 bg-light" action="add-student.php?id=<?php echo $classID; ?>" method="post">
+        <form class="form-control mt-5 p-5 bg-light" action="add-student.php?id=<?php echo $classID; ?>" method="post" autocomplete="off">
             <h1 class="text-center">Add Students</h1>
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
-                    <input type="text" name="student_ID" class="form-control input-border" placeholder="Enter ID" required list="dl_student_id">
+                    <input type="text" name="student_ID"  id="input" class="form-control input-border shadow-none" placeholder="Enter ID" required list="dl_student_id">
 
-                    <!-- <ul class="autocomplete-list">
-                        <li><button>202111227</button></li>
-                        <li><button>202134331</button></li>
-                        <li><button>202110114</button></li>
-                    </ul> -->
+                    <ul class="autocomplete-list"></ul>
 
                     <!-- https://www.youtube.com/watch?v=pdyFf1ugVfk -->
-                    <datalist id="dl_student_id">
-                        <option value="202111227"></option>
-                        <option value="202115839"></option>
-                        <option value="202134526"></option>
-                        <option value="202143467"></option>
-                        <option value="202138442"></option>
-                        <option value="202160234"></option>
-                        <option value="202111227"></option>
-                        <option value="202115839"></option>
-                        <option value="202134526"></option>
-                        <option value="202143467"></option>
-                        <option value="202138442"></option>
-                        <option value="202160234"></option>
-                        <option value="202111227"></option>
-                        <option value="202115839"></option>
-                        <option value="202134526"></option>
-                        <option value="202143467"></option>
-                        <option value="202138442"></option>
-                        <option value="202160234"></option>
-                        <option value="202111227"></option>
-                        <option value="202115839"></option>
-                        <option value="202134526"></option>
-                        <option value="202143467"></option>
-                        <option value="202138442"></option>
-                        <option value="202160234"></option>
-                    </datalist>
                     <!-- https://www.youtube.com/watch?v=4zzTT6GQ3hA -->
 
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">FIRST NAME</p>
-                    <input type="text" name="first_name" class="form-control input-border" placeholder="Enter First Name" required>
+                    <input type="text" name="first_name" class="form-control input-border shadow-none" placeholder="Enter First Name" required>
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">LAST NAME</p>
-                    <input type="text" name="last_name" class="form-control input-border" placeholder="Enter Last Name" required>
+                    <input type="text" name="last_name" class="form-control input-border shadow-none" placeholder="Enter Last Name" required>
                 </div>
                 <div class="col-md-2">
                     <p class="label-text mb-1 mt-3 invisible">ADD</p>
@@ -164,5 +173,77 @@ if (isset($_GET['id'])) {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        let names = [
+        "Ayla", "Jake", "Sean", "Henry", "Brad", "Stephen", "Taylor", "Timmy", "Cathy", "John",
+        "Amanda", "Amara", "Sam", "Sandy", "Danny", "Ellen", "Camille", "Chloe", "Emily", "Nadia",
+        "Mitchell", "Harvey", "Lucy", "Amy", "Glen", "Peter", "Olivia", "Sophia", "Liam", "Emma",
+        "Mia", "Elijah", "Aiden", "Grace", "Jackson", "Eva", "Logan", "Isabella", "Mason", "Ethan",
+        "Zoe", "Natalie", "Noah", "Lily", "Avery", "Leah", "Ella", "Isaac", "Hannah", "Caleb", "Charlotte",
+        "Landon", "David", "Aria", "Benjamin", "Alexa", "Gabriel", "Julia", "Lucas", "Victoria", "Sofia",
+        "Max", "Luna", "Lila", "Ezra", "Samuel", "Scarlett", "Madison", "Aiden", "Aria", "Ella", "Ethan",
+        "Liam", "Mila", "Grace", "Daniel", "Eleanor", "Lily", "Nolan", "Ava", "Peyton", "Zachary", "Cameron",
+        "Naomi", "Mason", "Emma", "Samantha", "Oliver", "Aubrey", "Claire", "Sophie", "Julian", "Maya", "Owen",
+        "Grace", "Levi", "Aaron", "Sophia", "Evelyn", "Zara", "Adam", "Nora", "Ian", "Aaliyah", "Abigail", "Carter",
+        "Riley", "Ella", "Connor", "Madeline", "Mackenzie", "Jasmine", "Tristan", "Jordan", "Nathan", "Leo", "Amelia",
+        "Hazel", "Julia", "Brooklyn", "Luna", "Avery", "Parker", "Skylar", "Sydney", "Natalie", "Hudson", "Aiden", "Hailey",
+        "Caroline", "Cole", "Kylie", "Bella", "Savannah", "Zoe", "Lila", "Alexis", "Gabriel", "Emily", "Michael", "Liam",
+        "Megan", "Leah", "Sophia", "Aaron", "Ella", "Avery", "Caleb", "Alexandra", "Elijah", "Aria", "Lucy", "Kai", "Aiden",
+        "Jackson", "Eva", "Chloe", "Penelope", "Nathan", "Isaiah", "Lincoln", "Charlotte", "Zoey", "Samantha", "Grace", "Evan",
+        "Scarlett", "Mila", "Jayden", "Lily", "Eva", "Olivia", "Madison", "Luke", "Liam", "Aria", "Lucas", "Owen", "Aiden", "Emma",
+        "Sophie", "Aubrey", "Daniel", "Stella", "Hazel", "Logan", "Zara", "Aiden", "Mason", "Aria", "Lily", "Emma", "Liam", "Grace",
+        "Charlotte", "Olivia", "Sophia", "Isabella", "Mia", "Ella", "Avery", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey",
+        "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason", "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella",
+        "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason",
+        "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe",
+        "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason", "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia",
+        "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason", "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery",
+        "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason", "Liam", "Olivia", "Emma",
+        "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason",
+        "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva",
+        "Aiden", "Mason", "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily",
+        "Eva", "Aiden", "Mason", "Liam", "Olivia"]
+        //Sort names in ascending order
+        let sortedNames = names.sort();
+        //reference
+        let input = document.getElementById("input");
+        //Execute function on keyup
+        input.addEventListener("keyup", (e) => {
+        //loop through above array
+        //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
+        removeElements();
+        for (let i of sortedNames) {
+            //convert input to lowercase and compare with each string
+            if (
+            i.toLowerCase().startsWith(input.value.toLowerCase()) &&
+            input.value != ""
+            ) {
+            //create li element
+            let listItem = document.createElement("li");
+            //One common class name
+            listItem.classList.add("autocomplete-list-items");
+            listItem.style.cursor = "pointer";
+            listItem.setAttribute("onclick", "displayNames('" + i + "')");
+            //Display matched part in bold
+            let word = "<b>" + i.substr(0, input.value.length) + "</b>";
+            word += i.substr(input.value.length);
+            //display the value in array
+            listItem.innerHTML = word;
+            document.querySelector(".autocomplete-list").appendChild(listItem);
+            }
+        }
+        });
+        function displayNames(value) {
+        input.value = value;
+        removeElements();
+        }
+        function removeElements() {
+        //clear all the item
+        let items = document.querySelectorAll(".autocomplete-list-items");
+        items.forEach((item) => {
+            item.remove();
+        });
+        }
+    </script>
 </body>
 </html>
