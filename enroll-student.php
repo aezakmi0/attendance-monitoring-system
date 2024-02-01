@@ -54,42 +54,24 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        /* form {
-        width: 75vmin;
-        height: 100%;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-        padding: 40px 0;
-        }
-        input[type="text"] {
-        width: 100%;
-        padding: 15px 10px;
-        border: none;
-        border-bottom: 1px solid #645979;
-        outline: none;
-        border-radius: 5px 5px 0 0;
-        background-color: #ffffff;
-        font-size: 16px;
-        }
-        ul {
-        list-style: none;
-        }*/
         .autocomplete-list {
-        width: 100%;
+        width: 180px;
         background-color: white;
         border-radius: 0 0 5px 5px;
-        border: solid 1px green;
         list-style: none;
-        /* padding: 5px; */
-    }    
+        padding: 0;
+        max-height: 450px;
+        overflow-y: auto;
+        position: absolute;
+        z-index: 1000;
+        box-shadow: 0 5px 20px #FFF5EE;
+        }  
         .autocomplete-list-items {
         transition: background-color .2s ease-in-out;
-        /* padding: 5px; */
+        padding: 5px 20px;
         }
         .autocomplete-list-items:hover {
-        background-color: #fcdbae;
+        background-color: #BEF4B3;
         }
     </style>
 </head>
@@ -207,6 +189,7 @@ if (isset($_GET['id'])) {
         let sortedNames = names.sort();
         //reference
         let input = document.getElementById("input");
+
         //Execute function on keyup
         input.addEventListener("keyup", (e) => {
         //loop through above array
