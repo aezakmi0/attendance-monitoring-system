@@ -85,7 +85,7 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
-                    <input type="text" name="student_ID"  id="input" class="form-control input-border shadow-none" placeholder="Enter ID" required list="dl_student_id">
+                    <input type="text" name="student_ID"  id="input" class="form-control input-border shadow-none" placeholder="Enter ID">
 
                     <ul class="autocomplete-list"></ul>
 
