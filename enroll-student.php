@@ -89,9 +89,6 @@ if (isset($_GET['id'])) {
 
                     <ul class="autocomplete-list"></ul>
 
-                    <!-- https://www.youtube.com/watch?v=pdyFf1ugVfk -->
-                    <!-- https://www.youtube.com/watch?v=4zzTT6GQ3hA -->
-
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">FIRST NAME</p>
