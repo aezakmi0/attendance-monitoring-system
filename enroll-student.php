@@ -162,26 +162,7 @@ if (isset($_GET['id'])) {
         "Landon", "David", "Aria", "Benjamin", "Alexa", "Gabriel", "Julia", "Lucas", "Victoria", "Sofia",
         "Max", "Luna", "Lila", "Ezra", "Samuel", "Scarlett", "Madison", "Aiden", "Aria", "Ella", "Ethan",
         "Liam", "Mila", "Grace", "Daniel", "Eleanor", "Lily", "Nolan", "Ava", "Peyton", "Zachary", "Cameron",
-        "Naomi", "Mason", "Emma", "Samantha", "Oliver", "Aubrey", "Claire", "Sophie", "Julian", "Maya", "Owen",
-        "Grace", "Levi", "Aaron", "Sophia", "Evelyn", "Zara", "Adam", "Nora", "Ian", "Aaliyah", "Abigail", "Carter",
-        "Riley", "Ella", "Connor", "Madeline", "Mackenzie", "Jasmine", "Tristan", "Jordan", "Nathan", "Leo", "Amelia",
-        "Hazel", "Julia", "Brooklyn", "Luna", "Avery", "Parker", "Skylar", "Sydney", "Natalie", "Hudson", "Aiden", "Hailey",
-        "Caroline", "Cole", "Kylie", "Bella", "Savannah", "Zoe", "Lila", "Alexis", "Gabriel", "Emily", "Michael", "Liam",
-        "Megan", "Leah", "Sophia", "Aaron", "Ella", "Avery", "Caleb", "Alexandra", "Elijah", "Aria", "Lucy", "Kai", "Aiden",
-        "Jackson", "Eva", "Chloe", "Penelope", "Nathan", "Isaiah", "Lincoln", "Charlotte", "Zoey", "Samantha", "Grace", "Evan",
-        "Scarlett", "Mila", "Jayden", "Lily", "Eva", "Olivia", "Madison", "Luke", "Liam", "Aria", "Lucas", "Owen", "Aiden", "Emma",
-        "Sophie", "Aubrey", "Daniel", "Stella", "Hazel", "Logan", "Zara", "Aiden", "Mason", "Aria", "Lily", "Emma", "Liam", "Grace",
-        "Charlotte", "Olivia", "Sophia", "Isabella", "Mia", "Ella", "Avery", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey",
-        "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason", "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella",
-        "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason",
-        "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe",
-        "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason", "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia",
-        "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason", "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery",
-        "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason", "Liam", "Olivia", "Emma",
-        "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva", "Aiden", "Mason",
-        "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily", "Eva",
-        "Aiden", "Mason", "Liam", "Olivia", "Emma", "Sophia", "Isabella", "Avery", "Ella", "Grace", "Scarlett", "Amelia", "Hazel", "Aria", "Lila", "Lucy", "Aubrey", "Chloe", "Zoe", "Luna", "Penelope", "Lily",
-        "Eva", "Aiden", "Mason", "Liam", "Olivia"]
+        "Naomi", "Mason", "Emma", "Samantha"]
         //Sort names in ascending order
         let sortedNames = names.sort();
         //reference
