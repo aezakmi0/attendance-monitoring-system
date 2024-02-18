@@ -60,6 +60,7 @@ if (isset($_GET['id'])) {
     
     <div class="container">
         <form class="form-control mt-5 p-5 bg-light" action="add-student.php?id=<?php echo $classID; ?>" method="post">
+            <a href="class.php?id=<?php echo $classID; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
             <h1 class="text-center">Add Students</h1>
             <div class="row">
                 <div class="col-md-2 mt-3">
@@ -118,11 +119,6 @@ if (isset($_GET['id'])) {
             </div>
 
         </form>
-        <div class="d-flex justify-content-center mt-4 pb-5">
-            <!-- <a href="#" type="button" class="btn btn-outline-secondary m-1" onclick="history.back();">Back</a> -->
-            <a href="class.php?id=<?php echo $classID; ?>" type="button" class="btn btn-sm btn-outline-dark btn-black m-1">Back</a>
-            <!-- <a type="button" class="btn btn-primary m-1" href="class.php">Save</a> -->
-        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
