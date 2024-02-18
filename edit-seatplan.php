@@ -101,6 +101,17 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     <!-- seatplan layout -->
     <div class="container">
+        <h1 id="duplicateSeatWarning" class="label-text-red mt-1"></h1>
+        <?php
+           // Check if there are duplicate seat assignments
+            if (!empty($duplicateSeats)) {
+                echo '<div id="duplicateSeatWarning" class="label-text-red mt-1"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.';
+                foreach ($duplicateSeats as $seat) {
+                    echo "<br>\n". '<b>' . $seat['first_name1'] . ' ' . $seat['last_name1'] . '</b>';
+                }
+                echo '</div>';
+            }
+        ?>
         <div class="seatplan-main-container">
             <div class="my-grid">
                 <div class="seatplan-seat">
@@ -407,17 +418,6 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
-        <h1 id="duplicateSeatWarning" class="label-text-red mt-1"></h1>
-        <?php
-           // Check if there are duplicate seat assignments
-            if (!empty($duplicateSeats)) {
-                echo '<div id="duplicateSeatWarning" class="label-text-red mt-1"><b>DUPLICATE SEAT ASSIGNMENT:</b> Two or more students are currently assigned to the same seat. Please review and resolve this assignment conflict.';
-                foreach ($duplicateSeats as $seat) {
-                    echo "<br>\n". '<b>' . $seat['first_name1'] . ' ' . $seat['last_name1'] . '</b>';
-                }
-                echo '</div>';
-            }
-        ?>
     </div>
     
     <!-- Modal -->
