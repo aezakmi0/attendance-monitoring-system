@@ -71,13 +71,14 @@ if (isset($_GET['id'])) {
                     <input type="text" name="ID_number" class="form-control input-border" placeholder="Enter ID" required>
                 </div>
                 <div class="col-md-4 mt-3">
-                    <p class="label-text mb-1">FIRST NAME</p>
-                    <input type="text" name="first_name" class="form-control input-border" placeholder="Enter First Name" required>
-                </div>
-                <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">LAST NAME</p>
                     <input type="text" name="last_name" class="form-control input-border" placeholder="Enter Last Name" required>
                 </div>
+                <div class="col-md-4 mt-3">
+                    <p class="label-text mb-1">FIRST NAME</p>
+                    <input type="text" name="first_name" class="form-control input-border" placeholder="Enter First Name" required>
+                </div>
+                
                 <div class="col-md-2">
                     <p class="label-text mb-1 mt-3 invisible">ADD</p>
                     <button class="btn input-border create-class-button w-100" type="submit" value="Submit">Add</button>
@@ -106,7 +107,7 @@ if (isset($_GET['id'])) {
                     while ($row = $enrolledResult->fetch_assoc()) {
                         echo "<tr class='align-middle'>";
                         echo "<td>{$row['ID_number']}</td>";
-                        echo "<td>{$row['first_name']} {$row['last_name']}</td>";
+                        echo "<td>{$row['last_name']}, {$row['first_name']}</td>";
                         echo "<td class='text-end'>
                                 <a type='button' class='btn btn-sm btn-outline-dark  btn-rounded' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
                                 <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove this student?')\">Remove</a>
