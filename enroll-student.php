@@ -110,7 +110,7 @@ if (isset($_GET['id'])) {
                         echo "<td>{$row['last_name']}, {$row['first_name']}</td>";
                         echo "<td class='text-end'>
                                 <a type='button' class='btn btn-sm btn-outline-dark  btn-rounded' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
-                                <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove this student?')\">Remove</a>
+                                <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove {$row['last_name']}, {$row['first_name']}?')\">Remove</a>
                             </td>";
                         echo "</tr>";
                     }
