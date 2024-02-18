@@ -91,7 +91,7 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- <div id="navbar-container"></div> -->
 
     <div class="container d-flex mt-5 mb-3 align-items-center" style="background-color: rgb(255, 255, 255);">
-        <a href="index.html" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
+        <a href="class.php?id=<?php echo $classId; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
         <div>
             <h1 class="">Edit Seatplan</h1>
             <!-- <h1 class="label-text text-center">Click seat to assign to student</h1>  -->
@@ -429,10 +429,6 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button id="cancelButton" class="btn btn-dark btn-rounded" onclick="closeModal()">Cancel</button>
     </div>
 
-    <div class="d-flex justify-content-center mt-4">
-        <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-outline-dark btn-black btn-sm m-1" value="Cancel">Back</a>
-        <!-- <a type="button" class="btn btn-primary m-1" href="#">Save</a> -->
-    </div>
         
     <script>
         // Update the script to handle modal interactions and AJAX request
