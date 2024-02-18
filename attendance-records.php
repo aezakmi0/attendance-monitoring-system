@@ -68,7 +68,10 @@ while ($row = $datesResult->fetch_assoc()) {
     <!-- <div id="navbar-container"></div> -->
 <div class="container pb-5">
     <div class="d-flex justify-content-between align-items-center mt-5">    
-        <span id="classHeader"><?php include 'class-header.php'; ?></span>
+        <div class="d-flex">
+            <a href="class.php?id=<?php echo $classId; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
+            <span id="classHeader"><?php include 'class-header.php'; ?></span>
+        </div>    
         <div class="text-end">
             <!-- <a href="generate_pdf.php?id=<?php echo $classId; ?>" type="button" id="generatePDF" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a> -->
             <!-- <a href="generate_pdf.php" type="button" class="btn btn-outline-dark btn-rounded btn-green">Generate Report</a> -->
@@ -190,10 +193,6 @@ while ($row = $datesResult->fetch_assoc()) {
         <p class="label-text-dark attendance-report-legend"><b>E</b> - Excused</p>
     </div>
 
-    <!-- Back Button -->
-    <div class="d-flex justify-content-center mt-4">
-        <a href="class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-black m-1" value="Cancel">Back</a>
-    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
