@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <img src="img/logo.png" class="logo"></img>
+                    <a href="index.html" class="nav-link m-0"><img src="img/logo.png" class="logo"></img></a>
                 </li>
                 <!-- Home -->
                 <li class="nav-item active-nav">
