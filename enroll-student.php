@@ -59,11 +59,12 @@ if (isset($_GET['id'])) {
     <!-- <div id="navbar-container"></div> -->
     
     <div class="container">
-        <form class="form-control mt-5 p-5 bg-light" action="add-student.php?id=<?php echo $classID; ?>" method="post">
-            <div class="d-flex mb-5">
-                <a href="class.php?id=<?php echo $classID; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
-                <span id="classHeader"><?php include 'class-header.php'; ?></span>  
-            </div>    
+        <div class="d-flex mt-5">
+            <a href="class.php?id=<?php echo $classID; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
+            <span id="classHeader"><?php include 'class-header.php'; ?></span>  
+        </div> 
+        <hr>
+        <form class="form-control p-5 bg-light" action="add-student.php?id=<?php echo $classID; ?>" method="post">   
             <h1 class="text-center">Add Students</h1>
             <div class="row">
                 <div class="col-md-2 mt-3">
