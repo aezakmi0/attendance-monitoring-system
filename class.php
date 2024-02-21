@@ -513,14 +513,14 @@ if ($result->num_rows > 0) {
 
         document.addEventListener('DOMContentLoaded', function () {
             // Define an array of colors to loop through
-            const colors = ['#4ab33d', '#ffb0b7', '#fffa75', '#ADD2DB'];
+            const colors = ['#4ab33d', '#ff4747', '#ff9640', '#6090eb'];
             const status = ['present', 'absent', 'late', 'excused'];
             
             const colorStatus = {
                 'present': '#4ab33d',
-                'absent': '#ffb0b7',
-                'late': '#fffa75',
-                'excused': '#ADD2DB'
+                'absent': '#ff4747',
+                'late': '#ff9640',
+                'excused': '#6090eb'
             };
 
             // Initialize a counter to keep track of the current color
