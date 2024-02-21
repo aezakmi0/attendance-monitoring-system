@@ -45,6 +45,9 @@ if ($result->num_rows > 0) {
             border-radius: 50%;
             margin-right: 24px;
         }
+        .margin-right{
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
@@ -139,14 +142,20 @@ if ($result->num_rows > 0) {
         <hr/>
         <div class="d-flex justify-content-between align-items-center">
             <div class="legend-container d-flex align-items-center">
-                <div class="legend-color"></div>
+                <!-- <div class="legend-color"></div>
                 <p class="label-text-2">PRESENT</p>
                 <div class="legend-color-2"></div>
                 <p class="label-text-2">ABSENT</p>
                 <div class="legend-color-3"></div>
                 <p class="label-text-2">LATE</p>
                 <div class="legend-color-4"></div>
-                <p class="label-text-2">EXCUSED</p>
+                <p class="label-text-2">EXCUSED</p> -->
+
+                <label class="margin-right"><input type="radio" name="status" value="present" checked> Present</label>
+                <label class="margin-right"><input type="radio" name="status" value="absent"> Absent</label>
+                <label class="margin-right"><input type="radio" name="status" value="late"> Late</label>
+                <label><input type="radio" name="status" value="excused"> Excused</label>
+
             </div>
             <p class="label-text-2">Click a seat to change the student's attendance status.</p>
             <span class="text-end">
@@ -569,42 +578,47 @@ if ($result->num_rows > 0) {
 
             // Function to toggle through colors
             function toggleColor(studentId) {
-                // Get the current color from the array
-                const currentColor = colors[colorIndex];
-                const currentStatus = status[statusIndex];
+            const statusRadios = document.querySelectorAll('input[name="status"]');
+            let currentStatus;
 
-                // Log the current color to the console
-                console.log(`Seat color changed to: ${currentColor} ${currentStatus}`);
+            // Loop through the radio buttons to find the selected one
+            statusRadios.forEach(radio => {
+                if (radio.checked) {
+                currentStatus = radio.value;
+                }
+            });
 
-                // Toggle the color by adding a class to the clicked seat
-                this.style.backgroundColor = currentColor;
+            // Get the current color from the array
+            const currentColor = colorStatus[currentStatus];
 
-                // Increment the color index or reset to 0 if at the end of the array
-                colorIndex = (colorIndex + 1) % colors.length;
-                statusIndex = (statusIndex + 1) % status.length;
+            // Log the current color to the console
+            console.log(`Seat color changed to: ${currentColor} ${currentStatus}`);
 
-                // Get the student ID from the seat assignment
-                // const studentId = this.getAttribute('data-student-id');
-                console.log('Student ID:', studentId);
-                console.log('Class ID:', <?php echo $classId; ?>);
+            // Toggle the color by adding a class to the clicked seat
+            this.style.backgroundColor = currentColor;
 
-                // Send an AJAX request to update the attendance record
-                $.ajax({
-                    type: 'POST',
-                    url: 'save_attendance.php',
-                    data: {
-                        classId: <?php echo $classId; ?>,
-                        studentId: studentId,
-                        date: formattedDate,
-                        status: currentStatus
-                    },
-                    success: function (response) {
-                        console.log('Updated:', response);
-                    },
-                    error: function (error) {
-                        console.error('Error updating attendance record:', error);
-                    }
-                });
+            // Get the student ID from the seat assignment
+            // const studentId = this.getAttribute('data-student-id');
+            console.log('Student ID:', studentId);
+            console.log('Class ID:', <?php echo $classId; ?>);
+
+            // Send an AJAX request to update the attendance record
+            $.ajax({
+                type: 'POST',
+                url: 'save_attendance.php',
+                data: {
+                classId: <?php echo $classId; ?>,
+                studentId: studentId,
+                date: formattedDate,
+                status: currentStatus
+                },
+                success: function (response) {
+                console.log('Updated:', response);
+                },
+                error: function (error) {
+                console.error('Error updating attendance record:', error);
+                }
+            });
             }
         });
         // Add click event listener to the "Mark all as present" button
