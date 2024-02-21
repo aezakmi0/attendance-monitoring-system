@@ -106,12 +106,15 @@ if (isset($_GET['id'])) {
 
                     // Display enrolled students
                     while ($row = $enrolledResult->fetch_assoc()) {
+                        $firstName = ucwords(strtolower($row['first_name'])); // Capitalize first letter of each word
+                        $lastName = ucwords(strtolower($row['last_name'])); // Capitalize first letter of each word
+                    
                         echo "<tr class='align-middle'>";
                         echo "<td>{$row['ID_number']}</td>";
-                        echo "<td>{$row['last_name']}, {$row['first_name']}</td>";
+                        echo "<td>{$lastName}, {$firstName}</td>";
                         echo "<td class='text-end'>
                                 <a type='button' class='btn btn-sm btn-outline-dark  btn-rounded' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
-                                <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove {$row['last_name']}, {$row['first_name']}?')\">Remove</a>
+                                <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove this student?')\">Remove</a>
                             </td>";
                         echo "</tr>";
                     }
