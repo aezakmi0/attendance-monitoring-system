@@ -91,14 +91,18 @@ if (isset($_GET['id'])) {
                 <h1 class="text-center mb-2">Enrolled Students</h1>
                 <table class="table table-sm table-hover table-light">
                     <tr>
-                    <th>STUDENT ID</th>
-                    <th colspan="2">NAME</th>
+                        <th>STUDENT ID</th>
+                        <th colspan="2">NAME</th>
                     </tr>
                     <?php
                     // Fetch enrolled students for the given classID
-                    $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name FROM tb_enrollment e
-                  INNER JOIN tb_student s ON s.student_ID = e.student_ID
-                  WHERE e.class_ID = ? AND e.is_deleted = 0 ORDER BY s.last_name ASC";
+                    $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name, c.class_code
+                                    FROM tb_enrollment e
+                                    INNER JOIN tb_student s ON s.student_ID = e.student_ID
+                                    INNER JOIN tb_class c ON c.class_ID = e.class_ID
+                                    WHERE e.class_ID = ? AND e.is_deleted = 0
+                                    ORDER BY s.last_name ASC";
+
                     $enrolledStmt = $db->prepare($enrolledQuery);
                     $enrolledStmt->bind_param("i", $classID);
                     $enrolledStmt->execute();
@@ -108,13 +112,13 @@ if (isset($_GET['id'])) {
                     while ($row = $enrolledResult->fetch_assoc()) {
                         $firstName = ucwords(strtolower($row['first_name'])); // Capitalize first letter of each word
                         $lastName = ucwords(strtolower($row['last_name'])); // Capitalize first letter of each word
-                    
+
                         echo "<tr class='align-middle'>";
                         echo "<td>{$row['ID_number']}</td>";
                         echo "<td>{$lastName}, {$firstName}</td>";
                         echo "<td class='text-end'>
                                 <a type='button' class='btn btn-sm btn-outline-dark  btn-rounded' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
-                                <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove this student?')\">Remove</a>
+                                <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove {$lastName}, {$firstName} on class {$row['class_code']}?')\">Remove</a>
                             </td>";
                         echo "</tr>";
                     }
@@ -122,8 +126,9 @@ if (isset($_GET['id'])) {
                     // Close the prepared statement
                     $enrolledStmt->close();
                     ?>
-
                 </table>
+
+
             </div>
 
         </form>
