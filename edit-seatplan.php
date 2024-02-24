@@ -84,15 +84,6 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         /* Add more styles as needed */
-        .teacher-table{
-            background-color: #C9C9C9;
-            width: 300px;
-            height: 50px;
-            padding-top: 19px !important;
-            text-align: center;
-            border-radius: 7px;
-            
-        }
     </style>
 </head>
 <body>

@@ -186,7 +186,10 @@ if ($result->num_rows > 0) {
                 }?>
             </div>
         </div>
-</div>
+    </div>
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="teacher-table mt-4 seatplan-lastname">TEACHER'S TABLE</div>
+    </div>
     <!-- <div class="d-flex justify-content-center mt-4">
         <a type="button" class="btn btn-primary m-1 mb-2" href="#">Save Attendance</a>
     </div> -->
