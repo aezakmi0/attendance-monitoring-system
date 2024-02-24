@@ -355,6 +355,16 @@ h1{
     line-height: 1.2;
 }
 
+.seatplan-attendance-status{
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 11px;
+    position: relative;
+    /* font-size:.55vw; */
+    text-transform: uppercase;
+    text-shadow: 1px 1px 4px gray;
+}
+
 .seatplan-seat:hover{
     background-color: rgb(177, 177, 177);
 }

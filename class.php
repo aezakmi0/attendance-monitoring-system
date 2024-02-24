@@ -168,10 +168,13 @@ if ($result->num_rows > 0) {
             <div class="my-grid">
             <?php for($x = 1; $x <= 25; $x++){
                     echo '<div class="seatplan-seat" data-seat="' . $x .'">
-                            <div class="seatplan-seat-content">
-                                <p class="seatplan-lastname"></p>
-                                <p class="seatplan-firstname"></p>
-                            </div>
+                            <div class="seatplan-seat-content d-flex align-items-start flex-column">
+                                <span>
+                                    <p class="seatplan-lastname"></p>
+                                    <p class="seatplan-firstname"></p>
+                                </span>
+                                <p class="seatplan-attendance-status mb-auto">PRESENT</p>
+                                </div>
                         </div>';  
                 }?>
             </div>
