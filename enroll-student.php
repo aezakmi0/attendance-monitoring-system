@@ -69,7 +69,7 @@ if (isset($_GET['id'])) {
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
-                    <input type="text" name="ID_number" class="form-control input-border" placeholder="Enter ID" required>
+                    <input type="number" name="ID_number" class="form-control input-border" placeholder="Enter ID" required>
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">LAST NAME</p>
