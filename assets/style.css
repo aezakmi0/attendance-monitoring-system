@@ -356,7 +356,7 @@ h1{
 }
 
 .seatplan-attendance-status{
-    /* font-weight: 600; */
+    font-weight: 600;
     color: #ffffff;
     font-size: 11px;
     /* font-size:.55vw; */
