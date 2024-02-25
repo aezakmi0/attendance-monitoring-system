@@ -348,34 +348,44 @@ if ($result->num_rows > 0) {
         });
         // Add click event listener to the "Mark all as present" button
         const markAllPresentBtn = document.getElementById('markAllPresentBtn');
-            markAllPresentBtn.addEventListener('click', function () {
-                // Iterate through all seatplan seats and mark them as present
-                const allSeats = document.querySelectorAll('.seatplan-seat.clickable');
-                allSeats.forEach(seat => {
-                    const studentId = seat.getAttribute('data-student-id');
+        markAllPresentBtn.addEventListener('click', function () {
+            // Iterate through all seatplan seats and mark them as present
+            const allSeats = document.querySelectorAll('.seatplan-seat.clickable');
+            allSeats.forEach(seat => {
+                const studentId = seat.getAttribute('data-student-id');
 
-                    // Assuming 'present' is the status code for present
-                    seat.style.backgroundColor = '#4ab33d';
+                // Assuming 'present' is the status code for present
+                seat.style.backgroundColor = '#4ab33d';
 
-                    // Send an AJAX request to update the attendance record
-                    $.ajax({
-                        type: 'POST',
-                        url: 'save_attendance.php',
-                        data: {
-                            classId: <?php echo $classId; ?>,
-                            studentId: studentId,
-                            date: formattedDate,
-                            status: 'present'
-                        },
-                        success: function (response) {
-                            console.log('Updated:', response);
-                        },
-                        error: function (error) {
-                            console.error('Error updating attendance record:', error);
-                        }
-                    });
+                // Send an AJAX request to update the attendance record
+                $.ajax({
+                    type: 'POST',
+                    url: 'save_attendance.php',
+                    data: {
+                        classId: <?php echo $classId; ?>,
+                        studentId: studentId,
+                        date: formattedDate,
+                        status: 'present'
+                    },
+                    success: function (response) {
+                        console.log('Updated:', response);
+
+                        // Fetch and update the attendance status after saving
+                        fetch(`get_attendance_status.php?classId=<?php echo $classId; ?>&studentId=${studentId}`)
+                            .then(response => response.json())
+                            .then(attendanceStatus => {
+                                const status = attendanceStatus.status;
+                                // Update the seat's attendance status text
+                                seat.querySelector('.seatplan-attendance-status').textContent = status;
+                            })
+                            .catch(error => console.error('Error fetching attendance status:', error));
+                    },
+                    error: function (error) {
+                        console.error('Error updating attendance record:', error);
+                    }
                 });
             });
+        });
 
 
         function reloadPage() {
