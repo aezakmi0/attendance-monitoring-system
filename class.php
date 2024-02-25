@@ -239,7 +239,6 @@ if ($result->num_rows > 0) {
             // Initialize a counter to keep track of the current color
             let colorIndex = 0;
             let statusIndex = 0;
-
             // Fetch seat assignments for the class
             fetch(`get_seat_assignments.php?classId=<?php echo $classId; ?>`)
                 .then(response => response.json())
@@ -255,7 +254,6 @@ if ($result->num_rows > 0) {
                             // Update the seat information
                             seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
                             seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
-
                             // Make the seat clickable
                             seat.classList.add('clickable');
                             
@@ -266,9 +264,14 @@ if ($result->num_rows > 0) {
                             .then(response => response.json())
                             .then(attendanceStatus => {
                                 const status = attendanceStatus.status;
+                                const seatplanAttendanceStatus = seat.querySelector('.seatplan-attendance-status');
                                 seat.querySelector('.seatplan-attendance-status').textContent = status;
+                                
+                                if (seat.querySelector('.seatplan-attendance-status').textContent != "No attendance"){
+                                    seatplanAttendanceStatus.classList.add("white-text");
+                                }
+
                                 seat.style.backgroundColor = colorStatus[status];
-                                // seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${status}`;
                             })
                             .catch(error => console.error('Error fetching attendance status:', error));
                         }
@@ -298,7 +301,7 @@ if ($result->num_rows > 0) {
                 // Loop through the radio buttons to find the selected one
                 statusRadios.forEach(radio => {
                     if (radio.checked) {
-                    currentStatus = radio.value;
+                        currentStatus = radio.value;
                     }
                 });
 
@@ -308,12 +311,10 @@ if ($result->num_rows > 0) {
                 // Log the current color to the console
                 console.log(`Seat color changed to: ${currentColor} ${currentStatus}`);
 
-                
                 // Toggle the color by adding a class to the clicked seat
                 this.style.backgroundColor = currentColor;
 
                 // Get the student ID from the seat assignment
-                // const studentId = this.getAttribute('data-student-id');
                 console.log('Student ID:', studentId);
                 console.log('Class ID:', <?php echo $classId; ?>);
 
@@ -335,6 +336,7 @@ if ($result->num_rows > 0) {
                             .then(response => response.json())
                             .then(attendanceStatus => {
                                 const status = attendanceStatus.status;
+
                                 // Update the seat's attendance status text
                                 document.querySelector(`.seatplan-seat[data-student-id="${studentId}"] .seatplan-attendance-status`).textContent = status;
                             })
@@ -351,6 +353,7 @@ if ($result->num_rows > 0) {
         markAllPresentBtn.addEventListener('click', function () {
             // Iterate through all seatplan seats and mark them as present
             const allSeats = document.querySelectorAll('.seatplan-seat.clickable');
+
             allSeats.forEach(seat => {
                 const studentId = seat.getAttribute('data-student-id');
 
@@ -377,6 +380,7 @@ if ($result->num_rows > 0) {
                                 const status = attendanceStatus.status;
                                 // Update the seat's attendance status text
                                 seat.querySelector('.seatplan-attendance-status').textContent = status;
+                                seat.querySelector('.seatplan-attendance-status').classList.add('white-text');
                             })
                             .catch(error => console.error('Error fetching attendance status:', error));
                     },
@@ -386,7 +390,6 @@ if ($result->num_rows > 0) {
                 });
             });
         });
-
 
         function reloadPage() {
             location.reload();
