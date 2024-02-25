@@ -182,89 +182,98 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
 
         // Variable to store the selected seat number
-        let selectedSeatNumber = null;
-        let selectedStudentID = null;
+let selectedSeatNumber = null;
+let selectedStudentID = null;
 
-        // Loop through each seat and add a click event listener
-        seatplanSeats.forEach(seat => {
-            seat.addEventListener('click', function () {
-                // Get the seat number from the data attribute
-                selectedSeatNumber = seat.querySelector('.seatplan-seat-content').getAttribute('data-seat');
-                console.log("Seat Number: ", selectedSeatNumber);
+// Loop through each seat and add a click event listener
+seatplanSeats.forEach(seat => {
+    seat.addEventListener('click', function () {
+        // Get the seat number from the data attribute
+        selectedSeatNumber = seat.querySelector('.seatplan-seat-content').getAttribute('data-seat');
+        console.log("Seat Number: ", selectedSeatNumber);
 
-                // Fetch student data for the selected class and display in the modal
-                fetch(`get_students.php?classId=<?php echo $classId; ?>`)
-                    .then(response => response.json())
-                    .then(data => {
-                        
-                        // Sort the data by last name
-                        data.sort((a, b) => a.last_name.localeCompare(b.last_name));
+        // Fetch student data for the selected class and display in the modal
+        fetch(`get_students.php?classId=<?php echo $classId; ?>`)
+            .then(response => response.json())
+            .then(data => {
 
-                        // Populate the modal with student information
-                        studentList.innerHTML = '';
-                        data.forEach(student => {
-                            const listItem = document.createElement('li');
+                // Sort the data by last name
+                data.sort((a, b) => a.last_name.localeCompare(b.last_name));
 
-                            // Create a div to hold student information and the "Assign" button
-                            const studentDiv = document.createElement('div');
-                            studentDiv.style = "padding: 3px 0;"
-                            studentDiv.classList = "modal-body d-flex justify-content-between";
-                            
-                            // Display student information
-                            const studentName = document.createElement('span');
-                            studentName.classList = "align-middle";
-                            studentName.style = "margin-right: 50px";
-                            studentName.innerHTML = `${student.last_name},  ${student.first_name}`;
+                // Populate the modal with student information
+                studentList.innerHTML = '';
+                data.forEach(student => {
+                    const listItem = document.createElement('li');
 
-                            // Create the "Assign" button
-                            const assignButton = document.createElement('button');
-                            assignButton.classList = "btn btn-sm btn-outline-primary btn-green float-right";
-                            assignButton.textContent = "Assign";
-                            assignButton.addEventListener('click', function () {
-                                // Set the selected student ID
-                                selectedStudentID = student.student_ID;
+                    // Create a div to hold student information and the "Assign" button
+                    const studentDiv = document.createElement('div');
+                    studentDiv.style = "padding: 3px 0;"
+                    studentDiv.classList = "modal-body d-flex justify-content-between";
 
-                                // Check if a seat and student are selected
-                                if (selectedSeatNumber !== null && selectedStudentID !== null) {
-                                    // Send an AJAX request to the PHP script to update the database
-                                    fetch(`assign_seat.php?classId=<?php echo $classId; ?>&seatNumber=${selectedSeatNumber}&studentID=${selectedStudentID}`)
-                                        .then(response => response.json())
-                                        .then(data => {
-                                            // Handle the response if needed
-                                            console.log('Assignment successful:', data);
-                                            location.reload();
-                                            // After assigning, close the modal
-                                            closeModal();
-                                        })
-                                        .catch(error => console.error('Error assigning seat:', error));
-                                } else {
-                                    console.error('Seat and student must be selected.');
-                                }
-                            });
+                    // Display student information
+                    const studentName = document.createElement('span');
+                    studentName.classList = "align-middle";
+                    studentName.style = "margin-right: 50px";
+                    studentName.innerHTML = `${student.last_name},  ${student.first_name}`;
 
-                            // Append the button to the studentDiv
-                            studentDiv.appendChild(studentName);
-                            studentDiv.appendChild(assignButton);
+                    // Create the "Assign" button
+                    const assignButton = document.createElement('button');
+                    assignButton.classList = "btn btn-sm btn-outline-primary btn-green float-right";
+                    assignButton.textContent = "Assign";
+                    assignButton.addEventListener('click', function () {
+                        // Set the selected student ID
+                        selectedStudentID = student.student_ID;
 
-                            // Append the student div to the list item
-                            listItem.appendChild(studentDiv);
+                        // Check if a seat and student are selected
+                        if (selectedSeatNumber !== null && selectedStudentID !== null) {
+                            // Send an AJAX request to the PHP script to update the database
+                            fetch(`assign_seat.php?classId=<?php echo $classId; ?>&seatNumber=${selectedSeatNumber}&studentID=${selectedStudentID}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Handle the response if needed
+                                    console.log('Assignment successful:', data);
+                                    location.reload();
+                                    // After assigning, close the modal
+                                    closeModal();
+                                })
+                                .catch(error => console.error('Error assigning seat:', error));
+                        } else {
+                            console.error('Seat and student must be selected.');
+                        }
+                    });
 
-                            // Append the list item to the student list
-                            studentList.appendChild(listItem);
-                        });
-                        // Show the modal
-                        assignModal.style.display = 'block';
-                    })
-                    .catch(error => console.error('Error fetching data:', error));
-            });
-        });
+                    // Append the button to the studentDiv
+                    studentDiv.appendChild(studentName);
+                    studentDiv.appendChild(assignButton);
 
-        // Function to close the modal
-        function closeModal() {
-            assignModal.style.display = 'none';
-            selectedSeatNumber = null; // Reset the selected seat number
-            selectedStudentID = null; // Reset the selected student ID
-        };
+                    // Append the student div to the list item
+                    listItem.appendChild(studentDiv);
+
+                    // Append the list item to the student list
+                    studentList.appendChild(listItem);
+                });
+                // Show the modal
+                assignModal.style.display = 'block';
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+});
+
+// Add event listener to close the modal when clicking outside of it
+document.body.addEventListener('click', function (event) {
+    // Check if the click occurred outside the modal content
+    if (!assignModal.contains(event.target) && assignModal.style.display === 'block') {
+        closeModal();
+    }
+});
+
+// Function to close the modal
+function closeModal() {
+    assignModal.style.display = 'none';
+    selectedSeatNumber = null; // Reset the selected seat number
+    selectedStudentID = null; // Reset the selected student ID
+};
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
