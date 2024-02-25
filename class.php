@@ -168,13 +168,13 @@ if ($result->num_rows > 0) {
             <div class="my-grid">
             <?php for($x = 1; $x <= 25; $x++){
                     echo '<div class="seatplan-seat" data-seat="' . $x .'">
-                            <div class="seatplan-seat-content d-flex align-items-start flex-column">
+                            <div class="seatplan-seat-content">
                                 <span>
                                     <p class="seatplan-lastname"></p>
                                     <p class="seatplan-firstname"></p>
                                 </span>
-                                <p class="seatplan-attendance-status mb-auto">PRESENT</p>
-                                </div>
+                                <p class="seatplan-attendance-status"></p>
+                            </div>
                         </div>';  
                 }?>
             </div>
@@ -182,13 +182,29 @@ if ($result->num_rows > 0) {
             <?php for($x = 26; $x <= 50; $x++){
                     echo '<div class="seatplan-seat" data-seat="' . $x .'">
                             <div class="seatplan-seat-content">
-                                <p class="seatplan-lastname"></p>
-                                <p class="seatplan-firstname"></p>
+                                <span>
+                                    <p class="seatplan-lastname"></p>
+                                    <p class="seatplan-firstname"></p>
+                                </span>
+                                <p class="seatplan-attendance-status"></p>
                             </div>
                         </div>';  
                 }?>
             </div>
         </div>
+
+        <!-- 
+        <div class="seatplan-seat" data-seat="1'">
+            <div class="seatplan-seat-content">
+                <span>
+                    <p class="seatplan-lastname"></p>
+                    <p class="seatplan-firstname"></p>
+                </span>
+                <p class="seatplan-attendance-status">PRESENT</p>
+            </div>
+        </div> 
+        -->
+
     </div>
     <div class="container d-flex align-items-center justify-content-center">
         <div class="teacher-table mt-4 seatplan-lastname">TEACHER'S TABLE</div>
@@ -250,6 +266,7 @@ if ($result->num_rows > 0) {
                             .then(response => response.json())
                             .then(attendanceStatus => {
                                 const status = attendanceStatus.status;
+                                seat.querySelector('.seatplan-attendance-status').textContent = status;
                                 seat.style.backgroundColor = colorStatus[status];
                                 // seat.querySelector('.seatplan-firstname').textContent = `${seatInfo.firstName} - ${status}`;
                             })
@@ -275,47 +292,58 @@ if ($result->num_rows > 0) {
 
             // Function to toggle through colors
             function toggleColor(studentId) {
-            const statusRadios = document.querySelectorAll('input[name="status"]');
-            let currentStatus;
+                const statusRadios = document.querySelectorAll('input[name="status"]');
+                let currentStatus;
 
-            // Loop through the radio buttons to find the selected one
-            statusRadios.forEach(radio => {
-                if (radio.checked) {
-                currentStatus = radio.value;
-                }
-            });
+                // Loop through the radio buttons to find the selected one
+                statusRadios.forEach(radio => {
+                    if (radio.checked) {
+                    currentStatus = radio.value;
+                    }
+                });
 
-            // Get the current color from the array
-            const currentColor = colorStatus[currentStatus];
+                // Get the current color from the array
+                const currentColor = colorStatus[currentStatus];
 
-            // Log the current color to the console
-            console.log(`Seat color changed to: ${currentColor} ${currentStatus}`);
+                // Log the current color to the console
+                console.log(`Seat color changed to: ${currentColor} ${currentStatus}`);
 
-            // Toggle the color by adding a class to the clicked seat
-            this.style.backgroundColor = currentColor;
+                
+                // Toggle the color by adding a class to the clicked seat
+                this.style.backgroundColor = currentColor;
 
-            // Get the student ID from the seat assignment
-            // const studentId = this.getAttribute('data-student-id');
-            console.log('Student ID:', studentId);
-            console.log('Class ID:', <?php echo $classId; ?>);
+                // Get the student ID from the seat assignment
+                // const studentId = this.getAttribute('data-student-id');
+                console.log('Student ID:', studentId);
+                console.log('Class ID:', <?php echo $classId; ?>);
 
-            // Send an AJAX request to update the attendance record
-            $.ajax({
-                type: 'POST',
-                url: 'save_attendance.php',
-                data: {
-                classId: <?php echo $classId; ?>,
-                studentId: studentId,
-                date: formattedDate,
-                status: currentStatus
-                },
-                success: function (response) {
-                console.log('Updated:', response);
-                },
-                error: function (error) {
-                console.error('Error updating attendance record:', error);
-                }
-            });
+                // Send an AJAX request to update the attendance record
+                $.ajax({
+                    type: 'POST',
+                    url: 'save_attendance.php',
+                    data: {
+                        classId: <?php echo $classId; ?>,
+                        studentId: studentId,
+                        date: formattedDate,
+                        status: currentStatus
+                    },
+                    success: function (response) {
+                        console.log('Updated:', response);
+
+                        // Fetch and update the attendance status after saving
+                        fetch(`get_attendance_status.php?classId=<?php echo $classId; ?>&studentId=${studentId}`)
+                            .then(response => response.json())
+                            .then(attendanceStatus => {
+                                const status = attendanceStatus.status;
+                                // Update the seat's attendance status text
+                                document.querySelector(`.seatplan-seat[data-student-id="${studentId}"] .seatplan-attendance-status`).textContent = status;
+                            })
+                            .catch(error => console.error('Error fetching attendance status:', error));
+                    },
+                    error: function (error) {
+                        console.error('Error updating attendance record:', error);
+                    }
+                });
             }
         });
         // Add click event listener to the "Mark all as present" button

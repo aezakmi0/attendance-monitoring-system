@@ -356,17 +356,18 @@ h1{
 }
 
 .seatplan-attendance-status{
-    font-weight: 600;
+    /* font-weight: 600; */
     color: #ffffff;
     font-size: 11px;
-    position: relative;
     /* font-size:.55vw; */
     text-transform: uppercase;
-    text-shadow: 1px 1px 4px gray;
+    /* text-shadow: 1px 1px 4px gray; */
+    margin-bottom: 10px !important;
 }
 
+
 .seatplan-seat:hover{
-    background-color: rgb(177, 177, 177);
+    background-color: rgb(179, 179, 179);
 }
 .seatplan-seat:hover .seatplan-status-btn {
     opacity: 1; /* Make the button fully visible on hover */
@@ -390,7 +391,13 @@ h1{
 .seatplan-status-btn:hover:nth-child(3) {
     background-color: rgb(204, 204, 204);
 }
-
+.seatplan-seat.clickable{
+    transition: box-shadow .2s ease-out;
+}
+.seatplan-seat.clickable:hover{
+    box-shadow: 0px 0px 20px rgb(165, 165, 165);
+    border: 1px solid rgb(255, 255, 255);
+}
 .my-grid {
     position: relative;
     width: 620px;
@@ -470,7 +477,15 @@ h1{
     hyphens: auto;
     transition: background-color 0.3s ease;
     /* border-radius: 10px; */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure the container takes full height */
   }
+
+  .seatplan-seat-content span {
+    order: -1; /* Move the span to the top */
+    margin-bottom: auto; /* Push the span to the top by giving it auto margin at the bottom */
+}
 
   /* .seatplan-seat-edit.muuri-item-dragging .seatplan-seat-content,
   .seatplan-seat-edit.muuri-item-releasing .seatplan-seat-content {
