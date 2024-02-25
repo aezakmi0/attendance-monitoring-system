@@ -65,7 +65,7 @@ if (isset($_GET['id'])) {
         </div> 
         <hr>
         <form class="form-control p-5 bg-light" action="add-student.php?id=<?php echo $classID; ?>" method="post">   
-            <h1 class="text-center">Add Students</h1>
+            <h1 class="text-center">Add Student</h1>
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
