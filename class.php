@@ -288,6 +288,8 @@ if ($result->num_rows > 0) {
 
                     seat.addEventListener('click', function () {
                         toggleColor.call(this, studentId);
+                        const seatplanAttendanceStatus = seat.querySelector('.seatplan-attendance-status');
+                        seatplanAttendanceStatus.classList.add("white-text");
                     });
                 });
             })
