@@ -89,6 +89,17 @@ if (isset($_GET['id'])) {
             <!-- Enrolled Students -->
             <div class="mt-5">
                 <h1 class="text-center mb-2">Enrolled Students</h1>
+                <div class="row mb-2 align-items-center justify-content-center" style="max-width: 700px !important;">
+                    <div class="col-md-9">
+                        <p class="label-text mb-1">SEARCH STUDENT</p>
+                        <input type="text" name="search_student" class="form-control input-border" placeholder="Enter student's information">
+                    </div>
+                    <div class="col">
+                        <p class="label-text mb-1 invisible">SEARCH BUTTON</p>
+                        <button class="btn input-border create-class-button w-100">Search</button>
+                    </div>
+                </div>
+
                 <table class="table table-sm table-hover table-light">
                     <tr>
                         <th>STUDENT ID</th>
