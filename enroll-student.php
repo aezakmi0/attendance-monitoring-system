@@ -85,11 +85,14 @@ if (isset($_GET['id'])) {
                     <button class="btn input-border create-class-button w-100" type="submit" value="Submit">Add</button>
                 </div>
             </div>
+        </form>
 
+        <div class="form-control p-5 bg-light mt-3">
             <!-- Enrolled Students -->
-            <div class="mt-5">
+            <div>            
                 <h1 class="text-center mb-2">Enrolled Students</h1>
-                <div class="row mb-2 align-items-center justify-content-center" style="max-width: 700px !important;">
+                <!-- Search student -->
+                <div class="row mb-3 mx-auto" style="max-width: 700px !important;">
                     <div class="col-md-9">
                         <p class="label-text mb-1">SEARCH STUDENT</p>
                         <input type="text" name="search_student" class="form-control input-border" placeholder="Enter student's information">
@@ -141,8 +144,7 @@ if (isset($_GET['id'])) {
 
 
             </div>
-
-        </form>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
