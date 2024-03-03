@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -52,7 +55,7 @@
             </div>
             <div class="col-md">
                 <div class="form-floating w-100">
-                    <input type="time" class="form-control input-border" id="filterTime">
+                    <input type="text" class="form-control input-border clockpicker" id="filterTime" placeholder="">
                     <label for="filterTime">Time</label>
                 </div>
             </div>
@@ -125,7 +128,24 @@
     <!-- CLASS BUTTON -->
     <div id="dynamicButtonsContainer" class="container d-flex flex-wrap"></div>
     
+
     <script>
+        $(document).ready(function () {
+            // Initialize ClockPicker when the input field is clicked
+            $('#filterTime').clockpicker({
+                placement: 'bottom',
+                align: 'left',
+                donetext: 'Done',
+                autoclose: true,
+                twelvehour: true // Set twelvehour to true for 12-hour format
+            });
+
+            // Listen to the 'change' event provided by ClockPicker
+            $('#filterTime').on('change', function () {
+                console.log('time is: ', $(this).val());
+                filterClassesByTime($(this).val());
+            });
+        });
         document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('filterSearch');
             searchInput.addEventListener('input', function () {
