@@ -173,50 +173,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const toastContainer = document.getElementById('toastContainer');
-            const addStudentBtn = document.getElementById('addStudentBtn');
+        function searchStudent(keyword) {
+            // Get the table rows
+            var rows = document.querySelectorAll('.table tr');
 
-            addStudentBtn.addEventListener('click', function () {
-                showToast('Student successfully added!');
-            });
+            // Iterate through each row
+            for (var i = 1; i < rows.length; i++) {
+                var studentName = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
 
-            function showToast(message) {
-                const newToast = document.createElement('div');
-                newToast.className = 'toast d-flex';
-                newToast.setAttribute('role', 'alert');
-                newToast.setAttribute('aria-live', 'assertive');
-                newToast.setAttribute('aria-atomic', 'true');
-
-                newToast.innerHTML = `
-                    <div class="toast-body">${message}</div>
-                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                `;
-
-                const toastBootstrap = new bootstrap.Toast(newToast);
-                toastContainer.appendChild(newToast);
-
-                // Show the new toast
-                toastBootstrap.show();
-            }
-
-            function searchStudent(keyword) {
-                // Get the table rows
-                var rows = document.querySelectorAll('.table tr');
-
-                // Iterate through each row
-                for (var i = 1; i < rows.length; i++) {
-                    var studentName = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
-
-                    // Check if the student name contains the keyword
-                    if (studentName.includes(keyword.toLowerCase())) {
-                        rows[i].style.display = ''; // Show the row
-                    } else {
-                        rows[i].style.display = 'none'; // Hide the row
-                    }
+                // Check if the student name contains the keyword
+                if (studentName.includes(keyword.toLowerCase())) {
+                    rows[i].style.display = ''; // Show the row
+                } else {
+                    rows[i].style.display = 'none'; // Hide the row
                 }
             }
-        });
+        }
     </script>
 
 
