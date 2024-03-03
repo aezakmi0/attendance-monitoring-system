@@ -95,12 +95,12 @@ if (isset($_GET['id'])) {
                 <div class="row mb-3 mx-auto" style="max-width: 700px !important;">
                     <div class="col-md-9">
                         <p class="label-text mb-1">SEARCH STUDENT</p>
-                        <input type="text" name="search_student" class="form-control input-border" placeholder="Enter student's information">
+                        <input type="text" class="form-control input-border" oninput="searchStudent(this.value)" placeholder="Enter student's name">
                     </div>
                     <div class="col">
                         <p class="label-text mb-1 invisible">SEARCH BUTTON</p>
                         <button class="btn input-border create-class-button w-100">Search</button>
-                    </div>
+                    </div>  
                 </div>
 
                 <table class="table table-sm table-hover table-light">
@@ -150,5 +150,24 @@ if (isset($_GET['id'])) {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        function searchStudent(keyword) {
+            // Get the table rows
+            var rows = document.querySelectorAll('.table tr');
+
+            // Iterate through each row
+            for (var i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
+                var studentName = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
+
+                // Check if the student name contains the keyword
+                if (studentName.includes(keyword.toLowerCase())) {
+                    rows[i].style.display = ''; // Show the row
+                } else {
+                    rows[i].style.display = 'none'; // Hide the row
+                }
+            }
+        }
+    </script>
+
 </body>
 </html>
