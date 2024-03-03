@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $classCode = $_POST['class_code'];
     $className = $_POST['class_name'];
     $room = $_POST['room'];
-    $timeStart = $_POST['time_start'];
-    $timeEnd = $_POST['time_end'];
+    $timeStart = convert12to24($_POST['time_start']);
+    $timeEnd = convert12to24($_POST['time_end']);
     $selected_days = isset($_POST["day"]) && is_array($_POST["day"]) ? implode("", $_POST["day"]) : '';
 
     // Assuming your SQL query is something like this
@@ -53,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':room', $room);
     $stmt->bindParam(':time_start', $timeStart);
     $stmt->bindParam(':time_end', $timeEnd);
-    $stmt->bindParam(':day', $selected_days); // Fix the variable name here
-    $stmt->bindParam(':class_id', $classId); // Fix the variable name here
+    $stmt->bindParam(':day', $selected_days);
+    $stmt->bindParam(':class_id', $classId);
 
     // Execute the update
     $stmt->execute();
@@ -72,4 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Close the MySQLi connection
 $db->close();
+
+// Function to convert 12-hour time to 24-hour format
+function convert12to24($time12) {
+    return date("H:i", strtotime($time12));
+}
 ?>

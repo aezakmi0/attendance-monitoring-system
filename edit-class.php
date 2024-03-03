@@ -53,6 +53,9 @@ if (isset($_GET['id'])) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.js"></script>
   </head>
 <body>
   <!-- Navbar -->
@@ -128,12 +131,12 @@ if (isset($_GET['id'])) {
         <!-- Time Start -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">START</p>
-          <input type="time" class="form-control input-border" name="time_start" id="floatingInputGrid" required>
+          <input type="text" class="form-control input-border" name="time_start" id="timeInputStart" placeholder="Starting Time" required>
         </div>
         <!-- Time End -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">END</p>
-          <input type="time" class="form-control input-border" name="time_end" id="floatingInputGrid" required>
+          <input type="text" class="form-control input-border" name="time_end" id="timeInputEnd" placeholder="Ending Time" required>
         </div>
         <!-- Day -->
         <div class="col-md">
@@ -173,6 +176,27 @@ if (isset($_GET['id'])) {
     </form>
 
     <script>
+
+      $(document).ready(function () {
+          // Initialize ClockPicker when the input field is clicked
+          $('#timeInputStart, #timeInputEnd').clockpicker({
+              placement: 'bottom',
+              align: 'left',
+              donetext: 'Done',
+              autoclose: false,
+              twelvehour: true // Set twelvehour to true for 12-hour format
+          });
+
+          // Listen to the 'change' event provided by ClockPicker
+          $('#timeInputStart, #timeInputEnd').on('change', function () {
+              console.log('time is: ', $(this).val());
+              // Convert 12-hour format to 24-hour format
+              var timeStart = document.getElementById('timeInputStart').value;
+              var timeEnd = document.getElementById('timeInputEnd').value;
+              console.log('Schedule is: ', timeStart, ' - ', timeEnd);
+              // filterClassesByTime(convertedTime);
+          });
+      });
         document.addEventListener('DOMContentLoaded', function () {
             // Check if classData is defined
             if (typeof <?php echo json_encode($classData); ?> !== 'undefined') {
@@ -183,8 +207,25 @@ if (isset($_GET['id'])) {
                 document.querySelector('input[name="class_code"]').value = classData.class_code;
                 document.querySelector('input[name="class_name"]').value = classData.class_name;
                 document.querySelector('select[name="room"]').value = classData.room;
-                document.querySelector('input[name="time_start"]').value = classData.time_start;
-                document.querySelector('input[name="time_end"]').value = classData.time_end;
+                // document.querySelector('input[name="time_start"]').value = classData.time_start;
+                // document.querySelector('input[name="time_end"]').value = classData.time_end;
+                // Format the time to exclude seconds
+                var formattedStartTime = formatTime(classData.time_start);
+                var formattedEndTime = formatTime(classData.time_end);
+
+                document.querySelector('input[name="time_start"]').value = formattedStartTime;
+                document.querySelector('input[name="time_end"]').value = formattedEndTime;
+
+                // Function to format time to exclude seconds
+                function formatTime(timeString) {
+                    // Parse the time string
+                    var parsedTime = new Date("1970-01-01T" + timeString + "Z");
+
+                    // Get the formatted time (hh:mm)
+                    var formattedTime = parsedTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    return formattedTime;
+                }
 
                 // Set values for checkboxes based on the days
                 var days = <?php echo json_encode(explode(',', $classData['day'])); ?>;
