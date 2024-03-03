@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.js"></script>
   </head>
 <body>
   <!-- Navbar -->
@@ -21,12 +24,12 @@
         <!-- Class Code -->
         <div class="col-md-4">
             <p class="label-text mb-1 mt-3">CLASS CODE</p>
-            <input type="text" class="form-control input-border" name="class_code" placeholder="Enter Class Code" required>
+            <input type="text" class="form-control input-border" name="class_code" placeholder="Enter Class Code" autocomplete="off" required>
         </div>
         <!-- Class Name -->
         <div class="col-md-8">
           <p class="label-text mb-1 mt-3">CLASS NAME</p>
-          <input type="text" class="form-control input-border" name="class_name" placeholder="Enter Class Name" required>
+          <input type="text" class="form-control input-border" name="class_name" placeholder="Enter Class Name" autocomplete="off" required>
         </div>
       </div>
       
@@ -82,12 +85,12 @@
         <!-- Time Start -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">START</p>
-          <input type="time" class="form-control input-border" name="time_start" id="floatingInputGrid" required>
+          <input type="text" class="form-control input-border" name="time_start" id="timeInputStart" placeholder="Starting Time" required>
         </div>
         <!-- Time End -->
         <div class="col-md d-block">
           <p class="label-text mb-1 mt-3">END</p>
-          <input type="time" class="form-control input-border" name="time_end" id="floatingInputGrid" required>
+          <input type="text" class="form-control input-border" name="time_end" id="timeInputEnd" placeholder="Ending Time" required>
         </div>
         <!-- Day -->
         <div class="col-md">
@@ -128,6 +131,22 @@
 
 
     <script>
+        $(document).ready(function () {
+          // Initialize ClockPicker when the input field is clicked
+          $('#timeInputStart, #timeInputEnd').clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            donetext: 'Done',
+            autoclose: true,
+            twelvehour: true // Set twelvehour to true for 12-hour format
+          });
+
+          // Listen to the 'change' event provided by ClockPicker
+          $('#timeInputStart, #timeInputEnd').on('change', function () {
+            console.log('time is: ', $(this).val());
+            // filterClassesByTime($(this).val());
+          });
+        });
         document.addEventListener('DOMContentLoaded', function () {
             var form = document.querySelector('form');
             var invalidFeedback = document.querySelector('.invalid-feedback');
