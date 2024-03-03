@@ -92,15 +92,15 @@ if (isset($_GET['id'])) {
             <div>            
                 <h1 class="text-center mb-2">Enrolled Students</h1>
                 <!-- Search student -->
-                <div class="row mb-3 mx-auto" style="max-width: 700px !important;">
-                    <div class="col-md-9">
+                <div class="mb-3 mx-auto" style="max-width: 700px !important;">
+                    <div class="">
                         <p class="label-text mb-1">SEARCH STUDENT</p>
                         <input type="text" class="form-control input-border" oninput="searchStudent(this.value)" placeholder="Enter student's name">
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                         <p class="label-text mb-1 invisible">SEARCH BUTTON</p>
                         <button class="btn input-border create-class-button w-100">Search</button>
-                    </div>  
+                    </div>   -->
                 </div>
 
                 <table class="table table-sm table-hover table-light">
