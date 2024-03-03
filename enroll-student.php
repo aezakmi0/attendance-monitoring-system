@@ -88,62 +88,58 @@ if (isset($_GET['id'])) {
         </form>
 
         <div class="form-control p-5 bg-light mt-3">
-            <!-- Enrolled Students -->
-            <div>            
-                <h1 class="text-center mb-2">Enrolled Students</h1>
-                <!-- Search student -->
-                <div class="mb-3 mx-auto" style="max-width: 700px !important;">
-                    <div class="">
-                        <p class="label-text mb-1">SEARCH STUDENT</p>
-                        <input type="text" class="form-control input-border" oninput="searchStudent(this.value)" placeholder="Enter student's name">
-                    </div>
-                    <!-- <div class="col">
-                        <p class="label-text mb-1 invisible">SEARCH BUTTON</p>
-                        <button class="btn input-border create-class-button w-100">Search</button>
-                    </div>   -->
+            <!-- Enrolled Students -->           
+            <h1 class="text-center mb-4">Enrolled Students</h1>
+            <!-- Search student -->
+            <div class="mb-3 mx-auto" style="max-width: 600px !important;">
+                <div class="input-group">
+                    <input type="text" class="form-control input-border" oninput="searchStudent(this.value)" placeholder="Enter student's name">
+                    <span class="input-group-text input-border" style="border-left: none !important; background-color: #227710;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </span>
                 </div>
-
-                <table class="table table-sm table-hover table-light">
-                    <tr>
-                        <th>STUDENT ID</th>
-                        <th colspan="2">NAME</th>
-                    </tr>
-                    <?php
-                    // Fetch enrolled students for the given classID
-                    $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name, c.class_code
-                                    FROM tb_enrollment e
-                                    INNER JOIN tb_student s ON s.student_ID = e.student_ID
-                                    INNER JOIN tb_class c ON c.class_ID = e.class_ID
-                                    WHERE e.class_ID = ? AND e.is_deleted = 0
-                                    ORDER BY s.last_name ASC";
-
-                    $enrolledStmt = $db->prepare($enrolledQuery);
-                    $enrolledStmt->bind_param("i", $classID);
-                    $enrolledStmt->execute();
-                    $enrolledResult = $enrolledStmt->get_result();
-
-                    // Display enrolled students
-                    while ($row = $enrolledResult->fetch_assoc()) {
-                        $firstName = ucwords(strtolower($row['first_name'])); // Capitalize first letter of each word
-                        $lastName = ucwords(strtolower($row['last_name'])); // Capitalize first letter of each word
-
-                        echo "<tr class='align-middle'>";
-                        echo "<td>{$row['ID_number']}</td>";
-                        echo "<td>{$lastName}, {$firstName}</td>";
-                        echo "<td class='text-end'>
-                                <a type='button' class='btn btn-sm btn-outline-dark  btn-rounded' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
-                                <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove {$lastName}, {$firstName} on class {$row['class_code']}?')\">Remove</a>
-                            </td>";
-                        echo "</tr>";
-                    }
-
-                    // Close the prepared statement
-                    $enrolledStmt->close();
-                    ?>
-                </table>
-
-
             </div>
+
+            <table class="table table-sm table-hover table-light">
+                <tr>
+                    <th>STUDENT ID</th>
+                    <th colspan="2">NAME</th>
+                </tr>
+                <?php
+                // Fetch enrolled students for the given classID
+                $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name, c.class_code
+                                FROM tb_enrollment e
+                                INNER JOIN tb_student s ON s.student_ID = e.student_ID
+                                INNER JOIN tb_class c ON c.class_ID = e.class_ID
+                                WHERE e.class_ID = ? AND e.is_deleted = 0
+                                ORDER BY s.last_name ASC";
+
+                $enrolledStmt = $db->prepare($enrolledQuery);
+                $enrolledStmt->bind_param("i", $classID);
+                $enrolledStmt->execute();
+                $enrolledResult = $enrolledStmt->get_result();
+
+                // Display enrolled students
+                while ($row = $enrolledResult->fetch_assoc()) {
+                    $firstName = ucwords(strtolower($row['first_name'])); // Capitalize first letter of each word
+                    $lastName = ucwords(strtolower($row['last_name'])); // Capitalize first letter of each word
+
+                    echo "<tr class='align-middle'>";
+                    echo "<td>{$row['ID_number']}</td>";
+                    echo "<td>{$lastName}, {$firstName}</td>";
+                    echo "<td class='text-end'>
+                            <a type='button' class='btn btn-sm btn-outline-dark  btn-rounded' href='edit-student.php?id=$classID&studentid={$row['student_ID']}'>Edit</a>
+                            <a type='button' class='btn btn-sm btn-danger  btn-rounded' href='delete_student.php?id=$classID&studentid={$row['student_ID']}' onclick=\"return confirm('Are you sure you want to remove {$lastName}, {$firstName} on class {$row['class_code']}?')\">Remove</a>
+                        </td>";
+                    echo "</tr>";
+                }
+
+                // Close the prepared statement
+                $enrolledStmt->close();
+                ?>
+            </table>
         </div>
     </div>
 
