@@ -41,6 +41,19 @@ if (isset($_GET['id'])) {
     exit;
 }
 ?>
+<?php
+// Check if the form was submitted successfully
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Your existing code to add the student goes here
+
+    // Show the success toast
+    echo "<script>
+            $(document).ready(function(){
+                $('#successToast').toast('show');
+            });
+        </script>";
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +70,15 @@ if (isset($_GET['id'])) {
 <body>
     <!-- Navbar -->
     <!-- <div id="navbar-container"></div> -->
-    
+
+    <!-- TOASTS -->
+    <!-- <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex" id="liveToast">
+            <div class="toast-body">Student added successfully!</div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div> -->
+
     <div class="container">
         <div class="d-flex mt-5">
             <a href="class.php?id=<?php echo $classID; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
@@ -82,11 +103,12 @@ if (isset($_GET['id'])) {
                 
                 <div class="col-md-2">
                     <p class="label-text mb-1 mt-3 invisible">ADD</p>
-                    <button class="btn input-border create-class-button w-100" type="submit" value="Submit">Add</button>
+                    <button class="btn input-border create-class-button w-100" id="addStudentBtn" type="submit" value="Submit">Add</button>
                 </div>
             </div>
         </form>
-
+       
+        
         <div class="form-control p-5 bg-light mt-3">
             <!-- Enrolled Students -->           
             <h1 class="text-center mb-4">Enrolled Students</h1>
@@ -143,27 +165,60 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script>
-        function searchStudent(keyword) {
-            // Get the table rows
-            var rows = document.querySelectorAll('.table tr');
+        document.addEventListener('DOMContentLoaded', function () {
+            const toastContainer = document.getElementById('toastContainer');
+            const addStudentBtn = document.getElementById('addStudentBtn');
 
-            // Iterate through each row
-            for (var i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
-                var studentName = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
+            addStudentBtn.addEventListener('click', function () {
+                showToast('Student successfully added!');
+            });
 
-                // Check if the student name contains the keyword
-                if (studentName.includes(keyword.toLowerCase())) {
-                    rows[i].style.display = ''; // Show the row
-                } else {
-                    rows[i].style.display = 'none'; // Hide the row
+            function showToast(message) {
+                const newToast = document.createElement('div');
+                newToast.className = 'toast d-flex';
+                newToast.setAttribute('role', 'alert');
+                newToast.setAttribute('aria-live', 'assertive');
+                newToast.setAttribute('aria-atomic', 'true');
+
+                newToast.innerHTML = `
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                `;
+
+                const toastBootstrap = new bootstrap.Toast(newToast);
+                toastContainer.appendChild(newToast);
+
+                // Show the new toast
+                toastBootstrap.show();
+            }
+
+            function searchStudent(keyword) {
+                // Get the table rows
+                var rows = document.querySelectorAll('.table tr');
+
+                // Iterate through each row
+                for (var i = 1; i < rows.length; i++) {
+                    var studentName = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
+
+                    // Check if the student name contains the keyword
+                    if (studentName.includes(keyword.toLowerCase())) {
+                        rows[i].style.display = ''; // Show the row
+                    } else {
+                        rows[i].style.display = 'none'; // Hide the row
+                    }
                 }
             }
-        }
+        });
     </script>
+
 
 </body>
 </html>
