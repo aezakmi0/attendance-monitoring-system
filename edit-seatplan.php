@@ -146,6 +146,16 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Modal -->
     <div id="assignModal" class="rounded">
         <h4>Assign Seat To:</h4>
+        <!-- Search Student -->
+        <div class="input-group">
+            <input type="text" class="form-control input-border" id="searchStudentValue" oninput="searchStudent(this.value)" placeholder="Enter student's name" autocomplete="one-time-code">
+            <span class="input-group-text input-border" style="border-left: none !important; background-color: #227710;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </span>
+        </div>
+        <!-- End search student -->
         <hr class="hr">
         <ul id="studentList" class="list-unstyled"></ul>
         <hr class="hr">
@@ -154,6 +164,23 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         
     <script>
+        function searchStudent(keyword) {
+            // Get all list items within the studentList
+            const listItems = document.querySelectorAll('#studentList li');
+
+            // Iterate through each list item
+            listItems.forEach(listItem => {
+                const studentName = listItem.querySelector('span').textContent.toLowerCase();
+
+                // Check if the student name contains the keyword
+                if (studentName.includes(keyword.toLowerCase())) {
+                    listItem.style.display = 'block'; // Show the list item
+                } else {
+                    listItem.style.display = 'none'; // Hide the list item
+                }
+            });
+        }
+
         // Update the script to handle modal interactions and AJAX request
         const seatplanSeats = document.querySelectorAll('.seatplan-seat');
         const assignModal = document.getElementById('assignModal');
@@ -275,6 +302,14 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
             assignModal.style.display = 'none';
             selectedSeatNumber = null; // Reset the selected seat number
             selectedStudentID = null; // Reset the selected student ID
+
+            // Get the search input element and set its value to an empty string
+            var searchInput = document.getElementById('searchStudentValue');
+            if (searchInput) {
+                searchInput.value = "";
+            }
+
+            location.reload();
         };
 
     </script>

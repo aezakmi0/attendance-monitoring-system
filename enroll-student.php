@@ -101,7 +101,7 @@ if (isset($_GET['id'])) {
                     </span>
                 </div>
             </div>
-
+            <!-- End search student -->
             <table class="table table-sm table-hover table-light">
                 <tr>
                     <th>STUDENT ID</th>
