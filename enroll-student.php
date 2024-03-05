@@ -198,9 +198,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Show the new toast
                 toastBootstrap.show();
-            }
-
-            function searchStudent(keyword) {
+            } 
+        });
+        function searchStudent(keyword) {
                 // Get the table rows
                 var rows = document.querySelectorAll('.table tr');
 
@@ -216,7 +216,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 }
             }
-        });
     </script>
 
 
