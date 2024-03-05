@@ -137,3 +137,24 @@ function updateDate() {
     // Update the date every 1 second (1000 milliseconds)
     setInterval(updateDate, 1000);
 }
+
+function showToast(message) {
+    const newToast = document.createElement('div');
+    newToast.className = 'toast d-flex';
+    newToast.setAttribute('role', 'alert');
+    newToast.setAttribute('aria-live', 'assertive');
+    newToast.setAttribute('aria-atomic', 'true');
+
+    newToast.innerHTML = `
+        <div class="toast-body">${message}</div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    `;
+
+    const toastContainer = document.getElementById('toastContainer');
+    toastContainer.appendChild(newToast);
+
+    const toastBootstrap = new bootstrap.Toast(newToast);
+
+    // Show the new toast
+    toastBootstrap.show();
+}

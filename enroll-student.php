@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";
@@ -39,19 +40,6 @@ if (isset($_GET['id'])) {
     // Handle the case where class_ID is not provided
     echo "Class ID not provided!";
     exit;
-}
-?>
-<?php
-// Check if the form was submitted successfully
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Your existing code to add the student goes here
-
-    // Show the success toast
-    echo "<script>
-            $(document).ready(function(){
-                $('#successToast').toast('show');
-            });
-        </script>";
 }
 ?>
 
@@ -174,31 +162,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const toastContainer = document.getElementById('toastContainer');
-            const addStudentBtn = document.getElementById('addStudentBtn');
+            <?php
+            // Check if a success message is set
+            if (isset($_SESSION['success_message'])) {
+                // Display the toast message
+                echo 'showToast("' . $_SESSION['success_message'] . '");';
 
-            addStudentBtn.addEventListener('click', function () {
-                showToast('Student successfully added!');
-            });
-
-            function showToast(message) {
-                const newToast = document.createElement('div');
-                newToast.className = 'toast d-flex';
-                newToast.setAttribute('role', 'alert');
-                newToast.setAttribute('aria-live', 'assertive');
-                newToast.setAttribute('aria-atomic', 'true');
-
-                newToast.innerHTML = `
-                    <div class="toast-body">${message}</div>
-                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                `;
-
-                const toastBootstrap = new bootstrap.Toast(newToast);
-                toastContainer.appendChild(newToast);
-
-                // Show the new toast
-                toastBootstrap.show();
-            } 
+                // Clear the session variable to avoid displaying the message again on subsequent visits
+                unset($_SESSION['success_message']);
+            }
+            ?>
         });
         function searchStudent(keyword) {
                 // Get the table rows
