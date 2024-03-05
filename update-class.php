@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Assuming you have a database connection established using MySQLi
 $servername = "localhost";
 $username = "root";
@@ -62,16 +63,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close the PDO connection (not needed if the script is about to end)
     $pdo = null;
 
-    header("Location: class.php?id=$classId");
-    exit();
+    $_SESSION['success_message'] = 'Class information updated successfully!';
 } else {
     // Redirect back to the form page if the form is not submitted
-    header("Location: edit-class.php?id=$classId");
-    exit();
+    $_SESSION['success_message'] = 'Unable to update class information. Please try again later or contact support for assistance.';
 }
 
 // Close the MySQLi connection
 $db->close();
+header("Location: class.php?id=$classId");
+exit();
 
 // Function to convert 12-hour time to 24-hour format
 function convert12to24($time12) {
