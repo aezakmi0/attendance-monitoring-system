@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result_enrollment) {
             // echo "success"; 
-            $_SESSION['success_message'] = 'Student successfully added!';
+            $_SESSION['success_message'] = 'Student successfully added!'; //Form submission successful
         } else {
             echo "Failed to enroll student. Please try again.";
         }
