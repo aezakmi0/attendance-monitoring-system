@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Monitoring System</title>
+    <style>
+        body{
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 30vh;
+        }
+        .title{
+            font-size: 30px;
+            
+        }
+        input:focus {
+            outline-width: 0;
+            /* border: 4px solid red; */
+        }
+        .input{
+            margin-top: 10px;
+            outline: none;
+        }
+        .logo{
+            width: 150px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/logo.png" class="logo">
+    <div class="title">Attendance Monitoring System</div>
+    <div class="input">
+        <label for="pWord">Password:</label>
+        <input type="password" id="pWord">
+        <button type="submit" id="button" onclick="validate()">Go</button>
+    </div>
+    <script>
+        
+        function validate() {
+            const password = document.getElementById('pWord');
+            const pFeedback = document.getElementById('password-feedback');
+            
+            if (password.value === 'jelan'){
+                window.location.pathname = "attendance-monitoring-system/index.html";
+            }
+            else{
+                password.style.border = "1px solid red";
+                password.value = "";
+            }
+        }
+
+        document.getElementById('pWord').addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                document.getElementById("button").click();
+            }
+        });
+        
+    </script>
+</body>
+</html>
