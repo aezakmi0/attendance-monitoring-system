@@ -174,9 +174,6 @@ if (isset($_GET['id'])) {
             ?>
         });
         function searchStudent(keyword) {
-                // Get the table rows
-                var rows = document.querySelectorAll('.table tr');
-        function searchStudent(keyword) {
             // Get the table rows
             var rows = document.querySelectorAll('.table tr');
 
@@ -184,14 +181,6 @@ if (isset($_GET['id'])) {
             for (var i = 1; i < rows.length; i++) {
                 var studentName = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
 
-                    // Check if the student name contains the keyword
-                    if (studentName.includes(keyword.toLowerCase())) {
-                        rows[i].style.display = ''; // Show the row
-                    } else {
-                        rows[i].style.display = 'none'; // Hide the row
-                    }
-                }
-            }
                 // Check if the student name contains the keyword
                 if (studentName.includes(keyword.toLowerCase())) {
                     rows[i].style.display = ''; // Show the row
