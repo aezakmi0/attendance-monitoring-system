@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";
@@ -56,8 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($updateStmt->execute()) {
         // Redirect only after successful update
-        header("Location: enroll-student.php?id=$classID");
-        exit;
+        $_SESSION['success_message'] = 'Student information updated successfully!';
     } else {
         // Handle the case where the update fails
         echo "Error updating student details: " . $updateStmt->error;
@@ -65,6 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Close the prepared statement
     $updateStmt->close();
+    header("Location: enroll-student.php?id=$classID");
+    exit;
 }
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";
@@ -39,19 +40,6 @@ if (isset($_GET['id'])) {
     // Handle the case where class_ID is not provided
     echo "Class ID not provided!";
     exit;
-}
-?>
-<?php
-// Check if the form was submitted successfully
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Your existing code to add the student goes here
-
-    // Show the success toast
-    echo "<script>
-            $(document).ready(function(){
-                $('#successToast').toast('show');
-            });
-        </script>";
 }
 ?>
 
@@ -173,6 +161,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            <?php
+            // Check if a success message is set
+            if (isset($_SESSION['success_message'])) {
+                // Display the toast message
+                echo 'showToast("' . $_SESSION['success_message'] . '");';
+
+                // Clear the session variable to avoid displaying the message again on subsequent visits
+                unset($_SESSION['success_message']);
+            }
+            ?>
+        });
+        function searchStudent(keyword) {
+                // Get the table rows
+                var rows = document.querySelectorAll('.table tr');
         function searchStudent(keyword) {
             // Get the table rows
             var rows = document.querySelectorAll('.table tr');
@@ -181,6 +184,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             for (var i = 1; i < rows.length; i++) {
                 var studentName = rows[i].querySelector('td:nth-child(2)').textContent.toLowerCase();
 
+                    // Check if the student name contains the keyword
+                    if (studentName.includes(keyword.toLowerCase())) {
+                        rows[i].style.display = ''; // Show the row
+                    } else {
+                        rows[i].style.display = 'none'; // Hide the row
+                    }
+                }
+            }
                 // Check if the student name contains the keyword
                 if (studentName.includes(keyword.toLowerCase())) {
                     rows[i].style.display = ''; // Show the row

@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";
@@ -213,6 +214,10 @@ if ($result->num_rows > 0) {
         <a type="button" class="btn btn-primary m-1 mb-2" href="#">Save Attendance</a>
     </div> -->
 
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
+    </div>
+    
     <script>
         const seatplanSeats = document.querySelectorAll('.seatplan-seat');
         const assignModal = document.getElementById('assignModal');
@@ -225,6 +230,17 @@ if ($result->num_rows > 0) {
         var formattedDate = year + '-' + month + '-' + day;
 
         document.addEventListener('DOMContentLoaded', function () {
+            <?php
+            // Check if a success message is set
+            if (isset($_SESSION['success_message'])) {
+                // Display the toast message
+                echo 'showToast("' . $_SESSION['success_message'] . '");';
+
+                // Clear the session variable to avoid displaying the message again on subsequent visits
+                unset($_SESSION['success_message']);
+            }
+            ?>
+
             // Define an array of colors to loop through
             const colors = ['#4ab33d', '#ff4747', '#ff9640', '#6090eb'];
             const status = ['present', 'absent', 'late', 'excused'];
