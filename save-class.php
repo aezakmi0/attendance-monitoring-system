@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
-        header("Location: index.html");
+        header("Location: index.php");
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

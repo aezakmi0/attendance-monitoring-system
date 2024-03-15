@@ -123,7 +123,7 @@
         </div>
 
         <div class="d-flex justify-content-center mt-5">
-          <a type="button" class="btn btn-black btn-outline-dark m-1" href="index.html">Cancel</a>
+          <a type="button" class="btn btn-black btn-outline-dark m-1" href="index.php">Cancel</a>
           <button class="btn input-border create-class-button m-1" type="submit">Save</button>
         </div>
       </div>

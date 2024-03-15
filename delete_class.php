@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
         $stmt->execute();
 
         // Redirect to a confirmation page or back to the class list
-        header("Location: index.html");
+        header("Location: index.php");
         exit();
     } catch (Exception $e) {
         // Handle database errors
@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
     }
 } else {
     // Redirect to an error page or back to the class list
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 ?>

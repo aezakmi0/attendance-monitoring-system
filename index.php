@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div class="col-md">
-                <a class="btn create-class-button w-100" href="create-class.html" role="button">
+                <a class="btn create-class-button w-100" href="create-class.php" role="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
                         <path fill="currentColor" d="M14.5 13V3.754a.75.75 0 0 0-1.5 0V13H3.754a.75.75 0 0 0 0 1.5H13v9.253a.75.75 0 0 0 1.5 0V14.5l9.25.003a.75.75 0 0 0 0-1.5L14.5 13Z"/>
                     </svg>
