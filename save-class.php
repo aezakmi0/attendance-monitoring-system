@@ -28,10 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    // class.php?id=${class_ID}
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
-        header("Location: index.php");
+        // Retrieve the last inserted ID
+        $last_insert_id = $conn->insert_id;
+
+        // Redirect to another page using the class_ID
+        header("Location: enroll-student.php?id=" . $last_insert_id);
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

@@ -17,7 +17,7 @@
     <!-- Navbar -->
     <!-- <div id="navbar-container"></div> -->
     <!-- for "online attendance" and date today -->
-    <div class="page-title container d-flex justify-content-between align-items-center">
+    <div class="mt-2 container d-flex justify-content-between align-items-center">
         <h1 class="class-code">Attendance</h1>
         <div class="date-today" id="dateToday">
             <h2 id="dayOfWeek"></h2>
@@ -26,7 +26,7 @@
     </div>
     
     <!-- for the filter form or create class -->
-    <div class="container search-and-filter">
+    <div class="container mt-3">
         <!-- Labels -->
         <div class="row g-3 ">
             <div class="col-md">
