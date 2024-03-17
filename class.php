@@ -55,7 +55,6 @@ if ($result->num_rows > 0) {
             <!-- <hr class="hr" /> -->
 
             <!-- Breadcrumbs -->
-            <!-- <p class="label-text-2 mt-3 mb-3 breadcrumbs">Home \ Class \ <span style="color: #227710; font-weight: 600;">Edit Seatplan</span></p> -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
