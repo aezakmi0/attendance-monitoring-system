@@ -28,6 +28,8 @@ if (isset($_GET['id'])) {
     // Check if the class exists
     if ($result->num_rows > 0) {
         $classData = $result->fetch_assoc();
+        // Extract class code
+        $classCode = $classData['class_code'];
     } else {
         // Handle the case where the class is not found
         echo "Class not found!";
@@ -68,7 +70,15 @@ if (isset($_GET['id'])) {
     </div> -->
 
     <div class="container">
-        <div class="d-flex mt-5">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="class.php?id=<?php echo $classID; ?>"><?php echo $classCode; ?></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Students</li>
+            </ol>
+        </nav>
+        <div class="d-flex">
             <a href="class.php?id=<?php echo $classID; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
             <span id="classHeader"><?php include 'class-header.php'; ?></span>  
         </div> 
