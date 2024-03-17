@@ -40,6 +40,13 @@ $stmt->execute();
 // Fetch the result
 $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// GET CLASSCODE QUERY
+$sqlClassCode = "SELECT class_code FROM tb_class WHERE class_ID = :classId";
+$stmtClassCode = $pdo->prepare($sqlClassCode);
+$stmtClassCode->bindParam(':classId', $classId, PDO::PARAM_INT);
+$stmtClassCode->execute();
+$classCodeResult = $stmtClassCode->fetch(PDO::FETCH_ASSOC);
+$classCode = $classCodeResult ? $classCodeResult['class_code'] : "Unknown"; // Default value if no result
 ?>
 
 
@@ -86,23 +93,29 @@ $duplicateSeats = $stmt->fetchAll(PDO::FETCH_ASSOC);
     background-color: red;
 }
 
-        /* Add more styles as needed */
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <!-- <div id="navbar-container"></div> -->
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="class.php?id=<?php echo $classId; ?>"><?php echo $classCode; ?></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Seatplan</li>
+            </ol>
+        </nav>
 
-    <div class="container d-flex mt-5 mb-3 justify-content-between" style="background-color: rgb(255, 255, 255);">
-        <span class="d-flex">
-            <a href="class.php?id=<?php echo $classId; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
-            <div>
-                <h1 class="">Edit Seatplan</h1>
-                <h1 class="label-text text-center">Click seat to assign to student</h1> 
-            </div>
-        </span>    
-        <div class="align-self-end label-text-dark mt-1 text-base"><b>NOTE:</b> Changes to the seat plan are automatically saved.</div>
-       
+        <div class="d-flex mb-3 justify-content-between" style="background-color: rgb(255, 255, 255);">
+            <span class="d-flex">
+                <a href="class.php?id=<?php echo $classId; ?>" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
+                <div>
+                    <h1 class="">Edit Seatplan</h1>
+                    <h1 class="label-text text-center">Click seat to assign to student</h1> 
+                </div>
+            </span>    
+            <div class="align-self-end label-text-dark mt-1 text-base"><b>NOTE:</b> Changes to the seat plan are automatically saved.</div>
+        </div>
     </div>
     
     <!-- seatplan layout -->
