@@ -36,93 +36,31 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        nav{
-            background-color: #227710;
-        }
-        .logo{
-            width: 45px;
-            background-color: white;
-            margin-top: 8px;
-            border-radius: 50%;
-            margin-right: 24px;
-        }
         .margin-right{
             margin-right: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar-fixed-top navbar-expand-sm">
-    <div class="container">
-        <button
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        class="navbar-toggler"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle nagivation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li>
-                    <a href="index.php"><img src="img/logo.png" class="logo"></img></a>
-                </li>
-                <!-- Home -->
-                <li class="nav-item active-nav">
-                    <a href="index.php" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 16 16"><path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/></svg></a>
-                </li>
-                <!-- Messages -->
-                <!-- <li class="nav-item">
-                    <a href="#" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path d="M17 11h-2V9h2m-4 2h-2V9h2m-4 2H7V9h2m11-7H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/></svg></a>
-                </li> -->
-                <!-- Time -->
-                <li class="nav-item">
-                    <a href="clock.php" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 16 16"><g><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></g></svg></a>
-                </li>
-                <!-- Calendar -->
-                <li class="nav-item">
-                    <a href="calendar.php" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 16 16"><g><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/><path d="M6.5 7a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2"/></g></svg></a>
-                </li>
-            </ul>
-            <!-- Bell -->
-            <div class="navbar-nav navbar-right invisible">
-                <a href="#" class="nav-link invisible"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path d="M21 19v1H3v-1l2-2v-6c0-3.1 2.03-5.83 5-6.71V4a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.29c2.97.88 5 3.61 5 6.71v6l2 2m-7 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2"/></svg></a>
-            </div>
-            <div class="navbar-nav">
-                <div class="nav-item dropdown nav-profile">
-                    <a href="#" class="nav-link dropdown-toggle"
-                    id="navbarDropdown"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    ><img src="img/profile.jpg" alt="profile-picture" class="profile-picture">
-                    <span class="align-middle">Prof. Name</span></a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Log Out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </nav>
-
-
+ 
     <div class="container">
         <!-- <div class="text-center pt-4"> -->
             <!-- <h1 class="class-code-lg">CS-ITE 313</h1>
             <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p> -->
             <!-- </div> -->
             <!-- <hr class="hr" /> -->
-        <div class="d-flex justify-content-between align-items-center mt-5">  
+
+            <!-- Breadcrumbs -->
+            <!-- <p class="label-text-2 mt-3 mb-3 breadcrumbs">Home \ Class \ <span style="color: #227710; font-weight: 600;">Edit Seatplan</span></p> -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+            </nav>
+
+            <div class="d-flex justify-content-between align-items-center">  
             <div class="d-flex">
                 <a href="index.php" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
                 <?php include 'class-header.php'; ?>

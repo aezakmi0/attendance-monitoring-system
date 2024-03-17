@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        nav{
+        .nav-green{
             background-color: #227710;
         }
         .logo{
@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar-fixed-top navbar-expand-sm">
+    <nav class="navbar-fixed-top navbar-expand-sm nav-green">
     <div class="container">
         <button
         type="button"
