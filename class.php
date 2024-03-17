@@ -39,6 +39,10 @@ if ($result->num_rows > 0) {
         .margin-right{
             margin-right: 20px;
         }
+        
+        ol>.breadcrumb{
+            margin-bottom: 0px !important;
+        }
     </style>
 </head>
 <body>
@@ -54,9 +58,8 @@ if ($result->num_rows > 0) {
             <!-- <p class="label-text-2 mt-3 mb-3 breadcrumbs">Home \ Class \ <span style="color: #227710; font-weight: 600;">Edit Seatplan</span></p> -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php echo $classCode; ?></li>
                 </ol>
             </nav>
 

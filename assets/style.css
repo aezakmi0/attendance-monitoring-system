@@ -26,7 +26,7 @@ body::-webkit-scrollbar {
     border-radius: 50%;
     padding-right: 4px;
 }
-nav,
+.nav-green,
 #navbarNav{
     height: 55px !important;
 }
@@ -631,3 +631,18 @@ input::-webkit-inner-spin-button {
         margin: 0;
 }
 
+.breadcrumb{
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 7px;
+}
+
+.breadcrumb-item{
+    font-size: 13px;
+}
+
+.breadcrumb > .breadcrumb-item > a{
+    text-decoration: none;
+    color: #227710;
+    font-weight: 700;
+}
