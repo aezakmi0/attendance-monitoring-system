@@ -68,7 +68,7 @@ if ($result->num_rows > 0) {
                 <?php include 'class-header.php'; ?>
             </div>  
             <div class="text-end">
-                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">Edit Seatplan</a>
+                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-rounded btn-green-solid">Edit Seatplan</a>
                 <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">Students</a>
                 <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">Edit Class</a>
                 <a href="attendance-records.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">View Attendance Records</a>

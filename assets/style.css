@@ -551,6 +551,19 @@ h1{
     color: white !important;
 }
 
+.btn-green-solid{
+    color: #ffffff !important;
+    background-color: #227710;
+    border: 2px solid #227710;   
+    font-weight: 600;
+}
+
+.btn-green-solid:hover{
+    border: 2px solid #227710;   
+    background-color: #ffffff;
+    color: #227710 !important;
+}
+
 .btn-black{
     font-weight: 600;
     border: 2px solid black;   
