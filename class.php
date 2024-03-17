@@ -83,14 +83,6 @@ if ($result->num_rows > 0) {
         <hr/>
         <div class="d-flex justify-content-between align-items-center">
             <div class="legend-container d-flex align-items-center">
-                <!-- <div class="legend-color"></div>
-                <p class="label-text-2">PRESENT</p>
-                <div class="legend-color-2"></div>
-                <p class="label-text-2">ABSENT</p>
-                <div class="legend-color-3"></div>
-                <p class="label-text-2">LATE</p>
-                <div class="legend-color-4"></div>
-                <p class="label-text-2">EXCUSED</p> -->
 
                 <label class="margin-right"><input type="radio" name="status" value="present" checked> Present</label>
                 <label class="margin-right"><input type="radio" name="status" value="absent"> Absent</label>
