@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar-fixed-top navbar-expand-sm nav-green">
+    <nav id="navbar" class="navbar-fixed-top navbar-expand-sm nav-green">
     <div class="container">
         <button
         type="button"
