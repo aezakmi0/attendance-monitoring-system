@@ -144,7 +144,7 @@
 
 <body>
     <div class="container mt-3 main-container">
-        <div class="guide-instruction mb-5">
+        <div class="guide-instruction">
             <h1 class="class-code mb-3">Instruction Guide</h1>
             <p>Each section is structured to provide clear instructions along with visual aids such as screenshots to
                 facilitate easy understanding. If you encounter any difficulties or have specific questions, refer to
@@ -155,9 +155,10 @@
         <div class="guide-container">
             <div class="guide-nav list-group" id="guide-nav">
                 <!-- <div class="d-flex justify-content-center align-items-center"> -->
+                    <h2 class="">Contents</h2>
                 <!-- <div class="content-bg"> -->
-                <h2 class="list-group-item">Contents</h2>
                 <!-- <ol class="roman-num"> -->
+                    <span class="list-group">
                     <a class="list-group-item list-group-item-action" href="#help_createClass">Creating a Class</a>
                     <a class="list-group-item list-group-item-action" href="#help_modifyClass">Modifying a Class</a>
                     <a class="list-group-item list-group-item-action" href="#help_deleteClass">Deleting a Class</a>
@@ -167,6 +168,9 @@
                     <a class="list-group-item list-group-item-action" href="#help_editSeatplan">Rearranging the Seat Plan of the Class</a>
                     <a class="list-group-item list-group-item-action" href="#help_checkAttendance">Checking the Attendance of the Students</a>
                     <a class="list-group-item list-group-item-action" href="#help_generateReport">Creating an Attendance Report</a>
+                    <a class="list-group-item list-group-item-action" href="#help_filters">Filters</a>
+                    <a class="list-group-item list-group-item-action" href="#help_navbar">Navigation Bar</a>
+                    </span>
                 <!-- </ol> -->
                 <!-- </div> -->
                 <!-- </div> -->
@@ -198,7 +202,7 @@
                 <p>After successfully creating a class, you will be redirected to the enroll student page. For more
                     details,
                     see
-                    <a href="#help_enrollStudent"> Enrolling a Student to a Class.</a>
+                    <a href="#help_enrollStudent"><b> Enrolling a Student to a Class.</b></a>
                 </p>
                 </span>
                 <hr>
@@ -223,20 +227,18 @@
 
                 <!-- Delete Class -->
                 <span id="help_deleteClass">
-                <h2  class="help-title">III. Deleting a Class</h2>
-                <ol class="step-list">
-                    <li>In the homepage, select the class that you want to delete.</li>
-                    <img src="img/guide/modifyclass1.png" alt="guide" class="guide-img">
-                    <li>Click the <b>Delete Class</b> button.</li>
-                    <img src="img/guide/deleteclass1.png" alt="guide" class="guide-img">
-                    <li>A warning will appear to confirm the deletion of the class. Click <b>OK.</b></li>
-                    <img src="img/guide/deleteclass2.png" alt="guide" class="guide-img">
-                </ol>
-                <p class="red-text text-center"><b>Note: </b>Once a class is deleted, all of its data will also be
-                    removed
-                    and
-                    it cannot be
-                    retrieved, so please proceed with caution.</p>
+                    <h2  class="help-title">III. Deleting a Class</h2>
+                    <ol class="step-list">
+                        <li>In the homepage, select the class that you want to delete.</li>
+                        <img src="img/guide/modifyclass1.png" alt="guide" class="guide-img">
+                        <li>Click the <b>Delete Class</b> button.</li>
+                        <img src="img/guide/deleteclass1.png" alt="guide" class="guide-img">
+                        <li>A warning will appear to confirm the deletion of the class. Click <b>OK.</b></li>
+                    </ol>
+                    <span class="responsive-span">
+                        <img src="img/guide/deleteclass2.png" alt="guide" class="guide-img">
+                        <p class="help-warning"><b>Note: </b>Once a class is deleted, all of its data will also be removed and it cannot be retrieved, so please proceed with caution.</p>
+                    </span>
                 </span>
                 <hr>
                 
@@ -340,15 +342,20 @@
                     <li>Navigate to the homepage and <b>choose the specific class</b> for which you wish to check
                         attendance.
                     </li>
+                    <img src="img/guide/modifyclass1.png" alt="guide" class="guide-img">
                     <li>To mark the attendance status of the students, you can:
                         <ol class="step-list-2">
                             <li>Click the <b>Mark all as present</b> button to mark all student as present; or</li>
-                            <li>Click a student's seat <b>repeatedly</b> to assign a specific status.</li>
+                            <img src="img/guide/checkattendance1.png" alt="guide" class="guide-img">
+                            <li>Select a specific <b>attendance status</b> and click the student's seat.</li>
+                            <img src="img/guide/checkattendance2.png" alt="guide" class="guide-img">
                         </ol>
                     </li>
-                    <li>After marking the attendance status for each student, the sytsem will automatically save the
+                    <li>You can reset the attendance status of the students by clicking the <b>reset</b> button.</li>
+                    <img src="img/guide/checkattendance3.png" alt="guide" class="guide-img">
+                    <p class="help-tip"><b>Note: </b>After marking the attendance status for each student, the system will <b>automatically save</b> the
                         changes.
-                    </li>
+                    </p>
                 </ol>
                 </span>
                 <hr>
@@ -359,28 +366,21 @@
                 <ol class="step-list">
                     <li>Navigate to the homepage and <b>choose the specific class</b> for which you wish to create an
                         attendance report.</li>
+                    <img src="img/guide/modifyclass1.png" alt="guide" class="guide-img">
                     <li>Click the <b>View Attendance Records </b>button.</li>
+                    <img src="img/guide/generatereport.png" alt="guide" class="guide-img">
                     <li>Click the <b>Print Report </b>button.</li>
+                    <img src="img/guide/generatereport1.png" alt="guide" class="guide-img">
                     <li>To generate an attendance report, you can:
                         <ol class="step-list-2">
-                            <li><b>Print</b> the report by selecting our printer in the <b>Destination</b> box. You can
-                                also
-                                reveal more settings by clicking the <b>more settings </b>portion. Then, click the
-                                <b>Print</b>
-                                button.
+                            <li><b>Print</b> the report by selecting our printer in the <b>Destination</b> box. You can also reveal more settings by clicking the <b>more settings </b>portion. Then, click the <b>Print</b>
+                            button.
+                            <img src="img/guide/generatereport2.png" alt="guide" class="guide-img">
                             </li>
-                            <p class="text-center"><b>Note: </b>Ensure your device is connected to a printer before
-                                printing
-                                the
-                                attendance report.
-                            </p>
-                            <li>Save the report as PDF by selecting the <b>Save as PDF</b> option in the
-                                <b>Destination</b>
-                                box.
-                                You can also reveal more settings by clicking the <b>more settings </b>portion. Then,
-                                click
-                                the
-                                <b>save</b> button.
+                            <p class="help-tip text-center"><b>Note: </b>Ensure your device is connected to a printer before printing the attendance report.</p>
+                            <li>Save the report as PDF by selecting the <b>Save as PDF</b> option in the <b>Destination</b> box. You can also reveal more settings by clicking the <b>more settings </b>portion. Then,
+                            click the <b>save</b> button.
+                            <img src="img/guide/generatereport3.png" alt="guide" class="guide-img">
                             </li>
                         </ol>
                     </li>
@@ -404,9 +404,11 @@
                                 the
                                 input.</li>
                         </ol>
+                        <img src="img/guide/filter1.png" alt="guide" class="guide-img">
                     </li>
                     <li>The system will automatically display the results once you apply your filters.</li>
                     <li>To remove the filters, click the <b>no funnel</b> button.</li>
+                    <img src="img/guide/filter2.png" alt="guide" class="guide-img">
                 </ol>
                 </span>
                 <hr>
@@ -416,8 +418,11 @@
                 <h2  class="help-title">XI. Navigation Bar</h2>
                 <ol class="remove-style">
                     <li><b>Homepage:</b> Clicking this icon displays the system's <b>homepage</b>.</li>
+                    <img src="img/guide/navbar1.png" alt="guide" class="guide-img-sm">
                     <li><b>Clock:</b> Clicking this icon shows a live <b>time</b> display.</li>
+                    <img src="img/guide/navbar2.png" alt="guide" class="guide-img-sm">
                     <li><b>Date:</b> Clicking this icon reveals the current <b>date</b>.</li>
+                    <img src="img/guide/navbar3.png" alt="guide" class="guide-img-sm">
                 </ol>
                 </span>
             </div>
