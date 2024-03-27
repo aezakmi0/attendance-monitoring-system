@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'tb_attendance';
+$dbname = 'db_attendance';
 $dbusername = 'root';
 $dbpassword = '';
 

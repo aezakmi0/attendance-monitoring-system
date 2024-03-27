@@ -13,13 +13,25 @@ session_set_cookie_params([
 
 session_start();
 
+// if (isset($_SESSION["last_regeneration"])) {
+//     regenerate_session_id();
+// }else {
+//     $interval = 60 * 30;
+//     if (time() - $_SESSION["last_regeneration"] >= $interval){
+//         regenerate_session_id();
+//     }
+// }
+
 if (isset($_SESSION["last_regeneration"])) {
     regenerate_session_id();
-}else {
-    $interval = 60 * 30;
-    if (time() - $_SESSION["last_regeneration"] >= $interval){
-        regenerate_session_id();
-    }
+} else {
+    // If the session key is not set, set it with the current time
+    $_SESSION["last_regeneration"] = time();
+}
+
+$interval = 60 * 30;
+if (isset($_SESSION["last_regeneration"]) && time() - $_SESSION["last_regeneration"] >= $interval) {
+    regenerate_session_id();
 }
 
 function regenerate_session_id(){
