@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/config_session.inc.php';
 require_once 'includes/signup_view.inc.php';
+require_once 'includes/login_view.inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +19,7 @@ require_once 'includes/signup_view.inc.php';
 </head>
 
 <body>
+    <h3><?php output_username(); ?></h3>
     <div class="container">
         <h1>Log In</h1>
         <form action="includes/login.inc.php" method="post">
@@ -25,6 +27,9 @@ require_once 'includes/signup_view.inc.php';
             <input type="password" name="password" placeholder="Password" class="form-control input-border">
             <button class="btn input-border create-class-button w-100">Log In</button>
         </form>
+
+        <?php check_login_errors(); ?>
+
         <h1>Sign Up</h1>
         <form action="includes/signup.inc.php" method="post">
             <?php
@@ -35,6 +40,11 @@ require_once 'includes/signup_view.inc.php';
         <?php
         check_signup_errors();
         ?>
+
+        <h1>Log Out</h1>
+        <form action="includes/logout.inc.php" method="post">
+            <button class="btn input-border create-class-button w-100">Log In</button>
+        </form>
     </div>
 
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
