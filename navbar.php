@@ -78,7 +78,9 @@
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">Settings</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Log Out</a>
+                        <form action="includes/logout.inc.php" method="post">
+                            <button class="dropdown-item">Log Out</button>
+                        </form>
                     </div>
                 </div>
             </div>
