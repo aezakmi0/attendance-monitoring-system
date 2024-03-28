@@ -29,6 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
         if ($errors) {
             $_SESSION["errors_signup"] = $errors;
+
+            $signupData = [
+                "first_name" => $first_name,
+                "last_name" => $last_name,
+                "email" => $email
+            ];
+            $_SESSION["signup_data"] = $signupData;
+
             header("Location: ../welcome.php");
             die();
         }
