@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 function output_username(){
     if (isset($_SESSION["user_id"])){
-        echo "You are logged in as " . $_SESSION["user_last_name"] .", " . $_SESSION["user_first_name"];
+        echo $_SESSION["user_last_name"] .", " . $_SESSION["user_first_name"];
     } else {
-        echo "You re not logged in";
+        echo "You're not logged in";
     }
 }
 

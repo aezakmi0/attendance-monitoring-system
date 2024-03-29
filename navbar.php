@@ -1,3 +1,8 @@
+<?php
+require_once 'includes/config_session.inc.php';
+require_once 'includes/login_view.inc.php';
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +78,7 @@
                     aria-haspopup="true"
                     aria-expanded="false"
                     ><img src="img/profile.jpg" alt="profile-picture" class="profile-picture">
-                    <span class="align-middle">Prof. Name</span></a>
+                    <span class="align-middle"><?php output_username(); ?></span></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">Settings</a>
