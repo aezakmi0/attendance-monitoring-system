@@ -1,6 +1,6 @@
 <?php
+require_once 'includes/check_session.inc.php';
 // save_attendance.php
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,31 +13,32 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_ID = $_SESSION["user_id"];
     $classId = $_POST['classId'];
     $studentId = $_POST['studentId'];
     $date = $_POST['date'];
     $status = $_POST['status']; 
 
     // Check if a record already exists for the student and date
-    $checkSql = "SELECT * FROM tb_attendance WHERE class_ID = ? AND student_ID = ? AND date = ?";
+    $checkSql = "SELECT * FROM tb_attendance WHERE user_ID = ? AND class_ID = ? AND student_ID = ? AND date = ?";
     $checkStmt = $conn->prepare($checkSql);
-    $checkStmt->bind_param("iis", $classId, $studentId, $date);
+    $checkStmt->bind_param("iiis", $user_ID, $classId, $studentId, $date);
     $checkStmt->execute();
     $checkResult = $checkStmt->get_result();
 
     // If a record exists, delete the previous row
     if ($checkResult->num_rows > 0) {
-        $deleteSql = "DELETE FROM tb_attendance WHERE class_ID = ? AND student_ID = ? AND date = ?";
+        $deleteSql = "DELETE FROM tb_attendance WHERE user_ID = ? AND class_ID = ? AND student_ID = ? AND date = ?";
         $deleteStmt = $conn->prepare($deleteSql);
-        $deleteStmt->bind_param("iis", $classId, $studentId, $date);
+        $deleteStmt->bind_param("iiis", $user_ID, $classId, $studentId, $date);
         $deleteStmt->execute();
         $deleteStmt->close();
     }
 
     // Insert the new record
-    $insertSql = "INSERT INTO tb_attendance (class_ID, student_ID, date, status) VALUES (?, ?, ?, ?)";
+    $insertSql = "INSERT INTO tb_attendance (user_ID, class_ID, student_ID, date, status) VALUES (?, ?, ?, ?, ?)";
     $insertStmt = $conn->prepare($insertSql);
-    $insertStmt->bind_param("iiss", $classId, $studentId, $date, $status);
+    $insertStmt->bind_param("iiiss", $user_ID, $classId, $studentId, $date, $status);
 
     try {
         $insertStmt->execute();

@@ -1,3 +1,6 @@
+<?php
+require_once 'includes/check_session.inc.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

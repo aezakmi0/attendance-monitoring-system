@@ -1,5 +1,7 @@
 <?php
-session_start();
+
+require_once 'includes/check_session.inc.php';
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -12,11 +14,12 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_ID = $_SESSION['user_id'];
     $id_number = $_POST["ID_number"];
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
 
-    $sql_student = "INSERT INTO tb_student (ID_number, first_name, last_name) VALUES ('$id_number', '$first_name', '$last_name')";
+    $sql_student = "INSERT INTO tb_student (user_ID, ID_number, first_name, last_name) VALUES ('$user_ID', '$id_number', '$first_name', '$last_name')";
     $result_student = $conn->query($sql_student);
 
     if ($result_student) {
@@ -24,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         list($seatNumber, $classID) = assignInitialSeatNumber($conn, $studentID);
 
-        $sql_enrollment = "INSERT INTO tb_enrollment (student_ID, class_ID) VALUES ('$studentID', '$classID')";
+        $sql_enrollment = "INSERT INTO tb_enrollment (user_ID, student_ID, class_ID) VALUES ('$user_ID', '$studentID', '$classID')";
         $result_enrollment = $conn->query($sql_enrollment);
 
         if ($result_enrollment) {
@@ -43,6 +46,7 @@ header("Location: enroll-student.php?id=$classID");
 exit;
 
 function assignInitialSeatNumber($conn, $studentID) {
+    $user_ID = $_SESSION['user_id'];
     $classID = $_GET['id'];
 
     $sql_max_seat = "SELECT MAX(seat_number) AS max_seat FROM tb_seatplan WHERE class_ID = '$classID'";
@@ -51,7 +55,7 @@ function assignInitialSeatNumber($conn, $studentID) {
 
     $nextSeatNumber = $maxSeat + 1;
 
-    $sql_seatplan = "INSERT INTO tb_seatplan (student_ID, seat_number, class_ID) VALUES ('$studentID', '$nextSeatNumber', '$classID')";
+    $sql_seatplan = "INSERT INTO tb_seatplan (user_ID, student_ID, seat_number, class_ID) VALUES ('$user_ID', '$studentID', '$nextSeatNumber', '$classID')";
     $conn->query($sql_seatplan);
 
     return [$nextSeatNumber, $classID];

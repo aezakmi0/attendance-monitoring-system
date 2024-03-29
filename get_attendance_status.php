@@ -1,4 +1,6 @@
 <?php
+require_once 'includes/check_session.inc.php';
+
 // Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";
@@ -14,6 +16,7 @@ if ($conn->connect_error) {
 }
 
 // Validate and sanitize input parameters
+$user_ID = $_SESSION['user_id'];
 $classId = isset($_GET['classId']) ? intval($_GET['classId']) : 0;
 $studentId = isset($_GET['studentId']) ? intval($_GET['studentId']) : 0;
 
@@ -25,7 +28,7 @@ if ($classId <= 0 || $studentId <= 0) {
 
 // Your database query to fetch attendance status
 // Modify this query based on your database structure
-$query = "SELECT status FROM tb_attendance WHERE class_ID = $classId AND student_ID = $studentId AND date = CURRENT_DATE";
+$query = "SELECT status FROM tb_attendance WHERE user_ID = $user_ID AND class_ID = $classId AND student_ID = $studentId AND date = CURRENT_DATE";
 
 // Execute the query and fetch the result
 $result = mysqli_query($conn, $query);
@@ -49,4 +52,3 @@ if ($result) {
 
 // Close the database connection
 mysqli_close($conn);
-?>

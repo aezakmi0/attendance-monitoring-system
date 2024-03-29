@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/check_session.inc.php';
 // Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";

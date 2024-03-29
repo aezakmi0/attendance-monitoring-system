@@ -1,4 +1,6 @@
 <?php
+require_once 'includes/check_session.inc.php';
+
 // Assuming you have a database connection established
 $servername = "localhost";
 $username = "root";
@@ -26,7 +28,7 @@ error_log('Filter time: ' . $_GET['filterTime']);
 error_log('Filter Room: ' . $_GET['filterRoom']);
 
 // Fetch data from the tb_class table with the search term condition
-$sqlClass = "SELECT * FROM tb_class WHERE is_deleted = 0";
+$sqlClass = "SELECT * FROM tb_class WHERE is_deleted = 0 AND user_ID = '$user_ID'";
 
 // Add the search condition if the searchTerm is provided
 if (!empty($searchTerm)) {
