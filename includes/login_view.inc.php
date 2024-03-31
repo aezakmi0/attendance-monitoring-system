@@ -14,8 +14,6 @@ function check_login_errors(){
     if (isset($_SESSION['errors_login'])){
         $errors = $_SESSION['errors_login'];
 
-        echo "<br>";
-
         foreach($errors as $error){
             echo '<p class="form-error">' . $error . '</p>';
             // CHANGE THIS TO TOAST????
@@ -23,7 +21,6 @@ function check_login_errors(){
 
         unset($_SESSION['errors_signup']);
     }else if (isset($_GET["login"]) && $_GET["login"] === "success"){
-        echo '<br>';
         echo '<p class="form-sucess">Log in success!</p>';
     }
 }
