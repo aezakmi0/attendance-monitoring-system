@@ -80,8 +80,8 @@ require_once 'includes/login_view.inc.php';
                     ><img src="img/profile.jpg" alt="profile-picture" class="profile-picture">
                     <span class="align-middle"><?php output_username(); ?></span></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="account-settings.php">Profile</a>
+                        <!-- <a class="dropdown-item" href="#">Settings</a> -->
                         <div class="dropdown-divider"></div>
                         <form action="includes/logout.inc.php" method="post">
                             <button class="dropdown-item">Log Out</button>

@@ -4,6 +4,7 @@ require_once 'includes/check_session.inc.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@ require_once 'includes/check_session.inc.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.css">
     <script src="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.js"></script>
 </head>
+
 <body>
     <!-- Navbar -->
     <!-- <div id="navbar-container"></div> -->
@@ -28,7 +30,7 @@ require_once 'includes/check_session.inc.php';
             <h3 id="fullDate"></h3>
         </div>
     </div>
-    
+
     <!-- for the filter form or create class -->
     <div class="container mt-3">
         <!-- Labels -->
@@ -53,7 +55,8 @@ require_once 'includes/check_session.inc.php';
             <div class="col-md">
                 <div class="form-floating w-100">
                     <!-- <input type="text" class="form-control input-border" id="floatingInputGrid" placeholder="Search class"> -->
-                    <input type="text" class="form-control input-border" autocomplete="off" id="filterSearch" placeholder="Search class" oninput="searchClasses(this.value)">
+                    <input type="text" class="form-control input-border" autocomplete="off" id="filterSearch"
+                        placeholder="Search class" oninput="searchClasses(this.value)">
                     <label for="filterSearch">Search class</label>
                 </div>
             </div>
@@ -115,26 +118,45 @@ require_once 'includes/check_session.inc.php';
             </div>
             <div class="col-auto d-flex align-items-center">
                 <div class="text-center">
-                    <a type="button" onclick="clearFilters()" class="p-2 btn-green btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m14.088 11.263l-.713-.713L16.95 6H8.825l-1-1h10.156q.317 0 .467.28q.15.282-.052.55zM13 14.421v3.81q0 .329-.22.549q-.22.22-.55.22h-.46q-.33 0-.55-.22q-.22-.22-.22-.55v-5.809l-7.9-7.9q-.14-.14-.15-.341q-.01-.201.15-.367q.165-.165.357-.165t.356.165l16.38 16.38q.145.145.152.344q.007.198-.158.363q-.166.16-.354.163q-.189.002-.354-.163zm.375-3.871"/></svg></a>
+                    <a type="button" onclick="clearFilters()" class="p-2 btn-green btn-rounded"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="m14.088 11.263l-.713-.713L16.95 6H8.825l-1-1h10.156q.317 0 .467.28q.15.282-.052.55zM13 14.421v3.81q0 .329-.22.549q-.22.22-.55.22h-.46q-.33 0-.55-.22q-.22-.22-.22-.55v-5.809l-7.9-7.9q-.14-.14-.15-.341q-.01-.201.15-.367q.165-.165.357-.165t.356.165l16.38 16.38q.145.145.152.344q.007.198-.158.363q-.166.16-.354.163q-.189.002-.354-.163zm.375-3.871" />
+                        </svg></a>
                 </div>
             </div>
             <div class="col-md">
                 <a class="btn create-class-button w-100" href="create-class.php" role="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
-                        <path fill="currentColor" d="M14.5 13V3.754a.75.75 0 0 0-1.5 0V13H3.754a.75.75 0 0 0 0 1.5H13v9.253a.75.75 0 0 0 1.5 0V14.5l9.25.003a.75.75 0 0 0 0-1.5L14.5 13Z"/>
+                        <path fill="currentColor"
+                            d="M14.5 13V3.754a.75.75 0 0 0-1.5 0V13H3.754a.75.75 0 0 0 0 1.5H13v9.253a.75.75 0 0 0 1.5 0V14.5l9.25.003a.75.75 0 0 0 0-1.5L14.5 13Z" />
                     </svg>
                     <span>Create Class</span>
                 </a>
             </div>
-        </div><hr class="hr" />
+        </div>
+        <hr class="hr" />
     </div>
-    
+
     <!-- CLASS BUTTON -->
     <div id="dynamicButtonsContainer" class="container d-flex flex-wrap"></div>
-    
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
+    </div>
 
     <script>
         $(document).ready(function () {
+            <?php
+            // Check if a success message is set
+            if (isset($_SESSION['success_message'])) {
+                // Display the toast message
+                echo 'showToast("' . $_SESSION['success_message'] . '");';
+
+                // Clear the session variable to avoid displaying the message again on subsequent visits
+                unset($_SESSION['success_message']);
+            }
+            ?>
             // Initialize ClockPicker when the input field is clicked
             $('#filterTime').clockpicker({
                 placement: 'bottom',
@@ -156,7 +178,7 @@ require_once 'includes/check_session.inc.php';
                 console.log('search is: ', filterTimeInput.value);
                 searchClasses(searchInput.value);
             });
-            
+
             const filterTimeInput = document.getElementById('filterTime');
             filterTimeInput.addEventListener('input', function () {
                 console.log('time is: ', filterTimeInput.value);
@@ -176,4 +198,5 @@ require_once 'includes/check_session.inc.php';
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
