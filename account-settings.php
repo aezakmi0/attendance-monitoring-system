@@ -20,32 +20,34 @@ require_once 'includes/check_session.inc.php';
 </head>
 
 <body>
-    <div class="container">
-        <form action="update-account.php" method="post">
+    <div class="container mb-3 page-title">
+        <form action="update-account.php" method="post" class="form-control p-5 bg-light">
+            <h1 class="text-center">Account Settings</h1>
             <div class="form-group">
-                <label for="first_name">First Name:</label>
-                <input type="text" class="form-control" id="first_name" name="first_name"
+                <label for="first_name" class="label-text mb-1 mt-3">FIRST NAME</label>
+                <input type="text" class="form-control input-border" id="first_name" name="first_name"
                     value="<?php echo $_SESSION['user_first_name']; ?>">
             </div>
             <div class="form-group">
-                <label for="last_name">Last Name:</label>
-                <input type="text" class="form-control" id="last_name" name="last_name"
+                <label for="last_name" class="label-text mb-1 mt-3">LAST NAME</label>
+                <input type="text" class="form-control input-border" id="last_name" name="last_name"
                     value="<?php echo $_SESSION['user_last_name']; ?>">
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" class="form-control" id="email" name="email"
+                <label for="email" class="label-text mb-1 mt-3">EMAIL</label>
+                <input type="text" class="form-control input-border" id="email" name="email"
                     value="<?php echo $_SESSION['user_email']; ?>" disabled>
             </div>
             <div class="form-group">
-                <label for="current_password">Current Password:</label>
-                <input type="password" class="form-control" id="current_password" name="current_password">
+                <label for="current_password" class="label-text mb-1 mt-3">CURRENT PASSWORD</label>
+                <input type="password" class="form-control input-border" id="current_password" name="current_password">
             </div>
             <div class="form-group">
-                <label for="new_password">New Password:</label>
-                <input type="password" class="form-control" id="new_password" name="new_password">
+                <label for="new_password" class="label-text mb-1 mt-3">NEW PASSWORD</label>
+                <input type="password" class="form-control input-border" id="new_password" name="new_password">
             </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <div class="d-flex justify-content-center mt-5"></div>
+            <button type="submit" class="btn input-border create-class-button">Save Changes</button>
         </form>
     </div>
 
