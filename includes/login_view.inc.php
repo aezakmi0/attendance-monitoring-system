@@ -21,6 +21,6 @@ function check_login_errors(){
 
         unset($_SESSION['errors_signup']);
     }else if (isset($_GET["login"]) && $_GET["login"] === "success"){
-        echo '<p class="form-sucess">Log in success!</p>';
+        echo '<p class="form-success">Log in success!</p>';
     }
 }

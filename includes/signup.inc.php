@@ -37,13 +37,22 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             ];
             $_SESSION["signup_data"] = $signupData;
 
-            header("Location: ../welcome.php");
+            header("Location: ../sign-up.php");
             die();
         }
 
         create_user($pdo, $first_name, $last_name, $email, $password);
         
-        header("Location: ../welcome.php?signup=success");
+        // After creating the user successfully, retrieve the user ID
+        $user_id = get_user_id($pdo, $email); // Assuming you have a function to retrieve the user ID
+
+        // Set the user ID in the session
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION["user_email"] = $email;
+        $_SESSION["user_first_name"] = htmlspecialchars($first_name);
+        $_SESSION["user_last_name"] = htmlspecialchars($last_name);
+
+        header("Location: ../index.php");
 
         $pdo = null;
         $stmt = null;
@@ -54,6 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         die("Query failed: " . $e->getMessage());
     }
 }else {
-    header("Location: ../welcome.php");
+    header("Location: ../sign-up.php");
     die();
 }

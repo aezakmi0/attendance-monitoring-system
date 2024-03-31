@@ -30,4 +30,10 @@ function set_user(object $pdo, string $first_name, string $last_name, string $em
     $stmt->execute();
  }
 
-//  1:06:30
+ function get_user_id($pdo, $email) {
+    $sql = "SELECT user_id FROM tb_user WHERE email = :email";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['email' => $email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $user['user_id'];
+}

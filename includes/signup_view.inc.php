@@ -22,18 +22,18 @@ function signup_inputs() {
     $email = isset($_SESSION["signup_data"]["email"]) ? $_SESSION["signup_data"]["email"] : '';
 
     // Output input fields with values
-    echo '<input type="text" name="first_name" placeholder="First Name" class="form-control input-border" value="'. $first_name .'">';
-    echo '<input type="text" name="last_name" placeholder="Last Name" class="form-control input-border" value="'. $last_name .'">';
+    echo '<input type="text" name="first_name" placeholder="First Name" class="mt-4 form-control login-box mb-1" value="'. $first_name .'">';
+    echo '<input type="text" name="last_name" placeholder="Last Name" class="form-control login-box mb-1" value="'. $last_name .'">';
 
     // Output email input field conditionally based on whether it exists in $_SESSION["signup_data"]
     if (!empty($email)) {
-        echo '<input type="text" name="email" placeholder="Email" class="form-control input-border" value="'. $email .'">';
+        echo '<input type="text" name="email" placeholder="Email" class="form-control login-box mb-1" value="'. $email .'">';
     } else {
-        echo '<input type="text" name="email" placeholder="Email" class="form-control input-border">';
+        echo '<input type="text" name="email" placeholder="Email" class="form-control login-box mb-1">';
     }
 
     // Output password input field
-    echo '<input type="password" name="password" placeholder="Password" class="form-control input-border">';
+    echo '<input type="password" name="password" placeholder="Password" class="form-control login-box mb-4">';
 }
 
 
@@ -47,6 +47,6 @@ function check_signup_errors(){
 
         unset($_SESSION['errors_signup']);
     }else if (isset($_GET["signup"]) && $_GET["signup"] === "success"){
-        echo '<p class="form-sucess">Signup success!</p>';
+        echo '<p class="form-success">Signup success!</p>';
     }
 }
