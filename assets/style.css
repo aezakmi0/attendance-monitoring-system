@@ -26,13 +26,14 @@ body::-webkit-scrollbar {
     border-radius: 50%;
     padding-right: 4px;
 }
+
 .nav-green,
 #navbarNav{
     height: 55px !important;
 }
 #navbarDropdown{
     height: 55px !important;
-    padding-top: 10px !important;
+    /* padding-top: 16px !important; */
 }
 .navbar-fixed-top{
     position: fixed;
@@ -43,6 +44,7 @@ body::-webkit-scrollbar {
 .navbar-right{ 
     margin-left: auto; 
 }
+
  /* For the padding of the Icons */
  .navbar-nav .nav-item .nav-link{
     padding: 16px 24px !important;

@@ -26,7 +26,7 @@ require_once 'includes/login_view.inc.php';
     </style>
 </head>
 <body>
-    <nav id="navbar" class="navbar-fixed-top navbar-expand-sm nav-green">
+    <nav id="navbar" class="navbar navbar-fixed-top navbar-expand-lg nav-green">
     <div class="container">
         <button
         type="button"
@@ -34,8 +34,9 @@ require_once 'includes/login_view.inc.php';
         data-bs-target="#navbarNav"
         class="navbar-toggler"
         aria-controls="navbarNav"
-        aria-expanded="false"
+        aria-expanded="true"
         aria-label="Toggle nagivation"
+        style="background-color: white;"
         >
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -71,13 +72,14 @@ require_once 'includes/login_view.inc.php';
             </div>
             <div class="navbar-nav">
                 <div class="nav-item dropdown nav-profile">
-                    <a href="#" class="nav-link dropdown-toggle"
+                    <a class="nav-link dropdown-toggle"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    ><img src="img/profile.jpg" alt="profile-picture" class="profile-picture">
+                    >
+                    <!-- <img src="img/profile.jpg" alt="profile-picture" class="profile-picture"> -->
                     <span class="align-middle"><?php output_username(); ?></span></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="account-settings.php">Profile</a>
