@@ -59,8 +59,11 @@ require_once 'includes/check_session.inc.php';
                 </div>
                 <div class="form-group">
                     <label for="new_password" class="label-text mb-1 mt-3">CONFIRM NEW PASSWORD</label>
-                    <input type="password" class="form-control input-border" id="new_password_confirm" name="new_password_confirm">
+                    <input type="password" class="form-control input-border mb-1" id="new_password_confirm" name="new_password_confirm">
                 </div>
+                <span class="d-flex align-items-start">
+                        <input type="checkbox" onclick="showPassword()" class="mb-4" style="transform: scale(.8); margin: 2px 2px 0 0;"><span class="label-text-dark"> Show Password</span>
+                    </span>
                 <div class="d-flex justify-content-center mt-5">
                     <button type="submit" class="btn input-border create-class-button">Save Changes</button>
                 </div>
@@ -84,6 +87,21 @@ require_once 'includes/check_session.inc.php';
             }
             ?>
         });
+
+        function showPassword() {
+            var current_password = document.getElementById("current_password");
+            var new_password = document.getElementById("new_password");
+            var confirm_password = document.getElementById("new_password_confirm");
+            if (current_password.type === "password" && new_password.type === "password" && confirm_password.type === "password") {
+                current_password.type = "text";
+                new_password.type = "text";
+                confirm_password.type = "text";
+            } else {
+                current_password.type = "password";
+                new_password.type = "password";
+                confirm_password.type = "password";
+            }
+        }
     </script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
