@@ -11,12 +11,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $time_start = $_POST["time_start"];
     $time_end = $_POST["time_end"];
 
+
+    // Convert time_start to 24-hour format
+    $time_start_24h = date("H:i:s", strtotime($time_start));
+
+    // Convert time_end to 24-hour format
+    $time_end_24h = date("H:i:s", strtotime($time_end));
+
     // Check if "day" key exists and is an array
     $selected_days = isset($_POST["day"]) && is_array($_POST["day"]) ? implode("", $_POST["day"]) : '';
 
     // SQL query to insert data into the database
     $sql = "INSERT INTO tb_class (user_ID, class_code, class_name, room, time_start, time_end, day)
-            VALUES ('$user_ID', '$class_code', '$class_name', '$room', '$time_start', '$time_end', '$selected_days')";
+            VALUES ('$user_ID', '$class_code', '$class_name', '$room', '$time_start_24h', '$time_end_24h', '$selected_days')";
 
     // Create connection (replace these values with your actual database credentials)
     $servername = "localhost";
