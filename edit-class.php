@@ -11,11 +11,11 @@ $db = new mysqli($servername, $username, $password, $database);
 
 // Check connection
 if ($db->connect_error) {
-  die ("Connection failed: " . $db->connect_error);
+  die("Connection failed: " . $db->connect_error);
 }
 
 // Check if the class_ID is provided in the URL
-if (isset ($_GET['id'])) {
+if (isset($_GET['id'])) {
   $classID = $_GET['id'];
 
   // Fetch class details from the database
@@ -177,8 +177,7 @@ if (isset ($_GET['id'])) {
               <label class="btn btn-outline-dark input-border day-button rounded-circle" for="btn-check-F">F</label>
               <!-- Saturday -->
               <input type="checkbox" class="btn-check" id="btn-check-Sat" name="day[]" value="Sat" autocomplete="off">
-              <label class="btn btn-outline-dark input-border day-button rounded-circle"
-                for="btn-check-Sat">Sat</label>
+              <label class="btn btn-outline-dark input-border day-button rounded-circle" for="btn-check-Sat">Sat</label>
             </div>
 
             <div class="invalid-feedback">Please select at least one day.</div>
@@ -226,25 +225,22 @@ if (isset ($_GET['id'])) {
         document.querySelector('input[name="class_code"]').value = classData.class_code;
         document.querySelector('input[name="class_name"]').value = classData.class_name;
         document.querySelector('select[name="room"]').value = classData.room;
-        // document.querySelector('input[name="time_start"]').value = classData.time_start;
-        // document.querySelector('input[name="time_end"]').value = classData.time_end;
-        // Format the time to exclude seconds
-        var formattedStartTime = formatTime(classData.time_start);
-        var formattedEndTime = formatTime(classData.time_end);
 
-        document.querySelector('input[name="time_start"]').value = formattedStartTime;
-        document.querySelector('input[name="time_end"]').value = formattedEndTime;
+        // Assuming classData.time_start and classData.time_end are in 24-hour format like "04:00:00"
+        let time_start = classData.time_start;
+        let time_end = classData.time_end;
 
-        // Function to format time to exclude seconds
-        function formatTime(timeString) {
-          // Parse the time string
-          var parsedTime = new Date("1970-01-01T" + timeString + "Z");
+        // Convert time_start to "04:00AM" format
+        let formatted_time_start = new Date("1970-01-01T" + time_start);
+        formatted_time_start = formatted_time_start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-          // Get the formatted time (hh:mm)
-          var formattedTime = parsedTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        // Convert time_end to "04:00AM" format
+        let formatted_time_end = new Date("1970-01-01T" + time_end);
+        formatted_time_end = formatted_time_end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-          return formattedTime;
-        }
+        // Now you can set these formatted times to the input values
+        document.querySelector('input[name="time_start"]').value = formatted_time_start;
+        document.querySelector('input[name="time_end"]').value = formatted_time_end;
 
         // Set values for checkboxes based on the days
         var days = <?php echo json_encode(explode(',', $classData['day'])); ?>;
