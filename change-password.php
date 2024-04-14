@@ -42,26 +42,20 @@ require_once 'includes/check_session.inc.php';
 <body>
     <div class="container d-flex mb-3 page-title">
         <div class="profile-contents list-group">
-            <a class="list-group-item active" >Change Name and Email</a>
-            <a class="list-group-item" href="change-password.php">Change Password</a>
+            <a class="list-group-item" href="account-settings.php">Change Name and Email</a>
+            <a class="list-group-item active">Change Password</a>
         </div>
         <div class="profile-form">
             <form action="update-account.php" method="post" class="form-control p-5 bg-light">
-                <h1 class="text-center">Change Name and Email</h1>
+                <h1 class="text-center">Change Password</h1>
                 <div class="form-group">
-                    <label for="first_name" class="label-text mb-1 mt-3">FIRST NAME</label>
-                    <input type="text" class="form-control input-border" id="first_name" name="first_name"
-                        value="<?php echo $_SESSION['user_first_name']; ?>">
+                    <label for="current_password" class="label-text mb-1 mt-3">CURRENT PASSWORD</label>
+                    <input type="password" class="form-control input-border" id="current_password"
+                        name="current_password">
                 </div>
                 <div class="form-group">
-                    <label for="last_name" class="label-text mb-1 mt-3">LAST NAME</label>
-                    <input type="text" class="form-control input-border" id="last_name" name="last_name"
-                        value="<?php echo $_SESSION['user_last_name']; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="email" class="label-text mb-1 mt-3">EMAIL</label>
-                    <input type="text" class="form-control input-border" id="email" name="email"
-                        value="<?php echo $_SESSION['user_email']; ?>" disabled>
+                    <label for="new_password" class="label-text mb-1 mt-3">NEW PASSWORD</label>
+                    <input type="password" class="form-control input-border" id="new_password" name="new_password">
                 </div>
                 <div class="d-flex justify-content-center mt-5"></div>
                 <button type="submit" class="btn input-border create-class-button">Save Changes</button>
