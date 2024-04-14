@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
     try{
         require_once 'dbh.inc.php';
@@ -15,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         // ERROR HANDLERS
         $errors = [];
 
-        if (is_input_empty($first_name, $last_name, $email, $password)){
+        if (is_input_empty($first_name, $last_name, $email, $password, $confirm_password)){
             $errors["empty_input"] = "Fill in all fields!";
         }
         if (is_email_invalid($email)){
@@ -23,6 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         }        
         if (is_email_registered($pdo, $email)){
             $errors["email_used"] = "Email already registered!";
+        }
+        
+        if (!is_password_confirmed($password, $confirm_password)) {
+            $errors["email_used"] = "Passwords do not match.";
         }
 
         require_once 'config_session.inc.php';
