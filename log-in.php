@@ -88,13 +88,26 @@ require_once 'includes/login_view.inc.php';
                 <?php check_login_errors(); ?>
                 <form action="includes/login.inc.php" method="post" class="mb-2">
                     <input type="text" name="email" placeholder="Email" class="mt-4 form-control login-box mb-1">
-                    <input type="password" name="password" placeholder="Password" class="form-control login-box mb-4">
+                    <input type="password" name="password" id="password" placeholder="Password" class="form-control login-box mb-1">
+                    <span class="d-flex align-items-start">
+                        <input type="checkbox" onclick="showPassword()" class="mb-4" style="transform: scale(.8); margin: 2px 2px 0 0;"><span class="label-text-dark"> Show password</span>
+                    </span>
                     <button class="btn create-class-button w-100">Log In</button>
                 </form>
                 <p class="label-text-2">Don't have an account? <a href="sign-up.php" id="signup-link">Sign up</a></p>
             </div>
         </div>
     </div>
+    <script>
+        function showPassword() {
+            var password = document.getElementById("password");
+            if (password.type === "password") {
+                password.type = "text";
+            } else {
+                password.type = "password";
+            }
+        }
+    </script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
