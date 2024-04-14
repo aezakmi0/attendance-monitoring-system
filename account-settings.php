@@ -42,7 +42,7 @@ require_once 'includes/check_session.inc.php';
 <body>
     <div class="container d-flex mb-3 page-title">
         <div class="profile-contents list-group">
-            <a class="list-group-item active" >Change Name and Email</a>
+            <a class="list-group-item active">Change Name and Email</a>
             <a class="list-group-item" href="change-password.php">Change Password</a>
         </div>
         <div class="profile-form">
@@ -61,10 +61,11 @@ require_once 'includes/check_session.inc.php';
                 <div class="form-group">
                     <label for="email" class="label-text mb-1 mt-3">EMAIL</label>
                     <input type="text" class="form-control input-border" id="email" name="email"
-                        value="<?php echo $_SESSION['user_email']; ?>" >
+                        value="<?php echo $_SESSION['user_email']; ?>">
                 </div>
-                <div class="d-flex justify-content-center mt-5"></div>
-                <button type="submit" class="btn input-border create-class-button">Save Changes</button>
+                <div class="d-flex justify-content-center mt-5">
+                    <button type="submit" class="btn input-border create-class-button">Save Changes</button>
+                </div>
             </form>
         </div>
     </div>

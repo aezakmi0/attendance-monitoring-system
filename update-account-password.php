@@ -2,14 +2,11 @@
 require_once 'includes/check_session.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-    // Retrieve user information from the form
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-
     // Retrieve password information from the form
+    $email = $_SESSION['user_email'];
     $current_password = $_POST['current_password'];
     $new_password = $_POST['new_password'];
+    $confirm_new_password = $_POST['new_password_confirm'];
 
     try {
         require_once 'includes/dbh.inc.php';
@@ -20,22 +17,39 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         $result = get_user($pdo, $email); // You need to implement this function in your login_model.inc.php file
         if (!is_password_correct($current_password, $result['password'])) {
             // Current password is incorrect
-            header("Location: account-settings.php");
+            header("Location: change-password.php");
             $_SESSION['success_message'] = 'Current password is incorrect!';
             exit();
         }
-
-        // Update user information (first name and last name)
-        update_user_info($pdo, $first_name, $last_name, $email);
-
-        // Update password if new password is provided
-        if (!empty($new_password)) {
+        
+        if (is_new_password_empty($new_password, $confirm_new_password)){
+            header("Location: change-password.php");
+            $_SESSION['success_message'] = 'Passwords cannot be empty.';
+            exit();
+        }
+        
+        if (!is_new_password_correct($new_password, $confirm_new_password)) {
+            // Passwords do not match, display error message
+            header("Location: change-password.php");
+            $_SESSION['success_message'] = 'Passwords do not match.';
+            exit();
+        } else {
+            // Passwords match, proceed with further actions
+            // For example, update password in the database
             update_user_password($pdo, $email, $new_password);
         }
 
+        // Update user information (first name and last name)
+        // update_user_info($pdo, $first_name, $last_name, $email, $user);
+
+        // Update password if new password is provided
+        // if (!empty($new_password)) {
+        //     update_user_password($pdo, $email, $new_password);
+        // }
+
         // Update session variables if necessary
-        $_SESSION['user_first_name'] = $first_name;
-        $_SESSION['user_last_name'] = $last_name;
+        // $_SESSION['user_first_name'] = $first_name;
+        // $_SESSION['user_last_name'] = $last_name;
 
         // Redirect back to the account settings page with a success message
         header("Location: index.php");

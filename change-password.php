@@ -46,7 +46,7 @@ require_once 'includes/check_session.inc.php';
             <a class="list-group-item active">Change Password</a>
         </div>
         <div class="profile-form">
-            <form action="update-account.php" method="post" class="form-control p-5 bg-light">
+            <form action="update-account-password.php" method="post" class="form-control p-5 bg-light">
                 <h1 class="text-center">Change Password</h1>
                 <div class="form-group">
                     <label for="current_password" class="label-text mb-1 mt-3">CURRENT PASSWORD</label>
@@ -57,8 +57,13 @@ require_once 'includes/check_session.inc.php';
                     <label for="new_password" class="label-text mb-1 mt-3">NEW PASSWORD</label>
                     <input type="password" class="form-control input-border" id="new_password" name="new_password">
                 </div>
-                <div class="d-flex justify-content-center mt-5"></div>
-                <button type="submit" class="btn input-border create-class-button">Save Changes</button>
+                <div class="form-group">
+                    <label for="new_password" class="label-text mb-1 mt-3">CONFIRM NEW PASSWORD</label>
+                    <input type="password" class="form-control input-border" id="new_password_confirm" name="new_password_confirm">
+                </div>
+                <div class="d-flex justify-content-center mt-5">
+                    <button type="submit" class="btn input-border create-class-button">Save Changes</button>
+                </div>
             </form>
         </div>
     </div>

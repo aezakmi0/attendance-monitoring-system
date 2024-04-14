@@ -13,7 +13,7 @@ function update_user_info($pdo, $first_name, $last_name, $email, $user_id) {
 
     // Execute the statement
     $stmt->execute();
-
+}
 function update_user_password($pdo, $email, $new_password) {
     // Hash the new password
     $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
@@ -28,10 +28,27 @@ function update_user_password($pdo, $email, $new_password) {
     // Execute the statement
     $stmt->execute();
 }
-}
+
 
 // Define a function to check if the provided password is correct
 function is_password_correct($password, $hashed_password) {
     // Verify if the provided password matches the hashed password
     return password_verify($password, $hashed_password);
+}
+
+function is_new_password_correct($newPassword, $confirmPassword) {
+    // Check if passwords match
+    if ($newPassword !== $confirmPassword) {
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function is_new_password_empty($newPassword, $confirmPassword){
+    if (empty($newPassword) && empty($confirmPassword)) {
+        return true;
+    }else{
+        return false;
+    }
 }
