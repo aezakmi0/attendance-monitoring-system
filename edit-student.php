@@ -45,15 +45,14 @@ if (isset($_GET['id']) && isset($_GET['studentid'])) {
 // Handle form submission for editing student details
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve updated student details from the form
-    //$updatedIDNumber = $_POST['id_number'];
+    $updatedIDNumber = $_POST['id_number'];
     $updatedFirstName = $_POST['first_name'];
     $updatedLastName = $_POST['last_name'];
-    $updatedLastName = $_POST['last_name'];
-    
+
     // Update student details in the database
-    $updateQuery = "UPDATE tb_student SET first_name = ?, last_name = ? WHERE student_ID = ?";
+    $updateQuery = "UPDATE tb_student SET ID_number = ?, first_name = ?, last_name = ? WHERE student_ID = ?";
     $updateStmt = $db->prepare($updateQuery);
-    $updateStmt->bind_param("ssi", $updatedFirstName, $updatedLastName, $studentID);
+    $updateStmt->bind_param("sssi", $updatedIDNumber, $updatedFirstName, $updatedLastName, $studentID);
 
     if ($updateStmt->execute()) {
         // Redirect only after successful update
@@ -89,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row">
                 <div class="col-md-2 mt-3">
                     <p class="label-text mb-1">STUDENT ID</p>
-                    <input type="text" name="student_ID" class="form-control input-border" value="<?php echo $studentData['student_ID']; ?>" required>
+                    <input type="text" name="id_number" class="form-control input-border" value="<?php echo $studentData['ID_number']; ?>" required>
                 </div>
                 <div class="col-md-4 mt-3">
                     <p class="label-text mb-1">FIRST NAME</p>
