@@ -46,7 +46,7 @@ require_once 'includes/check_session.inc.php';
             <a class="list-group-item" href="change-password.php">Change Password</a>
         </div>
         <div class="profile-form">
-            <form action="update-account.php" method="post" class="form-control p-5 bg-light">
+            <form action="update-account-name.php" method="post" class="form-control p-5 bg-light">
                 <h1 class="text-center">Change Name and Email</h1>
                 <div class="form-group">
                     <label for="first_name" class="label-text mb-1 mt-3">FIRST NAME</label>
@@ -61,7 +61,7 @@ require_once 'includes/check_session.inc.php';
                 <div class="form-group">
                     <label for="email" class="label-text mb-1 mt-3">EMAIL</label>
                     <input type="text" class="form-control input-border" id="email" name="email"
-                        value="<?php echo $_SESSION['user_email']; ?>" disabled>
+                        value="<?php echo $_SESSION['user_email']; ?>" >
                 </div>
                 <div class="d-flex justify-content-center mt-5"></div>
                 <button type="submit" class="btn input-border create-class-button">Save Changes</button>

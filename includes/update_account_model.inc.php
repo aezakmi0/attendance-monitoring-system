@@ -1,14 +1,15 @@
 <?php
 
 // Define a function to update user information in the database
-function update_user_info($pdo, $first_name, $last_name, $email) {
+function update_user_info($pdo, $first_name, $last_name, $email, $user_id) {
     // Prepare SQL statement
-    $stmt = $pdo->prepare("UPDATE tb_user SET first_name = ?, last_name = ? WHERE email = ?");
+    $stmt = $pdo->prepare("UPDATE tb_user SET first_name = ?, last_name = ?, email = ? WHERE user_ID = ?");
     
     // Bind parameters
     $stmt->bindParam(1, $first_name);
     $stmt->bindParam(2, $last_name);
     $stmt->bindParam(3, $email);
+    $stmt->bindParam(4, $user_id);
 
     // Execute the statement
     $stmt->execute();
