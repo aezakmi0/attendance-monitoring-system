@@ -20,7 +20,8 @@ function signup_inputs() {
     }
 
     // Output password input field
-    echo '<input type="password" name="password" placeholder="Password" class="form-control login-box mb-4">';
+    echo '<input type="password" name="password" id="password" placeholder="Password" class="form-control login-box mb-1">';
+    echo '<input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" class="form-control login-box mb-1">';
 }
 
 
