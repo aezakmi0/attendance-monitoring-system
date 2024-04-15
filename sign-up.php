@@ -83,7 +83,7 @@ require_once 'includes/signup_view.inc.php';
 </head>
 
 <body>
-    <div class="container d-flex align-items-center">
+    <div class="main-container container d-flex align-items-center">
         <div class="col title-container text-center">
             <img class="seal" src="img/ndduseal.png" alt="NDDU seal">
             <h1 class="class-code">Attendance Monitoring System</h1>
