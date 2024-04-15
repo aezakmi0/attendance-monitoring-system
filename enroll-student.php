@@ -222,7 +222,7 @@ if (isset($_GET['id'])) {
             var studentName = button.data('student-name');
             console.log(studentName);
             var modal = $(this);
-            modal.find('#studentNameToDelete').text('Are you sure you want to remove ' + studentName + 'on <?php echo $classCode; ?> ?' );
+            modal.find('#studentNameToDelete').text('Are you sure you want to remove ' + studentName + ' on <?php echo $classCode; ?> ?' );
             modal.find('#confirmDeleteBtn').attr('data-student-id', studentId);
         });
 
