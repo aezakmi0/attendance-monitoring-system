@@ -16,8 +16,8 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_ID = $_SESSION['user_id'];
     $id_number = $_POST["ID_number"];
-    $first_name = $_POST["first_name"];
-    $last_name = $_POST["last_name"];
+    $first_name = ucwords(strtolower($_POST['first_name'])); // Capitalize first letter of each word
+    $last_name = ucwords(strtolower($_POST['last_name'])); // Capitalize first letter of each word
 
     $sql_student = "INSERT INTO tb_student (user_ID, ID_number, first_name, last_name) VALUES ('$user_ID', '$id_number', '$first_name', '$last_name')";
     $result_student = $conn->query($sql_student);
