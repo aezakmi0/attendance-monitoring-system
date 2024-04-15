@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Include your database connection code or require_once('db_connection.php');
 // Assuming you have a database connection established
 $servername = "localhost";
@@ -29,6 +30,7 @@ if (isset($_GET['id'])) {
 
         // Redirect to a confirmation page or back to the class list
         header("Location: index.php");
+        $_SESSION['success_message'] = 'Class deleted!';
         exit();
     } catch (Exception $e) {
         // Handle database errors
@@ -39,4 +41,3 @@ if (isset($_GET['id'])) {
     header("Location: index.php");
     exit();
 }
-?>
