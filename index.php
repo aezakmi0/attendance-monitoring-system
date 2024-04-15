@@ -168,8 +168,10 @@ require_once 'includes/check_session.inc.php';
 
             // Listen to the 'change' event provided by ClockPicker
             $('#filterTime').on('change', function () {
-                console.log('time is: ', $(this).val());
-                filterClassesByTime($(this).val());
+                var time12Hour = $(this).val(); // Assuming the time is in 12-hour format like "02:00PM"
+                var time24Hour = convert12HourTo24Hour(time12Hour);
+                console.log('time is:', time24Hour);
+                filterClassesByTime(time24Hour);
             });
         });
         document.addEventListener('DOMContentLoaded', function () {
@@ -179,11 +181,11 @@ require_once 'includes/check_session.inc.php';
                 searchClasses(searchInput.value);
             });
 
-            const filterTimeInput = document.getElementById('filterTime');
-            filterTimeInput.addEventListener('input', function () {
-                console.log('time is: ', filterTimeInput.value);
-                filterClassesByTime(filterTimeInput.value);
-            });
+            // const filterTimeInput = document.getElementById('filterTime');
+            // filterTimeInput.addEventListener('input', function () {
+            //     console.log('time is: ', filterTimeInput.value);
+            //     filterClassesByTime(filterTimeInput.value);
+            // });
 
             const roomInput = document.getElementById('filterRoom');
             roomInput.addEventListener('input', function () {
@@ -194,6 +196,26 @@ require_once 'includes/check_session.inc.php';
             fetchAndCreateButtons(); // Initial fetch without search term
             updateDate();
         });
+
+        function convert12HourTo24Hour(time12Hour) {
+            var timeSplit = time12Hour.split(':');
+            var hours = parseInt(timeSplit[0]);
+            var minutes = parseInt(timeSplit[1]);
+            var meridian = timeSplit[1].slice(-2); // Extracting AM or PM
+
+            if (meridian.toUpperCase() === 'PM' && hours < 12) {
+                hours = hours + 12;
+            }
+            if (meridian.toUpperCase() === 'AM' && hours == 12) {
+                hours = 0;
+            }
+
+            // Ensure two digits for hours and minutes
+            var formattedHours = ('0' + hours).slice(-2);
+            var formattedMinutes = ('0' + minutes).slice(-2);
+
+            return formattedHours + ':' + formattedMinutes + ':00';
+        }
     </script>
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>

@@ -1,13 +1,13 @@
 // Include navbar
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("navbar.php")
-      .then(response => response.text())
-      .then(data => {
-          document.body.insertAdjacentHTML("afterbegin", data);
-      });
+    fetch("navbar.php")
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML("afterbegin", data);
+        });
 });
 
-function clearFilters(){
+function clearFilters() {
     document.getElementById('filterSearch').value = '';
     document.getElementById('filterTime').value = '';
     document.getElementById('filterRoom').selectedIndex = 0;
@@ -35,7 +35,7 @@ function fetchAndCreateButtons(searchTerm = '', filterTime = '', filterRoom = ''
     // Cancel the previous fetch request
     abortController.abort();
     abortController = new AbortController();
-    
+
     const urlSearchParams = new URLSearchParams({
         search: searchTerm,
         filterTime: filterTime,
@@ -49,22 +49,24 @@ function fetchAndCreateButtons(searchTerm = '', filterTime = '', filterRoom = ''
         .then(response => response.json())
         .then(data => {
             data.forEach(classData => {
-                // Fetch the number of students for the class
-                fetch(`get_students_count.php?class_id=${classData.class_ID}`)
-                    .then(response => response.json())
-                    .then(studentData => {
-                        const buttonContainer = document.createElement('div');
-                        buttonContainer.classList.add('class-container', 'border', 'm-2');
-                        buttonContainer.style.cursor = 'pointer';
+                // Check if filterTime is empty or matches the class starting time
+                if (filterTime === '' || classData.time_start === filterTime) {
+                    // Fetch the number of students for the class
+                    fetch(`get_students_count.php?class_id=${classData.class_ID}`)
+                        .then(response => response.json())
+                        .then(studentData => {
+                            const buttonContainer = document.createElement('div');
+                            buttonContainer.classList.add('class-container', 'border', 'm-2');
+                            buttonContainer.style.cursor = 'pointer';
 
-                        // Assuming classData.time_start and classData.time_end are in HH:mm:ss format
-                        const startTime = new Date(`1970-01-01T${classData.time_start}`);
-                        const endTime = new Date(`1970-01-01T${classData.time_end}`);
+                            // Assuming classData.time_start and classData.time_end are in HH:mm:ss format
+                            const startTime = new Date(`1970-01-01T${classData.time_start}`);
+                            const endTime = new Date(`1970-01-01T${classData.time_end}`);
 
-                        const formattedStartTime = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'}).replace(/\s/g, '');
-                        const formattedEndTime = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'}).replace(/\s/g, '');
+                            const formattedStartTime = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(/\s/g, '');
+                            const formattedEndTime = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).replace(/\s/g, '');
 
-                        const buttonContent = `
+                            const buttonContent = `
                             <div class="container-fluid p-3">
                                 <div class="row">
                                     <a class="col class-code">${classData.class_code}</a>
@@ -89,15 +91,16 @@ function fetchAndCreateButtons(searchTerm = '', filterTime = '', filterRoom = ''
                             </div>
                         `;
 
-                        buttonContainer.innerHTML = buttonContent;
-                        buttonContainer.setAttribute('onclick', `redirectToClassPage(${classData.class_ID});`);
-                        buttonsContainer.appendChild(buttonContainer);
-                    })
-                    .catch(error => {
-                        if (error.name !== 'AbortError') {
-                            console.error('Error fetching student data:', error);
-                        }
-                    });
+                            buttonContainer.innerHTML = buttonContent;
+                            buttonContainer.setAttribute('onclick', `redirectToClassPage(${classData.class_ID});`);
+                            buttonsContainer.appendChild(buttonContainer);
+                        })
+                        .catch(error => {
+                            if (error.name !== 'AbortError') {
+                                console.error('Error fetching student data:', error);
+                            }
+                        });
+                }
             });
         })
         .catch(error => {
