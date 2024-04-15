@@ -27,6 +27,7 @@ if ($result->num_rows > 0) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,51 +38,60 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <style>
-        .margin-right{
+        .margin-right {
             margin-right: 20px;
         }
-        
-        ol>.breadcrumb{
+
+        ol>.breadcrumb {
             margin-bottom: 0px !important;
         }
     </style>
 </head>
+
 <body>
- 
+
     <div class="container">
         <!-- <div class="text-center pt-4"> -->
-            <!-- <h1 class="class-code-lg">CS-ITE 313</h1>
+        <!-- <h1 class="class-code-lg">CS-ITE 313</h1>
             <p class="class-name">Web Systems and Technology | 3:00PM-5:00PM TF</p> -->
-            <!-- </div> -->
-            <!-- <hr class="hr" /> -->
+        <!-- </div> -->
+        <!-- <hr class="hr" /> -->
 
-            <!-- Breadcrumbs -->
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo $classCode; ?></li>
-                </ol>
-            </nav>
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?php echo $classCode; ?></li>
+            </ol>
+        </nav>
 
-            <div class="d-flex justify-content-between align-items-center">  
+        <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex">
-                <a href="index.php" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></svg></a>
+                <a href="index.php" class="btn btn-rounded"><svg xmlns="http://www.w3.org/2000/svg" width="32"
+                        height="32" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z" />
+                    </svg></a>
                 <?php include 'class-header.php'; ?>
-            </div>  
+            </div>
             <div class="text-end">
-                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-rounded btn-green-solid">Edit Seatplan</a>
-                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">Students</a>
-                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">Edit Class</a>
-                <a href="attendance-records.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-outline-dark btn-rounded btn-black">View Attendance Records</a>
-                <a href="delete_class.php?id=<?php echo $classId; ?>" type="button" class="btn btn-sm btn-danger btn-rounded btn-red" onclick="return confirm('Are you sure you want to delete this class?')">Delete Class</a>
+                <a href="edit-seatplan.php?id=<?php echo $classId; ?>" type="button"
+                    class="btn btn-sm btn-rounded btn-green-solid">Edit Seatplan</a>
+                <a href="enroll-student.php?id=<?php echo $classId; ?>" type="button"
+                    class="btn btn-sm btn-outline-dark btn-rounded btn-black">Students</a>
+                <a href="edit-class.php?id=<?php echo $classId; ?>" type="button"
+                    class="btn btn-sm btn-outline-dark btn-rounded btn-black">Edit Class</a>
+                <a href="attendance-records.php?id=<?php echo $classId; ?>" type="button"
+                    class="btn btn-sm btn-outline-dark btn-rounded btn-black">View Attendance Records</a>
+                <a type="button" class="btn btn-sm btn-danger btn-rounded btn-red" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal">Delete Class</a>
             </div>
         </div>
     </div>
 
-    
+
     <!-- aseatplan layout -->
     <div class="container">
-        <hr/>
+        <hr />
         <div class="d-flex justify-content-between align-items-center">
             <div class="legend-container d-flex align-items-center">
 
@@ -91,17 +101,22 @@ if ($result->num_rows > 0) {
                 <label><input type="radio" name="status" value="excused"> Excused</label>
 
             </div>
-            <p class="label-text-2">Select an attendance status and click a seat to change the student's attendance status.</p>
+            <p class="label-text-2">Select an attendance status and click a seat to change the student's attendance
+                status.</p>
             <span class="text-end">
                 <a href="#" id="markAllPresentBtn" class="btn btn-sm btn-rounded btn-green">Mark all as present</a>
-                <a href="#" id="resetStatusBtn" class="btn btn-sm btn-rounded btn-green"><svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z"/></svg></a>    
+                <a href="#" id="resetStatusBtn" class="btn btn-sm btn-rounded btn-green"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z" />
+                    </svg></a>
             </span>
         </div>
-        <hr/>
+        <hr />
         <div class="seatplan-main-container" style="user-select: none">
             <div class="my-grid">
-            <?php for($x = 1; $x <= 25; $x++){
-                    echo '<div class="seatplan-seat" data-seat="' . $x .'">
+                <?php for ($x = 1; $x <= 25; $x++) {
+                    echo '<div class="seatplan-seat" data-seat="' . $x . '">
                             <div class="seatplan-seat-content">
                                 <span>
                                     <p class="seatplan-lastname"></p>
@@ -109,12 +124,12 @@ if ($result->num_rows > 0) {
                                 </span>
                                 <p class="seatplan-attendance-status"></p>
                             </div>
-                        </div>';  
-                }?>
+                        </div>';
+                } ?>
             </div>
             <div class="my-grid">
-            <?php for($x = 26; $x <= 50; $x++){
-                    echo '<div class="seatplan-seat" data-seat="' . $x .'">
+                <?php for ($x = 26; $x <= 50; $x++) {
+                    echo '<div class="seatplan-seat" data-seat="' . $x . '">
                             <div class="seatplan-seat-content">
                                 <span>
                                     <p class="seatplan-lastname"></p>
@@ -122,8 +137,8 @@ if ($result->num_rows > 0) {
                                 </span>
                                 <p class="seatplan-attendance-status"></p>
                             </div>
-                        </div>';  
-                }?>
+                        </div>';
+                } ?>
             </div>
         </div>
 
@@ -150,8 +165,41 @@ if ($result->num_rows > 0) {
     <!-- TOAST CONTAINER -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
     </div>
-    
+
+    <!-- Delete Class Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true"
+        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="color: #f2163e;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
+                        aria-label="Warning:">
+                        <path
+                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg>
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Class</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p style="font-weight: 700; color: #f2163e;">Are you sure you want to delete this class?</p>
+                    <p style="font-size: 14px; color: #575757;">Once a class is deleted, all of its data will also be
+                        removed and it cannot be
+                        retrieved, so please proceed with caution.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete Class</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+            window.location.href = "delete_class.php?id=<?php echo $classId; ?>";
+        });
+
         const seatplanSeats = document.querySelectorAll('.seatplan-seat');
         const assignModal = document.getElementById('assignModal');
         const studentList = document.getElementById('studentList');
@@ -177,7 +225,7 @@ if ($result->num_rows > 0) {
             // Define an array of colors to loop through
             const colors = ['#4ab33d', '#ff4747', '#ff9640', '#6090eb'];
             const status = ['present', 'absent', 'late', 'excused'];
-            
+
             const colorStatus = {
                 'present': '#4ab33d',
                 'absent': '#ff4747',
@@ -192,57 +240,57 @@ if ($result->num_rows > 0) {
             fetch(`get_seat_assignments.php?classId=<?php echo $classId; ?>`)
                 .then(response => response.json())
                 .then(seatAssignments => {
-                // Check if seatAssignments is an object with seat numbers
-                if (seatAssignments && typeof seatAssignments === 'object') {
-                    // Loop through each seat and update the seat information
-                    Object.keys(seatAssignments).forEach(seatNumber => {
-                        const seatInfo = seatAssignments[seatNumber];
-                        const seat = document.querySelector(`.seatplan-seat[data-seat="${seatNumber}"]`);
+                    // Check if seatAssignments is an object with seat numbers
+                    if (seatAssignments && typeof seatAssignments === 'object') {
+                        // Loop through each seat and update the seat information
+                        Object.keys(seatAssignments).forEach(seatNumber => {
+                            const seatInfo = seatAssignments[seatNumber];
+                            const seat = document.querySelector(`.seatplan-seat[data-seat="${seatNumber}"]`);
 
-                        if (seat) {
-                            // Update the seat information
-                            seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
-                            seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
-                            // Make the seat clickable
-                            seat.classList.add('clickable');
-                            
-                            // Set the student_ID as a data attribute
-                            seat.setAttribute('data-student-id', seatInfo.studentID);
+                            if (seat) {
+                                // Update the seat information
+                                seat.querySelector('.seatplan-lastname').textContent = seatInfo.lastName;
+                                seat.querySelector('.seatplan-firstname').textContent = seatInfo.firstName;
+                                // Make the seat clickable
+                                seat.classList.add('clickable');
 
-                            fetch(`get_attendance_status.php?classId=<?php echo $classId; ?>&studentId=${seatInfo.studentID}`)
-                            .then(response => response.json())
-                            .then(attendanceStatus => {
-                                const status = attendanceStatus.status;
-                                const seatplanAttendanceStatus = seat.querySelector('.seatplan-attendance-status');
-                                seat.querySelector('.seatplan-attendance-status').textContent = status;
-                                
-                                if (seat.querySelector('.seatplan-attendance-status').textContent != "No attendance"){
-                                    seatplanAttendanceStatus.classList.add("white-text");
-                                }
+                                // Set the student_ID as a data attribute
+                                seat.setAttribute('data-student-id', seatInfo.studentID);
 
-                                seat.style.backgroundColor = colorStatus[status];
-                            })
-                            .catch(error => console.error('Error fetching attendance status:', error));
-                        }
+                                fetch(`get_attendance_status.php?classId=<?php echo $classId; ?>&studentId=${seatInfo.studentID}`)
+                                    .then(response => response.json())
+                                    .then(attendanceStatus => {
+                                        const status = attendanceStatus.status;
+                                        const seatplanAttendanceStatus = seat.querySelector('.seatplan-attendance-status');
+                                        seat.querySelector('.seatplan-attendance-status').textContent = status;
+
+                                        if (seat.querySelector('.seatplan-attendance-status').textContent != "No attendance") {
+                                            seatplanAttendanceStatus.classList.add("white-text");
+                                        }
+
+                                        seat.style.backgroundColor = colorStatus[status];
+                                    })
+                                    .catch(error => console.error('Error fetching attendance status:', error));
+                            }
+                        });
+                    } else {
+                        console.error('Invalid seat assignments format:', seatAssignments);
+                    }
+
+                    // Add click event listener to each seat with the 'clickable' class
+                    const clickableSeats = document.querySelectorAll('.seatplan-seat.clickable');
+                    clickableSeats.forEach(seat => {
+                        // Get the student ID from the seat element
+                        const studentId = seat.getAttribute('data-student-id');
+
+                        seat.addEventListener('click', function () {
+                            toggleColor.call(this, studentId);
+                            const seatplanAttendanceStatus = seat.querySelector('.seatplan-attendance-status');
+                            seatplanAttendanceStatus.classList.add("white-text");
+                        });
                     });
-                } else {
-                    console.error('Invalid seat assignments format:', seatAssignments);
-                }
-
-                // Add click event listener to each seat with the 'clickable' class
-                const clickableSeats = document.querySelectorAll('.seatplan-seat.clickable');
-                clickableSeats.forEach(seat => {
-                    // Get the student ID from the seat element
-                    const studentId = seat.getAttribute('data-student-id');
-
-                    seat.addEventListener('click', function () {
-                        toggleColor.call(this, studentId);
-                        const seatplanAttendanceStatus = seat.querySelector('.seatplan-attendance-status');
-                        seatplanAttendanceStatus.classList.add("white-text");
-                    });
-                });
-            })
-            .catch(error => console.error('Error fetching seat assignments:', error));
+                })
+                .catch(error => console.error('Error fetching seat assignments:', error));
 
             // Function to toggle through colors
             function toggleColor(studentId) {
@@ -376,4 +424,5 @@ if ($result->num_rows > 0) {
     <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
