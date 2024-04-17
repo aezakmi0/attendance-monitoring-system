@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Assuming you have a database connection established using MySQLi
-$servername = "localhost";
+$servername = "server1319";
 $username = "u341493210_aezakmi0";
 $password = '$variable1="Hi";';
 $database = "u341493210_db_attendance";
@@ -14,7 +14,7 @@ if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
 
-$dsn = "mysql:host=localhost;dbname=u341493210_db_attendance";
+$dsn = "mysql:host=server1319;dbname=u341493210_db_attendance";
 $username = "u341493210_aezakmi0";
 $password = '$variable1="Hi";';
 

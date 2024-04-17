@@ -2,7 +2,7 @@
 require_once 'includes/check_session.inc.php';
 // assign_seat.php
 
-$servername = "localhost";
+$servername = "server1319";
 $username = "u341493210_aezakmi0";
 $password = '$variable1="Hi";';
 $dbname = "u341493210_db_attendance";

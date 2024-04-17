@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$user_ID', '$class_code', '$class_name', '$room', '$time_start_24h', '$time_end_24h', '$selected_days')";
 
     // Create connection (replace these values with your actual database credentials)
-    $servername = "localhost";
+    $servername = "server1319";
     $username = "u341493210_aezakmi0";
     $password = '$variable1="Hi";';
     $dbname = "u341493210_db_attendance";

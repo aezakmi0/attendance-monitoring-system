@@ -1,7 +1,7 @@
 <?php
 // Assuming you have some database connection setup
 // Include or require your database connection file here
-$servername = "localhost";
+$servername = "server1319";
 $username = "u341493210_aezakmi0";
 $password = '$variable1="Hi";';
 $dbname = "u341493210_db_attendance";
