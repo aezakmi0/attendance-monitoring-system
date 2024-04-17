@@ -2,9 +2,9 @@
 // Assuming you have some database connection setup
 // Include or require your database connection file here
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_attendance";
+$username = "u341493210_aezakmi0";
+$password = "\$variable1=\"Hi\";";
+$dbname = "u341493210_db_attendance";
 
 // Create connection using MySQLi
 $conn = new mysqli($servername, $username, $password, $dbname);

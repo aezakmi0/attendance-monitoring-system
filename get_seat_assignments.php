@@ -2,9 +2,9 @@
 // get_seat_assignments.php
 
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_attendance";
+$username = "u341493210_aezakmi0";
+$password = "\$variable1=\"Hi\";";
+$dbname = "u341493210_db_attendance";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

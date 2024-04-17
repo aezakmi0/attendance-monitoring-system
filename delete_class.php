@@ -3,9 +3,9 @@ session_start();
 // Include your database connection code or require_once('db_connection.php');
 // Assuming you have a database connection established
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "db_attendance";
+$username = "u341493210_aezakmi0";
+$password = "\$variable1=\"Hi\";";
+$database = "u341493210_db_attendance";
 
 // Create connection using MySQLi
 $db = new mysqli($servername, $username, $password, $database);
