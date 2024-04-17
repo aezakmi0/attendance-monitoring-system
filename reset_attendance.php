@@ -3,7 +3,7 @@
 // Include or require your database connection file here
 $servername = "localhost";
 $username = "u341493210_aezakmi0";
-$password = "\$variable1=\"Hi\";";
+$password = '$variable1="Hi";';
 $dbname = "u341493210_db_attendance";
 
 // Create connection using MySQLi

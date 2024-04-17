@@ -3,7 +3,7 @@ session_start();
 // Assuming you have a database connection established using MySQLi
 $servername = "localhost";
 $username = "u341493210_aezakmi0";
-$password = "\$variable1=\"Hi\";";
+$password = '$variable1="Hi";';
 $database = "u341493210_db_attendance";
 
 // Create connection
@@ -16,7 +16,7 @@ if ($db->connect_error) {
 
 $dsn = "mysql:host=localhost;dbname=u341493210_db_attendance";
 $username = "u341493210_aezakmi0";
-$password = "\$variable1=\"Hi\";";
+$password = '$variable1="Hi";';
 
 try {
     $pdo = new PDO($dsn, $username, $password);

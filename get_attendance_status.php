@@ -4,7 +4,7 @@ require_once 'includes/check_session.inc.php';
 // Assuming you have a database connection established
 $servername = "localhost";
 $username = "u341493210_aezakmi0";
-$password = "\$variable1=\"Hi\";";
+$password = '$variable1="Hi";';
 $dbname = "u341493210_db_attendance";
 
 // Create connection using MySQLi
