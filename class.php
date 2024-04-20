@@ -1,23 +1,16 @@
 <?php
 require_once 'includes/check_session.inc.php';
-
-// Assuming you have a database connection established
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_attendance";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+require_once 'includes/dbh.inc.php';
 
 // Get the class_ID from the URL
 $classId = isset($_GET['id']) ? $_GET['id'] : null;
-$sql = "SELECT class_code FROM tb_class WHERE class_ID = $classId";
-$result = $conn->query($sql);
+$sql = "SELECT class_code FROM tb_class WHERE class_ID = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$classId]);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($result->num_rows > 0) {
+if ($row) { // Check if a row is fetched successfully
     // Assuming class_code is a unique identifier; you may need to adjust accordingly
-    $row = $result->fetch_assoc();
     $classCode = $row['class_code'];
 } else {
     $classCode = "Unknown"; // Set a default value if class_code is not found

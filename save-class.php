@@ -1,6 +1,7 @@
 <?php
-
 require_once 'includes/check_session.inc.php';
+require_once 'includes/dbh.inc.php';
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -10,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $room = $_POST["room"];
     $time_start = $_POST["time_start"];
     $time_end = $_POST["time_end"];
-
 
     // Convert time_start to 24-hour format
     $time_start_24h = date("H:i:s", strtotime($time_start));
@@ -23,35 +23,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // SQL query to insert data into the database
     $sql = "INSERT INTO tb_class (user_ID, class_code, class_name, room, time_start, time_end, day)
-            VALUES ('$user_ID', '$class_code', '$class_name', '$room', '$time_start_24h', '$time_end_24h', '$selected_days')";
+            VALUES (:user_ID, :class_code, :class_name, :room, :time_start, :time_end, :selected_days)";
 
-    // Create connection (replace these values with your actual database credentials)
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "db_attendance";
+    try {
+        // Prepare the statement
+        $stmt = $pdo->prepare($sql);
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+        // Bind parameters
+        $stmt->bindParam(':user_ID', $user_ID);
+        $stmt->bindParam(':class_code', $class_code);
+        $stmt->bindParam(':class_name', $class_name);
+        $stmt->bindParam(':room', $room);
+        $stmt->bindParam(':time_start', $time_start_24h);
+        $stmt->bindParam(':time_end', $time_end_24h);
+        $stmt->bindParam(':selected_days', $selected_days);
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        // Execute the query
+        if ($stmt->execute()) {
+            // Retrieve the last inserted ID
+            $last_insert_id = $pdo->lastInsertId();
+
+            // Redirect to another page using the class_ID
+            header("Location: enroll-student.php?id=" . $last_insert_id);
+            exit();
+        } else {
+            echo "Error: Unable to execute the query.";
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
-    // class.php?id=${class_ID}
-
-    // Execute the query
-    if ($conn->query($sql) === TRUE) {
-        // Retrieve the last inserted ID
-        $last_insert_id = $conn->insert_id;
-
-        // Redirect to another page using the class_ID
-        header("Location: enroll-student.php?id=" . $last_insert_id);
-        exit();
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    // Close the database connection
-    $conn->close();
 }
 ?>

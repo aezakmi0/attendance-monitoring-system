@@ -1,19 +1,6 @@
 <?php
 require_once 'includes/check_session.inc.php';
-
-// Assuming you have a database connection established
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "db_attendance";
-
-// Create connection
-$db = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-}
+require_once 'includes/dbh.inc.php';
 
 // Check if the class_ID is provided in the URL
 if (isset($_GET['id'])) {
@@ -21,14 +8,12 @@ if (isset($_GET['id'])) {
 
     // Fetch class details from the database
     $query = "SELECT * FROM tb_class WHERE class_ID = ?";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param("i", $classID);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$classID]);
+    $classData = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Check if the class exists
-    if ($result->num_rows > 0) {
-        $classData = $result->fetch_assoc();
+    if ($classData) {
         // Extract class code
         $classCode = $classData['class_code'];
     } else {
@@ -36,9 +21,6 @@ if (isset($_GET['id'])) {
         echo "Class not found!";
         exit;
     }
-
-    // Close the prepared statement
-    $stmt->close();
 } else {
     // Handle the case where class_ID is not provided
     echo "Class ID not provided!";
@@ -145,34 +127,33 @@ if (isset($_GET['id'])) {
                 <?php
                 // Fetch enrolled students for the given classID
                 $enrolledQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name, c.class_code
-                                FROM tb_enrollment e
-                                INNER JOIN tb_student s ON s.student_ID = e.student_ID
-                                INNER JOIN tb_class c ON c.class_ID = e.class_ID
-                                WHERE e.class_ID = ? AND e.is_deleted = 0
-                                ORDER BY s.last_name ASC";
+                  FROM tb_enrollment e
+                  INNER JOIN tb_student s ON s.student_ID = e.student_ID
+                  INNER JOIN tb_class c ON c.class_ID = e.class_ID
+                  WHERE e.class_ID = ? AND e.is_deleted = 0
+                  ORDER BY s.last_name ASC";
 
-                $enrolledStmt = $db->prepare($enrolledQuery);
-                $enrolledStmt->bind_param("i", $classID);
-                $enrolledStmt->execute();
-                $enrolledResult = $enrolledStmt->get_result();
+                $enrolledStmt = $pdo->prepare($enrolledQuery);
+                $enrolledStmt->execute([$classID]);
+                $enrolledResult = $enrolledStmt->fetchAll(PDO::FETCH_ASSOC);
 
                 // Display enrolled students
-                while ($row = $enrolledResult->fetch_assoc()) {
-                    $firstName = ucwords(strtolower($row['first_name'])); // Capitalize first letter of each word
-                    $lastName = ucwords(strtolower($row['last_name'])); // Capitalize first letter of each word
+                foreach ($enrolledResult as $row) {
+                    $firstName = ucwords(strtolower(htmlspecialchars($row['first_name']))); // Capitalize first letter of each word
+                    $lastName = ucwords(strtolower(htmlspecialchars($row['last_name']))); // Capitalize first letter of each word
                 
                     echo "<tr class='align-middle'>";
-                    echo "<td>{$row['ID_number']}</td>";
-                    echo "<td>{$lastName}, {$firstName}</td>";
+                    echo "<td>" . htmlspecialchars($row['ID_number']) . "</td>";
+                    echo "<td>" . htmlspecialchars("$lastName, $firstName") . "</td>";
                     echo "<td class='text-end'>
-                            <a type='button' class='btn btn-sm btn-outline-dark  btn-rounded' href='edit-student.php?id={$classID}&studentid={$row['student_ID']}'>Edit</a>
-                            <a type='button' class='btn btn-sm btn-danger btn-rounded' data-bs-toggle='modal' data-bs-target='#deleteModal' data-student-id='{$row['student_ID']}' data-student-name='{$lastName}, {$firstName}'>Remove</a>
-                        </td>";
+                                <a type='button' class='btn btn-sm btn-outline-dark btn-rounded' href='edit-student.php?id={$classID}&studentid={$row['student_ID']}'>Edit</a>
+                                <a type='button' class='btn btn-sm btn-danger btn-rounded' data-bs-toggle='modal' data-bs-target='#deleteModal' data-student-id='{$row['student_ID']}' data-student-name='" . htmlspecialchars("$lastName, $firstName") . "'>Remove</a>
+                            </td>";
                     echo "</tr>";
                 }
 
-                // Close the prepared statement
-                $enrolledStmt->close();
+                // Close the prepared statement (not required for PDO)
+                // $enrolledStmt->close();
                 ?>
             </table>
         </div>
@@ -222,14 +203,14 @@ if (isset($_GET['id'])) {
             var studentName = button.data('student-name');
             console.log(studentName);
             var modal = $(this);
-            modal.find('#studentNameToDelete').text('Are you sure you want to remove ' + studentName + ' on <?php echo $classCode; ?> ?' );
+            modal.find('#studentNameToDelete').text('Are you sure you want to remove ' + studentName + ' on <?php echo $classCode; ?> ?');
             modal.find('#confirmDeleteBtn').attr('data-student-id', studentId);
         });
 
         $('#confirmDeleteBtn').on('click', function () {
             var studentId = $(this).data('student-id');
             // window.location.href = "delete_student.php?id=" + studentId;
-            window.location.href = "delete_student.php?id=<?php echo $classId . '&studentid='?>" + studentId;
+            window.location.href = "delete_student.php?id=<?php echo $classId . '&studentid=' ?>" + studentId;
         });
 
         document.addEventListener('DOMContentLoaded', function () {

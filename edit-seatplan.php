@@ -1,32 +1,9 @@
 <?php
 require_once 'includes/check_session.inc.php';
-
-// Assuming you have a database connection established
-$servername = "localhost";
-$host = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_attendance";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Attempt to establish a connection
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    // Handle connection errors
-    die("Connection failed: " . $e->getMessage());
-}
+require_once 'includes/dbh.inc.php';
 
 // Get the class_ID from the URL
 $classId = isset($_GET['id']) ? $_GET['id'] : null;
-
 
 // Fetch seat assignments for the current class with student names
 $sql = "SELECT sp.seat_number, s1.first_name as first_name1, s1.last_name as last_name1

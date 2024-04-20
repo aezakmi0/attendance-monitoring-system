@@ -1,19 +1,6 @@
 <?php
-session_start();
-// Include your database connection code or require_once('db_connection.php');
-// Assuming you have a database connection established
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "db_attendance";
-
-// Create connection using MySQLi
-$db = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-}
+require_once 'includes/check_session.inc.php';
+require_once 'includes/dbh.inc.php';
 
 // Check if the 'id' parameter is set in the URL
 if (isset($_GET['id'])) {
@@ -22,11 +9,10 @@ if (isset($_GET['id'])) {
 
     // Perform the deletion
     try {
-        // Use MySQLi for the update
+        // Use PDO for the update
         $sql = "UPDATE tb_class SET is_deleted = 1 WHERE class_ID = ?";
-        $stmt = $db->prepare($sql);
-        $stmt->bind_param('i', $classId);  // 'i' represents integer type
-        $stmt->execute();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$classId]);
 
         // Redirect to a confirmation page or back to the class list
         header("Location: index.php");

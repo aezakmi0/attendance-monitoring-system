@@ -1,18 +1,6 @@
 <?php
 require_once 'includes/check_session.inc.php';
-// Assuming you have a database connection established
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "db_attendance";
-
-// Create connection
-$db = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($db->connect_error) {
-  die("Connection failed: " . $db->connect_error);
-}
+require_once 'includes/dbh.inc.php';
 
 // Check if the class_ID is provided in the URL
 if (isset($_GET['id'])) {
@@ -20,14 +8,12 @@ if (isset($_GET['id'])) {
 
   // Fetch class details from the database
   $query = "SELECT * FROM tb_class WHERE class_ID = ?";
-  $stmt = $db->prepare($query);
-  $stmt->bind_param("i", $classID);
-  $stmt->execute();
-  $result = $stmt->get_result();
+  $stmt = $pdo->prepare($query);
+  $stmt->execute([$classID]);
+  $classData = $stmt->fetch(PDO::FETCH_ASSOC);
 
   // Check if the class exists
-  if ($result->num_rows > 0) {
-    $classData = $result->fetch_assoc();
+  if ($classData) {
     // Extract class code
     $classCode = $classData['class_code'];
   } else {
@@ -35,9 +21,6 @@ if (isset($_GET['id'])) {
     echo "Class not found!";
     exit;
   }
-
-  // Close the prepared statement
-  $stmt->close();
 } else {
   // Handle the case where class_ID is not provided
   echo "Class ID not provided!";

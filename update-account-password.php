@@ -39,18 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             update_user_password($pdo, $email, $new_password);
         }
 
-        // Update user information (first name and last name)
-        // update_user_info($pdo, $first_name, $last_name, $email, $user);
-
-        // Update password if new password is provided
-        // if (!empty($new_password)) {
-        //     update_user_password($pdo, $email, $new_password);
-        // }
-
-        // Update session variables if necessary
-        // $_SESSION['user_first_name'] = $first_name;
-        // $_SESSION['user_last_name'] = $last_name;
-
         // Redirect back to the account settings page with a success message
         header("Location: index.php");
         $_SESSION['success_message'] = 'Changes saved!';
@@ -64,4 +52,3 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     header("Location: account-settings.php");
     exit();
 }
-?>

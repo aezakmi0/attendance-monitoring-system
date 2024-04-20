@@ -1,22 +1,7 @@
 <?php
-// Assuming you have a database connection established
+require_once 'includes/dbh.inc.php';
 
-// Replace these variables with your actual database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_attendance";
-
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-function formatTime($time)
-{
+function formatTime($time){
     return date("h:iA", strtotime($time));
 }
 
@@ -25,13 +10,12 @@ if (isset($_GET['id'])) {
     $classId = $_GET['id'];
         
     // Assuming you have a table named 'tb_class' with columns 'class_id', 'class_code', and 'class_name'
-    $sql = "SELECT * FROM tb_class WHERE class_ID = $classId AND is_deleted = 0";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM tb_class WHERE class_ID = ? AND is_deleted = 0";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$classId]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result->num_rows > 0) {
-        // Output data of the first row (assuming class_id is unique)
-        $row = $result->fetch_assoc();  
-
+    if ($row) {
         // Display values in the HTML tags
         echo "<div>
                 <h1 class=\"class-code-2\">" . $row["class_code"] . "</h1>
@@ -43,8 +27,3 @@ if (isset($_GET['id'])) {
 } else {
     echo "Class_id not provided in the request";
 }
-
-// Close the database connection
-$conn->close();
-?>
-

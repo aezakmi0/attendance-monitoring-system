@@ -1,54 +1,48 @@
 <?php
 require_once 'includes/check_session.inc.php';
-// Assuming you have a database connection established
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_attendance";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die ("Connection failed: " . $conn->connect_error);
-}
+require_once 'includes/dbh.inc.php';
 
 // Get the class_ID from the URL
 $classId = isset ($_GET['id']) ? $_GET['id'] : null;
 
 // Fetch class code
 $sqlClassCode = "SELECT class_code FROM tb_class WHERE class_ID = ?";
-$stmt = $conn->prepare($sqlClassCode);
-$stmt->bind_param("i", $classId);
-$stmt->execute();
-$stmt->bind_result($classCode);
-$stmt->fetch();
-$stmt->close();
+$stmt = $pdo->prepare($sqlClassCode);
+$stmt->execute([$classId]);
+$classCode = $stmt->fetchColumn();
+$stmt->closeCursor();
 
 // Fetch student data from tb_student using a JOIN with tb_enrollment
 $studentsQuery = "SELECT s.student_ID, s.ID_number, s.first_name, s.last_name 
                   FROM tb_student s
                   JOIN tb_enrollment e ON s.student_ID = e.student_ID
-                  WHERE e.class_ID = $classId AND e.is_deleted = 0 ORDER BY s.last_name ASC";
+                  WHERE e.class_ID = ? AND e.is_deleted = 0 ORDER BY s.last_name ASC";
 
-$studentsResult = $conn->query($studentsQuery);
+$studentsStmt = $pdo->prepare($studentsQuery);
+$studentsStmt->execute([$classId]);
+$studentsResult = $studentsStmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 // Fetch attendance data from tb_attendance
-$attendanceQuery = "SELECT student_ID, date, status FROM tb_attendance WHERE class_ID = $classId ORDER BY date ASC";
-$attendanceResult = $conn->query($attendanceQuery);
+$attendanceQuery = "SELECT student_ID, date, status FROM tb_attendance WHERE class_ID = ? ORDER BY date ASC";
+$attendanceStmt = $pdo->prepare($attendanceQuery);
+$attendanceStmt->execute([$classId]);
+$attendanceResult = $attendanceStmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Organize attendance data by date and student_ID
 $attendanceData = [];
-while ($row = $attendanceResult->fetch_assoc()) {
+foreach ($attendanceResult as $row){
     $attendanceData[$row['date']][$row['student_ID']] = $row['status'];
 }
 
-$datesQuery = "SELECT DISTINCT date FROM tb_attendance WHERE class_ID = $classId ORDER BY date ASC";
-$datesResult = $conn->query($datesQuery);
+$datesQuery = "SELECT DISTINCT date FROM tb_attendance WHERE class_ID = ? ORDER BY date ASC";
+$datesStmt = $pdo->prepare($datesQuery);
+$datesStmt->execute([$classId]);
+$datesResult = $datesStmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Organize dates by month
 $months = [];
-while ($row = $datesResult->fetch_assoc()) {
+foreach ($datesResult as $row){
     $date = strtotime($row['date']);
     $month = date('F Y', $date);
     $day = date('j', $date);
@@ -143,7 +137,7 @@ while ($row = $datesResult->fetch_assoc()) {
                 </thead>
                 <tbody>
                     <?php
-                    while ($student = $studentsResult->fetch_assoc()) {
+                    foreach ($studentsResult as $student){
                         echo "<tr>";
                         echo "<td class=\"fit\">{$student['ID_number']}</td>";
                         echo "<td class=\"fit text-start td-student\">{$student['last_name']}, {$student['first_name']}</td>";

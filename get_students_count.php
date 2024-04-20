@@ -1,37 +1,23 @@
 <?php
-$classId = $_GET['class_id'];
+require_once 'includes/dbh.inc.php';
 
-// Assuming you have a database connection established
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_attendance";
+// Get the class ID from the URL
+$classId = isset($_GET['class_id']) ? $_GET['class_id'] : null;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Assuming you have a PDO database connection established
+try {
+    // Fetch the count of students for the given class
+    $sql = "SELECT COUNT(*) AS total_students FROM tb_enrollment WHERE class_ID = ? AND is_deleted = 0";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$classId]);
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    // Fetch the result
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Return the data as JSON
+    header('Content-Type: application/json');
+    echo json_encode($data);
+} catch (PDOException $e) {
+    // Handle database error
+    echo json_encode(array('error' => 'Database error: ' . $e->getMessage()));
 }
-
-// Fetch the count of students for the given class
-$sql = "SELECT COUNT(*) AS total_students FROM tb_enrollment WHERE class_ID = $classId AND is_deleted = 0";
-$result = $conn->query($sql);
-
-// Create an array to store the results
-$data = array();
-
-// Fetch the data and store it in the array
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $data = $row;
-    }
-}
-
-// Close the database connection
-$conn->close();
-
-// Return the data as JSON
-header('Content-Type: application/json');
-echo json_encode($data);
-?>
